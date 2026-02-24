@@ -6,9 +6,9 @@ function save(){
   localStorage.setItem("customers", JSON.stringify(customers));
 }
 
-window.addCustomer = () =>{
-  const name = $("name").value.trim();
-  const phone = $("phone").value.trim();
+window.addCustomer = ()=>{
+  const name = $("customerName").value;
+  const phone = $("phone").value;
 
   if(!name) return alert("Enter name");
 
@@ -19,7 +19,7 @@ window.addCustomer = () =>{
     history:[]
   });
 
-  $("name").value="";
+  $("customerName").value="";
   $("phone").value="";
 
   save();
@@ -102,4 +102,30 @@ window.addEntry = (type)=>{
   save();
   renderCustomer();
   render();
+}
+
+/* WHATSAPP REMINDER */
+window.sendReminder = ()=>{
+
+  const c = customers[currentIndex];
+
+  if(!c.phone){
+    alert("Customer phone number nahi hai!");
+    return;
+  }
+
+  let msg = `🙏 Namaste ${c.name}\n\n`;
+  msg += `Aapka Khata Mitra par balance ₹${c.balance} hai.\n\n`;
+
+  if(c.balance>0){
+    msg += "Kripya jaldi payment kare.\n";
+  }else{
+    msg += "Aapka khata clear hai 👍\n";
+  }
+
+  msg += "\nThanks 🙏\nKhata Mitra App";
+
+  const url = `https://wa.me/91${c.phone}?text=${encodeURIComponent(msg)}`;
+
+  window.open(url);
 }
