@@ -13,11 +13,12 @@ window.addCustomer = ()=>{
   if(!name) return alert("Enter name");
 
   customers.push({
-    name,
-    phone,
-    balance:0,
-    history:[]
-  });
+  name,
+  phone,
+  autoReminder:false,
+  balance:0,
+  history:[]
+});
 
   $("customerName").value="";
   $("phone").value="";
@@ -71,7 +72,12 @@ function renderCustomer(){
 
   $("cName").textContent = c.name;
   $("cBalance").textContent = c.balance;
+$("autoReminder").checked = c.autoReminder;
 
+$("autoReminder").onchange = (e)=>{
+  c.autoReminder = e.target.checked;
+  save();
+}
   $("historyList").innerHTML = c.history.map(h=>`
     <div class="card">
       <b>${h.type==="given"?"Udhaar":"Paid"}</b> ₹ ${h.amount}
@@ -98,7 +104,10 @@ window.addEntry = (type)=>{
   });
 
   $("amount").value="";
-
+  
+if(c.autoReminder){
+  sendReminder();
+}
   save();
   renderCustomer();
   render();
