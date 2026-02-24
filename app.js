@@ -138,3 +138,68 @@ window.sendReminder = ()=>{
 
   window.open(url);
 }
+
+window.exportPDF = () => {
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const c = customers[currentIndex];
+
+  let y = 15;
+
+  /* ===== HEADER ===== */
+  doc.setFillColor(255,107,0);
+  doc.rect(0,0,210,25,"F");
+
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(18);
+  doc.text("Khata Mitra Ledger", 70,15);
+
+  y = 35;
+
+  /* ===== CUSTOMER BOX ===== */
+  doc.setTextColor(0,0,0);
+  doc.setDrawColor(200);
+  doc.rect(10,y,190,25);
+
+  doc.setFontSize(12);
+  doc.text(`Customer: ${c.name}`, 15, y+8);
+  doc.text(`Phone: ${c.phone || "-"}`, 15, y+15);
+
+  doc.text(`Balance: ₹ ${c.balance}`, 120, y+12);
+
+  y += 35;
+
+  /* ===== TABLE HEADER ===== */
+  doc.setFillColor(240,240,240);
+  doc.rect(10,y,190,10,"F");
+
+  doc.text("Type", 15, y+7);
+  doc.text("Amount", 70, y+7);
+  doc.text("Date", 120, y+7);
+
+  y += 15;
+
+  /* ===== HISTORY ===== */
+  c.history.forEach(h => {
+
+    if(y>270){
+      doc.addPage();
+      y=20;
+    }
+
+    doc.text(h.type==="given"?"Udhaar":"Paid", 15, y);
+    doc.text(`₹ ${h.amount}`, 70, y);
+    doc.text(h.date, 120, y);
+
+    y += 10;
+  });
+
+  /* ===== FOOTER ===== */
+  y += 10;
+  doc.line(130,y,190,y);
+  doc.text("Authorized Sign", 135, y+8);
+
+  doc.save(`${c.name}_KhataMitra.pdf`);
+};
