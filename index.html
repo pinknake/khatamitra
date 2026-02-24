@@ -63,6 +63,7 @@ button{
 
   <h3>History</h3>
   <div id="historyList"></div>
+  <button onclick="exportPDF()">📄 Export PDF</button>
   <label>
   <input type="checkbox" id="autoReminder"> Auto WhatsApp Reminder
 </label>
@@ -70,7 +71,7 @@ button{
   <button onclick="closeCustomer()">⬅ Back</button>
 
 </div>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="app.js"></script>
 
 </body>
