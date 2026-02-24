@@ -44,8 +44,7 @@ button{
 <h1>📒 Khata Mitra</h1>
 
 <div class="card">
-  <input id="name" placeholder="Customer Name">
-  <input id="phone" placeholder="Customer Phone">
+  <input id="customerName" placeholder="Customer Name">
   <input id="phone" placeholder="Phone Number">
   <button onclick="addCustomer()">Add</button>
 </div>
@@ -64,6 +63,9 @@ button{
 
   <h3>History</h3>
   <div id="historyList"></div>
+  <label>
+  <input type="checkbox" id="autoReminder"> Auto WhatsApp Reminder
+</label>
 <button onclick="sendReminder()">📲 WhatsApp Reminder</button>
   <button onclick="closeCustomer()">⬅ Back</button>
 
