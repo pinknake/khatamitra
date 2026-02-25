@@ -47,6 +47,7 @@ window.openCustomer = (i)=>{
   $("customerDetail").style.display="block";
   renderCustomer();
   renderPhotos(); // ⭐ ye missing tha
+renderGallery();
 }
 
 /* CLOSE CUSTOMER */
@@ -89,42 +90,81 @@ function renderPhotos(){
 
   if(!c.photos) return box.innerHTML="";
 
-  box.innerHTML = c.photos.map(p=>`
-    <div class="card">
-      <img src="${p.img}" style="width:100%;border-radius:10px">
-      <small>${p.date}</small>
+  box.innerHTML = c.photos.map((p,i)=>`
+    <div class="photoBox">
+      <img src="${p.img}" onclick="zoomPhoto('${p.img}')">
+      <button class="delPhoto" onclick="deletePhoto(${i})">×</button>
     </div>
   `).join("");
 }
+
+function renderGallery(){
+  if(currentIndex===null) return;
+
+  const c = customers[currentIndex];
+  const box = $("galleryBox");
+
+  if(!c.photos) return box.innerHTML="No photos";
+
+  box.innerHTML = c.photos.map((p,i)=>`
+    <div class="gItem">
+      <img src="${p.img}" onclick="zoomPhoto('${p.img}')">
+      <button class="delPhoto" onclick="deletePhoto(${i})">×</button>
+      <div class="gCap">${p.caption || ""}</div>
+    </div>
+  `).join("");
+}
+
 /* ======= Save Photos ====== */ 
 window.savePhoto = ()=>{
-  if(currentIndex===null){
-    alert("Customer open karo pehle");
-    return;
-  }
+window.savePhoto = ()=>{
+  if(currentIndex===null) return alert("Customer open karo");
 
-  const file = document.getElementById("photoInput").files[0];
+  const file = $("photoInput").files[0];
+  const caption = $("photoCaption").value;
+
   if(!file) return alert("Photo select karo");
 
   const reader = new FileReader();
 
-  reader.onload = function(e){
+  reader.onload = e=>{
     const c = customers[currentIndex];
-
-    if(!c.photos) c.photos = [];
+    if(!c.photos) c.photos=[];
 
     c.photos.push({
       img:e.target.result,
+      caption,
       date:new Date().toLocaleString()
     });
 
+    $("photoInput").value="";
+    $("photoCaption").value="";
+
     save();
     renderPhotos();
+    renderGallery();
     closeSheet();
   }
 
   reader.readAsDataURL(file);
 }
+
+  window.deletePhoto = (i)=>{
+  if(!confirm("Delete photo?")) return;
+
+  customers[currentIndex].photos.splice(i,1);
+  save();
+  renderPhotos();
+}
+  window.zoomPhoto = (img)=>{
+  $("zoomImg").src = img;
+  $("zoomModal").style.display="flex";
+}
+
+$("zoomModal").onclick = ()=>{
+  $("zoomModal").style.display="none";
+}
+  
 
 window.addItem = ()=>{
   const name = $("itemName").value.trim();
