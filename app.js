@@ -182,6 +182,7 @@ window.addManualEntry = ()=>{
 
   save();
   renderCustomer();
+  renderPhotos();
   render();
   closeSheet();
 }
