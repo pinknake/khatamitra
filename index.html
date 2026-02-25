@@ -147,6 +147,7 @@ input {
   <input id="customerName" placeholder="Customer Name">
   <input id="phone" placeholder="Phone Number">
   <button onclick="addCustomer()">Add</button>
+  <div class="card" onclick="openCustomer('${e.name}')">
 </div>
 
 <div id="customerList"></div>
@@ -165,11 +166,16 @@ input {
 
     <!-- Manual Tab -->
     <div id="manual" class="tab active">
-  <input type="text" id="custName" placeholder="Customer Name">
+  <select id="entryType">
+    <option value="udhar">Udhar</option>
+    <option value="jama">Jama</option>
+  </select>
+
   <input type="number" id="custAmount" placeholder="Amount">
+  <input type="text" id="custNote" placeholder="Note">
+
   <button onclick="addEntry()">Add Entry</button>
 </div>
-
     <!-- Items Tab -->
     <div id="items" class="tab">
       <input type="text" placeholder="Item Name">
