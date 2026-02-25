@@ -139,6 +139,78 @@ input:focus,select:focus{
   body{ padding:10px; }
   .fab{ bottom:15px; right:15px; }
 }
+  #photoPreview{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  max-height:250px;
+  overflow-y:auto;
+}
+
+.photoBox{
+  position:relative;
+}
+
+.photoBox img{
+  width:100%;
+  height:90px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.delPhoto{
+  position:absolute;
+  top:3px;
+  right:3px;
+  background:red;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:18px;
+  height:18px;
+  font-size:12px;
+  cursor:pointer;
+}
+  #galleryBox{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  max-height:300px;
+  overflow-y:auto;
+}
+
+.gItem{
+  position:relative;
+}
+
+.gItem img{
+  width:100%;
+  height:90px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.gCap{
+  font-size:11px;
+  text-align:center;
+  margin-top:2px;
+  color:#555;
+}
+
+.delPhoto{
+  position:absolute;
+  top:3px;
+  right:3px;
+  background:red;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:18px;
+  height:18px;
+  font-size:12px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -166,6 +238,7 @@ input:focus,select:focus{
       <button onclick="openTab('manual')" class="active">Manual</button>
       <button onclick="openTab('items')">Items</button>
       <button onclick="openTab('upload')">Upload</button>
+      <button onclick="openTab('gallery')">Gallery</button>
     </div>
 
     <!-- Manual -->
@@ -192,10 +265,17 @@ input:focus,select:focus{
     <div id="upload" class="tab">
       <input type="file" id="photoInput" accept="image/*">
       <button onclick="savePhoto()">Save Photo</button>
-
-      <div id="photoPreview"></div>
+<input type="file" id="photoInput" accept="image/*">
+<input type="text" id="photoCaption" placeholder="Photo caption">
+<button onclick="savePhoto()">Save Photo</button>
+<div id="photoPreview"></div>
     </div>
-
+    
+<div id="gallery" class="tab">
+  <h3>📸 Customer Gallery</h3>
+  <div id="galleryBox"></div>
+</div>
+    
     <button class="close" onclick="closeSheet()">Close</button>
 
   </div>
@@ -218,7 +298,19 @@ input:focus,select:focus{
   <button onclick="sendReminder()">📲 WhatsApp Reminder</button>
   <button onclick="closeCustomer()">⬅ Back</button>
 </div>
-
+<div id="zoomModal" style="
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.9);
+justify-content:center;
+align-items:center;
+z-index:999;
+">
+  <img id="zoomImg" style="max-width:95%;max-height:95%;border-radius:10px">
+</div>
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="app.js"></script>
 
