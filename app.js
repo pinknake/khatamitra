@@ -212,6 +212,116 @@ window.openTab = (tabId)=>{
   if(btn) btn.classList.add("active");
 }
 
+
+/* ============= Smart Ai Logic ========== */ 
+window.scanBillPro = async ()=>{
+  if(currentIndex===null) return alert("Customer open karo");
+
+  const file = $("billInput").files[0];
+  if(!file) return alert("Bill photo select karo");
+
+  $("scanBox").innerHTML="🤖 AI scanning...";
+
+  const reader = new FileReader();
+
+  reader.onload = async e=>{
+    const result = await Tesseract.recognize(
+      e.target.result,
+      'eng',
+      { logger: m => console.log(m) }
+    );
+
+    const text = result.data.text.toLowerCase();
+    const lines = text.split("\n");
+
+    let total=null, gst=null;
+    let items=[];
+
+    lines.forEach(l=>{
+      const line=l.trim();
+
+      // 🔥 TOTAL detect
+      if(/total|grand/.test(line)){
+        const m=line.match(/(\d+[\.,]?\d{0,2})/);
+        if(m) total=parseFloat(m[1]);
+      }
+
+      // 🔥 GST detect
+      if(/gst/.test(line)){
+        const m=line.match(/(\d+[\.,]?\d{0,2})/);
+        if(m) gst=parseFloat(m[1]);
+      }
+
+      // 🔥 Item detect (name + price)
+      const itemMatch=line.match(/([a-z ]+)\s(\d+[\.,]?\d{0,2})$/);
+      if(itemMatch){
+        items.push({
+          name:itemMatch[1],
+          price:parseFloat(itemMatch[2])
+        });
+      }
+    });
+
+    // fallback → largest number = total
+    if(!total){
+      const nums=text.match(/\d+[\.,]?\d{0,2}/g);
+      if(nums){
+        const arr=nums.map(n=>parseFloat(n));
+        total=Math.max(...arr);
+      }
+    }
+
+    // UI Preview
+    $("scanBox").innerHTML=`
+      <b>Detected Total:</b> ₹ ${total || "Not found"}<br>
+      <b>GST:</b> ₹ ${gst || "N/A"}<br>
+      <b>Items:</b> ${items.length}
+      <br><button onclick="applyBill(${total})">✅ Add to Khata</button>
+    `;
+
+    // Save items temp
+    window.billItemsTemp=items;
+  }
+
+  reader.readAsDataURL(file);
+}
+
+/* ============= APPLY BILL =========== */ 
+window.applyBill = (amt)=>{
+  if(!amt) return alert("Amount missing");
+
+  const c = customers[currentIndex];
+
+  // Add total as udhar
+  c.balance += amt;
+
+  c.history.push({
+    type:"udhar",
+    amount:amt,
+    note:"AI Bill Scan",
+    date:new Date().toLocaleString()
+  });
+
+  // Add items history
+  if(window.billItemsTemp){
+    window.billItemsTemp.forEach(it=>{
+      c.history.push({
+        type:"item",
+        item:it.name,
+        amount:it.price,
+        date:new Date().toLocaleString()
+      });
+    });
+  }
+
+  save();
+  renderCustomer();
+  render();
+  closeSheet();
+
+  alert("Bill added successfully ✅");
+}
+/* ======== Scan Bill ========== */ 
 window.scanBill = async ()=>{
   if(currentIndex===null) return alert("Customer open karo");
 
