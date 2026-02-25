@@ -82,8 +82,10 @@ $("historyList").innerHTML = c.history.map(h=>`
 }
 
 function renderPhotos(){
+  if(currentIndex===null) return;
+
   const c = customers[currentIndex];
-  const box = document.getElementById("photoPreview");
+  const box = $("photoPreview");
 
   if(!c.photos) return box.innerHTML="";
 
@@ -94,7 +96,6 @@ function renderPhotos(){
     </div>
   `).join("");
 }
-
 /* ======= Save Photos ====== */ 
 window.savePhoto = ()=>{
   if(currentIndex===null){
@@ -126,12 +127,9 @@ window.savePhoto = ()=>{
 }
 
 window.addItem = ()=>{
-  const name = $("itemName").value;
+  const name = $("itemName").value.trim();
   const price = Number($("itemPrice").value);
-if(currentIndex===null){
-  alert("Customer open karo pehle");
-  return;
-}
+
   if(!name || !price) return alert("Item aur price likho");
 
   const c = customers[currentIndex];
@@ -170,12 +168,14 @@ window.openTab = (tabId)=>{
   if(btn) btn.classList.add("active");
 }
 
-if(currentIndex===null){
-  alert("Customer open karo pehle");
-  return;
-}
+
 /* ADD ENTRY (MANUAL TAB) */
 window.addManualEntry = ()=>{
+  if(currentIndex===null){
+    alert("Customer open karo pehle");
+    return;
+  }
+
   const type = $("entryType").value;
   const amt = Number($("custAmount").value);
   const note = $("custNote").value;
@@ -199,11 +199,9 @@ window.addManualEntry = ()=>{
 
   save();
   renderCustomer();
-  renderPhotos();
   render();
   closeSheet();
 }
-
 /* WHATSAPP REMINDER */
 window.sendReminder = ()=>{
   const c = customers[currentIndex];
