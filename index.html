@@ -147,43 +147,44 @@ input {
   <input id="customerName" placeholder="Customer Name">
   <input id="phone" placeholder="Phone Number">
   <button onclick="addCustomer()">Add</button>
-  <div class="card" onclick="openCustomer('${e.name}')">
 </div>
 
 <div id="customerList"></div>
-  <!-- Floating Add Button -->
+
+<!-- Floating Add Button -->
 <div class="fab" onclick="openSheet()">+</div>
-  <!-- Bottom Sheet -->
+
+<!-- Bottom Sheet -->
 <div id="bottomSheet" class="sheet">
   <div class="sheet-content">
     
-    <!-- Tabs -->
     <div class="tabs">
       <button onclick="openTab('manual')" class="active">Manual</button>
       <button onclick="openTab('items')">Items</button>
       <button onclick="openTab('upload')">Upload</button>
     </div>
 
-    <!-- Manual Tab -->
+    <!-- Manual -->
     <div id="manual" class="tab active">
-  <select id="entryType">
-    <option value="udhar">Udhar</option>
-    <option value="jama">Jama</option>
-  </select>
+      <select id="entryType">
+        <option value="udhar">Udhar</option>
+        <option value="jama">Jama</option>
+      </select>
 
-  <input type="number" id="custAmount" placeholder="Amount">
-  <input type="text" id="custNote" placeholder="Note">
+      <input type="number" id="custAmount" placeholder="Amount">
+      <input type="text" id="custNote" placeholder="Note">
 
-  <button onclick="addEntry()">Add Entry</button>
-</div>
-    <!-- Items Tab -->
+      <button onclick="addEntry()">Add Entry</button>
+    </div>
+
+    <!-- Items -->
     <div id="items" class="tab">
       <input type="text" placeholder="Item Name">
       <input type="number" placeholder="Price">
       <button>Add Item</button>
     </div>
 
-    <!-- Upload Tab -->
+    <!-- Upload -->
     <div id="upload" class="tab">
       <input type="file">
       <button>Save Photo</button>
@@ -193,28 +194,25 @@ input {
   </div>
 </div>
 
-  
 <!-- CUSTOMER DETAIL -->
 <div id="customerDetail" style="display:none">
-
   <h2 id="cName"></h2>
   <p>Balance: ₹ <span id="cBalance"></span></p>
 
-  <input id="amount" placeholder="Amount">
-  <button onclick="addEntry('given')">Udhaar Diya</button>
-  <button onclick="addEntry('paid')">Paise Mile</button>
-
   <h3>History</h3>
   <div id="historyList"></div>
-  <button onclick="exportPDF()">📄 Export PDF</button>
-  <label>
-  <input type="checkbox" id="autoReminder"> Auto WhatsApp Reminder
-</label>
-<button onclick="sendReminder()">📲 WhatsApp Reminder</button>
-  <button onclick="closeCustomer()">⬅ Back</button>
 
+  <button onclick="exportPDF()">📄 Export PDF</button>
+
+  <label>
+    <input type="checkbox" id="autoReminder"> Auto WhatsApp Reminder
+  </label>
+
+  <button onclick="sendReminder()">📲 WhatsApp Reminder</button>
+  <button onclick="closeCustomer()">⬅ Back</button>
 </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="app.js"></script>
 
 </body>
