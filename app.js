@@ -212,6 +212,45 @@ window.openTab = (tabId)=>{
   if(btn) btn.classList.add("active");
 }
 
+window.scanBill = async ()=>{
+  if(currentIndex===null) return alert("Customer open karo");
+
+  const file = $("billInput").files[0];
+  if(!file) return alert("Bill photo select karo");
+
+  $("scanResult").innerHTML="Scanning... ⏳";
+
+  const reader = new FileReader();
+
+  reader.onload = async e=>{
+    const { data:{ text } } = await Tesseract.recognize(
+      e.target.result,
+      'eng'
+    );
+
+    // 🔥 Amount detect logic
+    const amountMatch = text.match(/(\d+[\.,]?\d{0,2})/g);
+
+    if(!amountMatch){
+      $("scanResult").innerHTML="Amount detect nahi hua ❌";
+      return;
+    }
+
+    // Largest number ko amount maanenge
+    const numbers = amountMatch.map(n=>parseFloat(n.replace(",","")));
+    const detectedAmount = Math.max(...numbers);
+
+    $("scanResult").innerHTML=
+      "Detected Amount: ₹ "+detectedAmount;
+
+    // Auto fill manual tab
+    $("custAmount").value = detectedAmount;
+    $("entryType").value="udhar";
+    openTab("manual");
+  }
+
+  reader.readAsDataURL(file);
+}
 
 /* ADD ENTRY (MANUAL TAB) */
 window.addManualEntry = ()=>{
