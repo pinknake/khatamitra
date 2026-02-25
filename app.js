@@ -46,6 +46,7 @@ window.openCustomer = (i)=>{
   $("customerList").style.display="none";
   $("customerDetail").style.display="block";
   renderCustomer();
+  renderPhotos(); // ⭐ ye missing tha
 }
 
 /* CLOSE CUSTOMER */
@@ -67,12 +68,17 @@ function renderCustomer(){
     save();
   }
 
-  $("historyList").innerHTML = c.history.map(h=>`
-    <div class="card">
-      <b>${h.type==="udhar"?"Udhaar":"Jama"}</b> ₹ ${h.amount}
-      <br><small>${h.date}</small>
-    </div>
-  `).join("");
+$("historyList").innerHTML = c.history.map(h=>`
+  <div class="card">
+    <b>${
+      h.type==="udhar" ? "Udhaar" :
+      h.type==="jama" ? "Jama" :
+      "Item: "+h.item
+    }</b> ₹ ${h.amount}
+    ${h.note ? `<br><small>${h.note}</small>` : ""}
+    <br><small>${h.date}</small>
+  </div>
+`).join("");
 }
 
 function renderPhotos(){
@@ -122,7 +128,10 @@ window.savePhoto = ()=>{
 window.addItem = ()=>{
   const name = $("itemName").value;
   const price = Number($("itemPrice").value);
-
+if(currentIndex===null){
+  alert("Customer open karo pehle");
+  return;
+}
   if(!name || !price) return alert("Item aur price likho");
 
   const c = customers[currentIndex];
@@ -155,8 +164,16 @@ window.openTab = (tabId)=>{
   document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
 
   $(tabId).classList.add("active");
+
+  const btn = [...document.querySelectorAll(".tabs button")]
+    .find(b=>b.getAttribute("onclick").includes(tabId));
+  if(btn) btn.classList.add("active");
 }
 
+if(currentIndex===null){
+  alert("Customer open karo pehle");
+  return;
+}
 /* ADD ENTRY (MANUAL TAB) */
 window.addManualEntry = ()=>{
   const type = $("entryType").value;
