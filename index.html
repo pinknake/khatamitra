@@ -263,6 +263,11 @@ input:focus,select:focus{
     
     <!-- Upload -->
     <div id="upload" class="tab">
+      <input type="file" id="billInput" accept="image/*">
+<button onclick="scanBill()">Scan Bill</button>
+
+<div id="scanResult"></div>
+      
 <input type="file" id="photoInput" accept="image/*">
 <input type="text" id="photoCaption" placeholder="Photo caption">
 <button onclick="savePhoto()">Save Photo</button>
@@ -308,7 +313,7 @@ z-index:999;
 ">
   <img id="zoomImg" style="max-width:95%;max-height:95%;border-radius:10px">
 </div>
-  
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="app.js"></script>
 
