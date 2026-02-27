@@ -127,3 +127,102 @@ th{background:#eee}
 
 <!-- Floating Add Button -->
 <div class="fab" onclick="openSheet()">+</div>
+
+<!-- Bottom Sheet -->
+<div id="bottomSheet" class="sheet">
+  <div class="sheet-content">
+    
+    <!-- Tabs -->
+    <div class="tabs">
+      <button onclick="openTab('manual')" class="active">Manual</button>
+      <button onclick="openTab('items')">Items</button>
+      <button onclick="openTab('upload')">Upload</button>
+      <button onclick="openTab('gallery')">Gallery</button>
+    </div>
+
+    <!-- Manual -->
+    <div id="manual" class="tab active">
+      <select id="entryType">
+        <option value="udhar">Udhar</option>
+        <option value="jama">Jama</option>
+      </select>
+
+      <input type="number" id="custAmount" placeholder="Amount">
+      <input type="text" id="custNote" placeholder="Note">
+
+      <button onclick="addManualEntry()">Add Entry</button>
+    </div>
+
+    <!-- Items -->
+    <div id="items" class="tab">
+      <input type="text" id="itemName" placeholder="Item Name">
+      <input type="number" id="itemPrice" placeholder="Price">
+      <button onclick="addItem()">Add Item</button>
+    </div>
+    
+    <!-- Upload -->
+    <div id="upload" class="tab">
+<input type="file" id="photoInput" accept="image/*">
+<input type="text" id="photoCaption" placeholder="Photo caption">
+<button onclick="savePhoto()">Save Photo</button>
+<div id="photoPreview"></div>
+    </div>
+    
+<div id="gallery" class="tab">
+  <h3>📸 Customer Gallery</h3>
+  <div id="galleryBox"></div>
+</div>
+    
+    <button class="close" onclick="closeSheet()">Close</button>
+
+  </div>
+</div>
+  
+<!-- CUSTOMER DETAIL -->
+<div id="customerDetail" style="display:none">
+  <h2 id="cName"></h2>
+  <p>Balance: ₹ <span id="cBalance"></span></p>
+
+<h3>History</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Amount</th>
+<th>Note</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="historyList"></tbody>
+</table>
+  
+  <div id="historyList"></div>
+
+  <button onclick="exportPDF()">📄 Export PDF</button>
+
+  <label>
+    <input type="checkbox" id="autoReminder"> Auto WhatsApp Reminder
+  </label>
+
+  <button onclick="sendReminder()">📲 WhatsApp Reminder</button>
+  <button onclick="closeCustomer()">⬅ Back</button>
+</div>
+<div id="zoomModal" style="
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.9);
+justify-content:center;
+align-items:center;
+z-index:999;
+">
+  <img id="zoomImg" style="max-width:95%;max-height:95%;border-radius:10px">
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
