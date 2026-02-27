@@ -103,17 +103,48 @@ function renderCustomer(){
     save();
   }
 
-$("historyList").innerHTML = c.history.map(h=>`
-  <div class="card">
-    <b>${
-      h.type==="udhar" ? "Udhaar" :
+$("historyList").innerHTML = c.history.map((h,i)=>`
+  <tr>
+    <td>${
+      h.type==="udhar" ? "Udhar" :
       h.type==="jama" ? "Jama" :
-      "Item: "+h.item
-    }</b> ₹ ${h.amount}
-    ${h.note ? `<br><small>📝 ${h.note}</small>` : ""}
-    <br><small>${h.date}</small>
-  </div>
+      "Item"
+    }</td>
+
+    <td style="color:${
+      h.type==="jama" ? "green" : "red"
+    }">
+      ₹ ${h.amount}
+    </td>
+
+    <td>${h.note || "-"}</td>
+
+    <td>${h.date}</td>
+
+    <td>
+      <button class="deleteBtn" onclick="deleteEntry(${i})">Delete</button>
+    </td>
+  </tr>
 `).join("");
+}
+
+
+window.deleteEntry = (i)=>{
+  if(!confirm("Delete entry?")) return;
+
+  const c = customers[currentIndex];
+  const entry = c.history[i];
+
+  if(entry.type==="udhar") c.balance -= entry.amount;
+  if(entry.type==="jama") c.balance += entry.amount;
+  if(entry.type==="item") c.balance -= entry.amount;
+
+  c.history.splice(i,1);
+
+  save();
+  renderCustomer();
+  render();
+  updateDashboard();
 }
 
 function renderPhotos(){
