@@ -77,6 +77,7 @@ function render(){
 /* OPEN CUSTOMER */
 window.openCustomer = (i)=>{
   currentIndex = i;
+  history.pushState({page:"customer"},"");
   $("customerList").style.display="none";
   $("customerDetail").style.display="block";
   renderCustomer();
@@ -103,47 +104,42 @@ function renderCustomer(){
     save();
   }
 
-$("historyList").innerHTML = c.history.map((h,i)=>{
+const sorted = [...c.history].sort((a,b)=> new Date(b.date)-new Date(a.date));
 
-  let typeText = "";
-  let amountColor = "red";
+$("historyList").innerHTML = sorted.map((h,i)=>{
 
-  if(h.type==="udhar"){
-    typeText = "Udhar";
-    amountColor = "red";
-  }
-  else if(h.type==="jama"){
-    typeText = "Jama";
-    amountColor = "green";
-  }
+  let badge="";
+
+  if(h.type==="udhar") badge='<span class="badge bUdhar">Udhar</span>';
+  else if(h.type==="jama") badge='<span class="badge bJama">Jama</span>';
   else if(h.type==="item"){
-    typeText = "Item: " + (h.item || "-");
-    amountColor = "red";
+    if(h.itemType==="purchase") badge='<span class="badge bPurchase">Purchase</span>';
+    else badge='<span class="badge bSales">Sales</span>';
   }
 
   return `
     <tr>
-      <td>${typeText}</td>
-
-      <td style="color:${amountColor}; font-weight:bold">
+      <td>${badge} ${h.item? h.item:""}</td>
+      <td style="color:${h.type==="jama"?"green":"red"};font-weight:bold">
         ₹ ${h.amount}
       </td>
-
       <td>${h.note || "-"}</td>
-
       <td>${h.date}</td>
-
-      <td>
-        <button class="deleteBtn" onclick="deleteEntry(${i})">
-          Delete
-        </button>
-      </td>
+      <td><button onclick="deleteEntry(${i})">Delete</button></td>
     </tr>
   `;
 }).join("");
+  
 }
 
-
+window.onpopstate = ()=>{
+  if($("customerDetail").style.display==="block"){
+    closeCustomer();
+  }
+  else if($("bottomSheet").classList.contains("active")){
+    closeSheet();
+  }
+}
 window.deleteEntry = (i)=>{
   if(!confirm("Delete entry?")) return;
 
@@ -381,20 +377,82 @@ window.sendReminder = ()=>{
 window.exportPDF = ()=>{
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
+
   const c = customers[currentIndex];
 
-  let y=20;
+  /* HEADER */
+  doc.setFillColor(106,27,154);
+  doc.rect(0,0,210,25,"F");
+
+  doc.setFontSize(18);
+  doc.setTextColor(255,255,255);
+  doc.text("Khata Mitra Ledger",10,15);
+
+  /* CUSTOMER INFO */
+  doc.setTextColor(0,0,0);
+  doc.setFontSize(12);
+
+  let y = 35;
   doc.text(`Customer: ${c.name}`,10,y);
+  y+=7;
+
+  doc.text(`Phone: ${c.phone || "-"}`,10,y);
+  y+=7;
+
+  doc.setFontSize(14);
+  doc.text(`Balance: ₹ ${c.balance}`,10,y);
   y+=10;
 
+  /* TABLE HEADER */
+  doc.setFillColor(230,230,230);
+  doc.rect(10,y,190,8,"F");
+
+  doc.setFontSize(11);
+  doc.text("Type",12,y+5);
+  doc.text("Amount",50,y+5);
+  doc.text("Note",90,y+5);
+  doc.text("Date",150,y+5);
+
+  y+=12;
+
+  /* TABLE BODY */
   c.history.forEach(h=>{
-    doc.text(`${h.type} ₹${h.amount} ${h.date}`,10,y);
-    y+=10;
+    if(y>270){
+      doc.addPage();
+      y=20;
+    }
+
+    let typeText="";
+    if(h.type==="udhar") typeText="Udhar";
+    else if(h.type==="jama") typeText="Jama";
+    else if(h.type==="item") typeText=h.item;
+
+    /* COLOR LOGIC */
+    if(h.type==="jama") doc.setTextColor(46,125,50);
+    else if(h.type==="item") doc.setTextColor(25,118,210);
+    else doc.setTextColor(229,57,53);
+
+    doc.text(typeText,12,y);
+
+    doc.text(`₹ ${h.amount}`,50,y);
+
+    doc.setTextColor(0,0,0);
+    doc.text(h.note || "-",90,y,{maxWidth:50});
+
+    doc.text(h.date,150,y);
+
+    y+=8;
   });
 
-  doc.save(`${c.name}.pdf`);
-}
+  /* FOOTER */
+  y+=5;
+  doc.setDrawColor(200);
+  doc.line(10,y,200,y);
+  y+=8;
 
-/* INIT */
-render();
-updateDashboard();
+  doc.setFontSize(14);
+  doc.setTextColor(106,27,154);
+  doc.text(`Final Balance: ₹ ${c.balance}`,10,y);
+
+  doc.save(`${c.name}_ledger.pdf`);
+}
