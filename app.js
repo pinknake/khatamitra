@@ -76,7 +76,7 @@ $("historyList").innerHTML = c.history.map(h=>`
       h.type==="jama" ? "Jama" :
       "Item: "+h.item
     }</b> ₹ ${h.amount}
-    ${h.note ? `<br><small>${h.note}</small>` : ""}
+    ${h.note ? `<br><small>📝 ${h.note}</small>` : ""}
     <br><small>${h.date}</small>
   </div>
 `).join("");
@@ -88,11 +88,14 @@ function renderPhotos(){
   const c = customers[currentIndex];
   const box = $("photoPreview");
 
-  if(!c.photos) return box.innerHTML="";
+  if(!c.photos || !c.photos.length){
+    box.innerHTML="No photos";
+    return;
+  }
 
   box.innerHTML = c.photos.map((p,i)=>`
     <div class="photoBox">
-      <img src="${p.img}" onclick="zoomPhoto('${p.img}')">
+      <img class="thumb" src="${p.img}" onclick="zoomPhoto('${p.img}')">
       <button class="delPhoto" onclick="deletePhoto(${i})">×</button>
     </div>
   `).join("");
@@ -104,13 +107,16 @@ function renderGallery(){
   const c = customers[currentIndex];
   const box = $("galleryBox");
 
-  if(!c.photos) return box.innerHTML="No photos";
+  if(!c.photos || !c.photos.length){
+    box.innerHTML="No photos";
+    return;
+  }
 
   box.innerHTML = c.photos.map((p,i)=>`
     <div class="gItem">
-      <img src="${p.img}" onclick="zoomPhoto('${p.img}')">
+      <img class="thumb" src="${p.img}" onclick="zoomPhoto('${p.img}')">
       <button class="delPhoto" onclick="deletePhoto(${i})">×</button>
-      <div class="gCap">${p.caption || ""}</div>
+      <div class="gCap">${p.caption || "No caption"}</div>
     </div>
   `).join("");
 }
