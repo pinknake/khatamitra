@@ -375,41 +375,53 @@ input:focus,select:focus{
 </div>
 </div>
 
-<div class="dashboard">
+<div id="home" class="mainTab active">
 
-  <div class="dCard purple">
-    <span>Total Customers</span>
-    <h2 id="dCustomers">0</h2>
-  </div>
+  <div class="dashboard">
 
-  <div class="dCard red">
-    <span>Total Udhar</span>
-    <h2 id="dUdhar">0</h2>
-  </div>
+    <div class="dCard purple">
+      <span>Total Customers</span>
+      <h2 id="dCustomers">0</h2>
+    </div>
 
-  <div class="dCard green">
-    <span>Total Jama</span>
-    <h2 id="dJama">0</h2>
-  </div>
+    <div class="dCard red">
+      <span>Total Udhar</span>
+      <h2 id="dUdhar">0</h2>
+    </div>
 
-  <div class="dCard blue">
-    <span>Total Items</span>
-    <h2 id="dItems">0</h2>
-  </div>
+    <div class="dCard green">
+      <span>Total Jama</span>
+      <h2 id="dJama">0</h2>
+    </div>
 
-  <div class="dCard dark">
-    <span>Net Balance</span>
-    <h2 id="dBalance">0</h2>
+    <div class="dCard blue">
+      <span>Total Items</span>
+      <h2 id="dItems">0</h2>
+    </div>
+
+    <div class="dCard dark">
+      <span>Net Balance</span>
+      <h2 id="dBalance">0</h2>
+    </div>
+
   </div>
 
 </div>
+  
+<div id="customers" class="mainTab">
 
-<input id="search" placeholder="Search customer..." oninput="searchCustomer()">
+  <input id="searchBox" placeholder="🔍 Search customer..." oninput="searchCustomer()">
 
-<div class="card">
-  <input id="customerName" placeholder="Customer Name">
-  <input id="phone" placeholder="Phone Number">
-  <button onclick="addCustomer()">Add</button>
+  <div id="customerList"></div>
+
+</div>
+  
+  <div class="card">
+    <input id="customerName" placeholder="Customer Name">
+    <input id="phone" placeholder="Phone Number">
+    <button onclick="addCustomer()">Add Customer</button>
+  </div>
+
 </div>
 
 <div id="customerList"></div>
