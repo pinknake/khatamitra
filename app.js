@@ -277,34 +277,42 @@ function updateDashboard(){
   $("dBalance").textContent = "₹ " + net;
 }
 
-
+/* ========= Add Items ========= */ 
 window.addItem = ()=>{
   if(currentIndex===null) return alert("Customer open karo");
 
   const name = $("itemName").value.trim();
   const price = Number($("itemPrice").value);
+  const type = $("itemType").value;
+  const gst = Number($("itemGST").value) || 0;
 
   if(!name || !price) return alert("Item aur price likho");
 
+  const gstAmt = Math.round(price * gst / 100);
+  const finalAmt = price + gstAmt;
+
   const c = customers[currentIndex];
 
-  c.balance += price;
+  if(type==="purchase") c.balance += finalAmt;
+  else c.balance -= finalAmt;
 
   c.history.push({
     type:"item",
     item:name,
-    amount:price,
-    note:"Item purchase",
+    itemType:type,
+    amount:finalAmt,
+    gst:gst,
+    note:`${type} ${gst? "| GST "+gst+"%":""}`,
     date:new Date().toLocaleString()
   });
 
   $("itemName").value="";
   $("itemPrice").value="";
+  $("itemGST").value="";
 
   save();
   renderCustomer();
   render();
-  updateDashboard();
   closeSheet();
 }
 
