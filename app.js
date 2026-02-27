@@ -8,6 +8,40 @@ function save(){
   localStorage.setItem("customers", JSON.stringify(customers));
 }
 
+window.openMainTab = (id)=>{
+  document.querySelectorAll(".mainTab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".navBtn").forEach(b=>b.classList.remove("active"));
+
+  document.getElementById(id).classList.add("active");
+
+  const btn = [...document.querySelectorAll(".navBtn")]
+    .find(b=>b.getAttribute("onclick")?.includes(id));
+  if(btn) btn.classList.add("active");
+}
+
+window.searchCustomer = ()=>{
+  const q = $("searchBox").value.toLowerCase();
+
+  $("customerList").innerHTML = customers
+    .filter(c=>c.name.toLowerCase().includes(q))
+    .map((c,i)=>`
+      <div class="card" onclick="openCustomer(${i})">
+        <h3>${c.name}</h3>
+        <p>Balance ₹ ${c.balance}</p>
+      </div>
+    `).join("");
+}
+
+window.toggleDark = ()=>{
+  document.documentElement.classList.toggle("dark");
+  localStorage.setItem("darkMode",
+    document.documentElement.classList.contains("dark"));
+}
+
+if(localStorage.getItem("darkMode")==="true"){
+  document.documentElement.classList.add("dark");
+}
+
 /* ADD CUSTOMER */
 window.addCustomer = ()=>{
   const name = $("customerName").value.trim();
