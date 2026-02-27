@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khata Mitra</title>
+
+<style>
+body{
+  font-family:Poppins, sans-serif;
+  margin:0;
+  background:#f5f5f5;
+  padding:15px;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+h1{margin:0;color:#6a1b9a;}
+
+.toggle{
+  background:#222;
+  color:#fff;
+  padding:6px 12px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* DASHBOARD */
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:15px 0;
+}
+.dCard{
+  background:#fff;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+/* SEARCH */
+#search{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  margin-bottom:10px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  padding:12px;
+  margin:8px 0;
+  border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.1);
+  cursor:pointer;
+}
+
+/* HISTORY TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+th,td{
+  padding:8px;
+  border-bottom:1px solid #ddd;
+  text-align:left;
+}
+th{background:#eee}
+
+/* FLOAT BTN */
+.fab{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#0a84ff;
+  color:#fff;
+  font-size:26px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* DARK MODE */
+.dark{
+  background:#111;
+  color:#eee;
+}
+.dark .card,.dark .dCard{background:#1e1e1e}
+.dark th{background:#222}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>📒 Khata Mitra</h1>
+  <div class="toggle" onclick="toggleDark()">🌙</div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard">
+  <div class="dCard">Customers<br><b id="dCustomers">0</b></div>
+  <div class="dCard">Udhar<br><b id="dUdhar">0</b></div>
+  <div class="dCard">Jama<br><b id="dJama">0</b></div>
+</div>
+
+<input id="search" placeholder="Search customer..." oninput="searchCustomer()">
+
+<div class="card">
+  <input id="customerName" placeholder="Customer Name">
+  <input id="phone" placeholder="Phone Number">
+  <button onclick="addCustomer()">Add</button>
+</div>
+
+<div id="customerList"></div>
+
+<!-- Floating Add Button -->
+<div class="fab" onclick="openSheet()">+</div>
