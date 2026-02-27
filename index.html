@@ -85,17 +85,110 @@ h1{margin:0;color:#6a1b9a;}
   cursor:pointer;
 }
 
-/* HISTORY TABLE */
-table{
+/* ===== DETAIL PAGE ===== */
+.detailPage{
+  padding:15px;
+  background:linear-gradient(135deg,#f3e5f5,#e3f2fd);
+  min-height:100vh;
+}
+
+/* HEADER */
+.detailHeader{
+  background:linear-gradient(45deg,#6a1b9a,#9c27b0);
+  padding:20px;
+  border-radius:15px;
+  color:#fff;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.2);
+}
+
+.balanceBox{
+  font-size:18px;
+  margin-top:5px;
+  font-weight:bold;
+}
+
+/* ACTION BAR */
+.actionBar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:15px 0;
+}
+
+/* BUTTONS PREMIUM */
+.pdfBtn{
+  background:linear-gradient(45deg,#ff9800,#ff5722);
+}
+
+.waBtn{
+  background:linear-gradient(45deg,#25d366,#128c7e);
+}
+
+.backBtn{
+  background:linear-gradient(45deg,#607d8b,#37474f);
+}
+
+.reminderBox{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  background:#fff;
+  padding:8px 10px;
+  border-radius:10px;
+  font-size:13px;
+}
+
+/* HISTORY TITLE */
+.historyTitle{
+  margin-top:20px;
+  font-weight:bold;
+  color:#333;
+}
+
+/* TABLE */
+.tableWrap{
+  overflow-x:auto;
+}
+
+.historyTable{
   width:100%;
   border-collapse:collapse;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
-th,td{
-  padding:8px;
-  border-bottom:1px solid #ddd;
-  text-align:left;
+
+.historyTable thead{
+  background:linear-gradient(45deg,#1e88e5,#42a5f5);
+  color:#fff;
 }
-th{background:#eee}
+
+.historyTable th,
+.historyTable td{
+  padding:10px;
+  text-align:center;
+  font-size:13px;
+}
+
+.historyTable tbody tr:nth-child(even){
+  background:#f5f5f5;
+}
+
+.historyTable tbody tr:hover{
+  background:#e3f2fd;
+}
+
+/* DELETE BUTTON */
+.deleteBtn{
+  background:#e53935;
+  padding:5px 8px;
+  font-size:12px;
+  border-radius:6px;
+}
+
+  
 
 /* FLOAT BTN */
 .fab{
@@ -480,35 +573,48 @@ input:focus,select:focus{
 </div>
   
 <!-- CUSTOMER DETAIL -->
-<div id="customerDetail" style="display:none">
-  <h2 id="cName"></h2>
-  <p>Balance: ₹ <span id="cBalance"></span></p>
+  <div id="customers" class="mainTab">
+<div id="customerDetail" class="detailPage">
 
-<h3>History</h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Amount</th>
-<th>Note</th>
-<th>Date</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="historyList"></tbody>
-</table>
-  
-  <div id="historyList"></div>
+  <div class="detailHeader">
+    <h2 id="cName"></h2>
+    <p class="balanceBox">
+      Balance ₹ <span id="cBalance"></span>
+    </p>
+  </div>
 
-  <button onclick="exportPDF()">📄 Export PDF</button>
+  <div class="actionBar">
+    <button class="pdfBtn" onclick="exportPDF()">Export PDF</button>
+    <button class="waBtn" onclick="sendReminder()">WhatsApp</button>
 
-  <label>
-    <input type="checkbox" id="autoReminder"> Auto WhatsApp Reminder
-  </label>
+    <label class="reminderBox">
+      <input type="checkbox" id="autoReminder">
+      Auto Reminder
+    </label>
 
-  <button onclick="sendReminder()">📲 WhatsApp Reminder</button>
-  <button onclick="closeCustomer()">⬅ Back</button>
+    <button class="backBtn" onclick="closeCustomer()">Back</button>
+  </div>
+
+  <h3 class="historyTitle">Transaction History</h3>
+
+  <div class="tableWrap">
+    <table class="historyTable">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Note</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="historyList"></tbody>
+    </table>
+  </div>
+
 </div>
+  </div>
+  
 <div id="zoomModal" style="
 display:none;
 position:fixed;
