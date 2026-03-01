@@ -261,11 +261,11 @@ h1{margin:0;color:#6a1b9a;}
 
   
 /* DARK MODE */
-.dark body{
+body.dark{
   background:#121212;
   color:#fff;
 }
-
+  
 .dark .card{
   background:#1e1e1e;
   color:#fff;
@@ -373,25 +373,6 @@ input,select{
 input:focus,select:focus{
   border-color:#6a1b9a;
   box-shadow:0 0 4px rgba(106,27,154,.3);
-}
-
-/* FLOATING BUTTON */
-.fab{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#0a84ff;
-  color:white;
-  font-size:28px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  box-shadow:0 4px 12px rgba(0,0,0,.3);
-  cursor:pointer;
-  z-index:99;
 }
 
 /* BOTTOM SHEET */
@@ -609,7 +590,8 @@ input:focus,select:focus{
   
 <!-- CUSTOMER DETAIL -->
   
-<div id="customerDetail" class="detailPage">
+<div id="customerDetail" class="detailPage" style="display:none;">
+  
 
   <div class="detailHeader">
     <h2 id="cName"></h2>
