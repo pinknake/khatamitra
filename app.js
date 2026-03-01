@@ -96,43 +96,66 @@ window.closeCustomer = ()=>{
 }
 /* RENDER CUSTOMER */
 function renderCustomer(){
+
   const c = customers[currentIndex];
+  if(!c) return;
+
+  if(!c.history) c.history = [];
 
   $("cName").textContent = c.name;
-  $("cBalance").textContent = c.balance;
-  $("autoReminder").checked = c.autoReminder;
+  $("cBalance").textContent = c.balance || 0;
+  $("autoReminder").checked = c.autoReminder || false;
 
   $("autoReminder").onchange = e=>{
     c.autoReminder = e.target.checked;
     save();
-  }
+  };
 
-$("historyList").innerHTML = sorted.map(h=>{
-  const realIndex = c.history.indexOf(h);
+  // ✅ SORT BY DATE (Newest First)
+  const sorted = [...c.history].sort(
+    (a,b)=> new Date(b.date) - new Date(a.date)
+  );
 
-  let badge="";
+  $("historyList").innerHTML = sorted.map(h=>{
 
-  if(h.type==="udhar") badge='<span class="badge bUdhar">Udhar</span>';
-  else if(h.type==="jama") badge='<span class="badge bJama">Jama</span>';
-  else if(h.type==="item"){
-    if(h.itemType==="purchase") badge='<span class="badge bPurchase">Purchase</span>';
-    else badge='<span class="badge bSales">Sales</span>';
-  }
+    const realIndex = c.history.indexOf(h);
+    let badge = "";
 
-  return `
-    <tr>
-      <td>${badge} ${h.item? h.item:""}</td>
-      <td style="color:${h.type==="jama"?"green":"red"};font-weight:bold">
-        ₹ ${h.amount}
-      </td>
-      <td>${h.note || "-"}</td>
-      <td>${h.date}</td>
-      <td><button onclick="deleteEntry(${realIndex})">Delete</button></td>
-    </tr>
-  `;
-}).join("");
-  
+    if(h.type==="udhar")
+      badge='<span class="badge bUdhar">Udhar</span>';
+
+    else if(h.type==="jama")
+      badge='<span class="badge bJama">Jama</span>';
+
+    else if(h.type==="item"){
+      if(h.itemType==="purchase")
+        badge='<span class="badge bPurchase">Purchase</span>';
+      else
+        badge='<span class="badge bSales">Sales</span>';
+    }
+
+    return `
+      <tr>
+        <td>${badge} ${h.item ? h.item : ""}</td>
+        <td style="color:${h.type==="jama"?"green":"red"};font-weight:bold">
+          ₹ ${h.amount}
+        </td>
+        <td>${h.note || "-"}</td>
+        <td>${h.date}</td>
+        <td>
+          <button class="deleteBtn"
+            onclick="deleteEntry(${realIndex})">
+            Delete
+          </button>
+        </td>
+      </tr>
+    `;
+
+  }).join("");
+
 }
+  
+
 
 window.onpopstate = ()=>{
   if($("customerDetail").style.display==="block"){
