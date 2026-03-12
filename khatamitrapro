@@ -1982,33 +1982,6 @@
       showToast(currentLanguage === 'hi' ? 'ऐप इंस्टॉल हो गया!' : 'App installed!');
     });
 
-    // ==================== APK GENERATION ====================
-    // Note: For APK, we need to use tools like:
-    // 1. Bubblewrap (https://github.com/GoogleChromeLabs/bubblewrap)
-    // 2. PWABuilder (https://www.pwabuilder.com)
-    // 3. Convert to APK using Trusted Web Activity
-    
-    function generateAPKInstructions() {
-      showToast(currentLanguage === 'hi' ? 
-        'APK बनाने के लिए PWABuilder.com पर जाएं' : 
-        'Visit PWABuilder.com to generate APK', 'info');
-      
-      setTimeout(() => {
-        window.open('https://www.pwabuilder.com', '_blank');
-      }, 2000);
-    }
-
-    // Add APK generation button to settings
-    function addAPKButton() {
-      const reportsTab = document.getElementById('reports');
-      const apkButton = document.createElement('button');
-      apkButton.className = 'btn btn-primary';
-      apkButton.innerHTML = '<i class="fab fa-android"></i> ' + 
-        (currentLanguage === 'hi' ? 'APK बनाएं' : 'Generate APK');
-      apkButton.onclick = generateAPKInstructions;
-      apkButton.style.marginTop = '20px';
-      reportsTab.appendChild(apkButton);
-    }
 
     // ==================== INITIALIZATION ====================
     document.addEventListener('DOMContentLoaded', () => {
