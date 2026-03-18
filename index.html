@@ -12,14 +12,7 @@
   
   <!-- Chart.js for Analytics -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  
-  <!-- PWA Support -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Khata Mitra">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  
+
   <style>
     * {
       margin: 0;
@@ -1954,35 +1947,7 @@
       document.querySelectorAll('.nav-tab')[3].click();
     }
 
-    // ==================== PWA INSTALLATION ====================
-    let deferredPrompt;
-    const installButton = document.getElementById('installPWA');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installButton.style.display = 'block';
-    });
-
-    function installPWA() {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-          }
-          deferredPrompt = null;
-          installButton.style.display = 'none';
-        });
-      }
-    }
-
-    window.addEventListener('appinstalled', () => {
-      installButton.style.display = 'none';
-      showToast(currentLanguage === 'hi' ? 'ऐप इंस्टॉल हो गया!' : 'App installed!');
-    });
-
-
+    
     // ==================== INITIALIZATION ====================
     document.addEventListener('DOMContentLoaded', () => {
       loadData();
