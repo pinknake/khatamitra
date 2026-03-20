@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <meta name="msvalidate.01" content="6A5216B40BA355ACBFACF5106BAFDD3F" />
-  <title>Khata Mitra Pro 💰</title>
+  <title>Khata Mitra Pro 💰 | उधार बही</title>
   
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Chart.js for Analytics -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
   <style>
@@ -19,7 +18,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     :root {
       --primary: #6a1b9a;
       --primary-dark: #4a0072;
@@ -32,7 +30,6 @@
       --light: #f8f9fa;
       --gray: #6c757d;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: #f5f7fa;
@@ -41,13 +38,10 @@
       min-height: 100vh;
       transition: all 0.3s ease;
     }
-
     body.dark-mode {
       background: #121212;
       color: #fff;
     }
-
-    /* App Container */
     .app-container {
       max-width: 500px;
       margin: 0 auto;
@@ -56,12 +50,9 @@
       position: relative;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
-
     body.dark-mode .app-container {
       background: #1e1e1e;
     }
-
-    /* Header */
     .app-header {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
@@ -69,47 +60,38 @@
       border-radius: 0 0 30px 30px;
       box-shadow: 0 4px 20px rgba(106,27,154,0.3);
     }
-
     .header-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
-
     .logo {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
     .logo i {
       font-size: 28px;
     }
-
     .logo h1 {
       font-size: 20px;
       font-weight: 600;
     }
-
     .header-actions {
       display: flex;
       gap: 15px;
     }
-
     .header-actions i {
       font-size: 20px;
       cursor: pointer;
     }
-
-    /* Stats Cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-top: 10px;
     }
-
     .stat-card {
       background: rgba(255,255,255,0.15);
       backdrop-filter: blur(10px);
@@ -117,19 +99,15 @@
       border-radius: 16px;
       text-align: center;
     }
-
     .stat-label {
       font-size: 12px;
       opacity: 0.9;
     }
-
     .stat-value {
       font-size: 24px;
       font-weight: 700;
       margin-top: 5px;
     }
-
-    /* Navigation Tabs */
     .nav-tabs {
       display: flex;
       background: white;
@@ -138,11 +116,9 @@
       margin: 20px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
-
     body.dark-mode .nav-tabs {
       background: #2d2d2d;
     }
-
     .nav-tab {
       flex: 1;
       text-align: center;
@@ -153,30 +129,22 @@
       color: var(--gray);
       font-weight: 500;
     }
-
     .nav-tab.active {
       background: var(--primary);
       color: white;
     }
-
     .nav-tab i {
       margin-right: 5px;
     }
-
-    /* Main Content */
     .main-content {
       padding: 0 20px 80px 20px;
     }
-
     .tab-pane {
       display: none;
     }
-
     .tab-pane.active {
       display: block;
     }
-
-    /* Search Box */
     .search-box {
       background: white;
       padding: 12px 20px;
@@ -187,15 +155,12 @@
       gap: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-
     body.dark-mode .search-box {
       background: #2d2d2d;
     }
-
     .search-box i {
       color: var(--gray);
     }
-
     .search-box input {
       flex: 1;
       border: none;
@@ -203,17 +168,9 @@
       background: transparent;
       font-size: 14px;
     }
-
     body.dark-mode .search-box input {
       color: white;
     }
-
-    /* Customer Cards */
-    .customer-grid {
-      display: grid;
-      gap: 12px;
-    }
-
     .customer-card {
       background: white;
       padding: 15px;
@@ -224,48 +181,35 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       cursor: pointer;
       transition: transform 0.2s ease;
+      margin-bottom: 12px;
     }
-
     body.dark-mode .customer-card {
       background: #2d2d2d;
     }
-
-    .customer-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(106,27,154,0.2);
-    }
-
     .customer-info h3 {
       font-size: 16px;
       margin-bottom: 5px;
     }
-
     .customer-info p {
       font-size: 12px;
       color: var(--gray);
     }
-
     .customer-balance {
       font-weight: 700;
       font-size: 18px;
     }
-
     .balance-positive {
       color: var(--success);
     }
-
     .balance-negative {
       color: var(--danger);
     }
-
-    /* Quick Actions */
     .quick-actions {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin: 20px 0;
     }
-
     .quick-action {
       background: white;
       padding: 15px 5px;
@@ -275,23 +219,14 @@
       transition: all 0.3s ease;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-
     body.dark-mode .quick-action {
       background: #2d2d2d;
     }
-
     .quick-action i {
       font-size: 24px;
       color: var(--primary);
       margin-bottom: 5px;
     }
-
-    .quick-action span {
-      font-size: 12px;
-      display: block;
-    }
-
-    /* FAB Button */
     .fab-button {
       position: fixed;
       bottom: 30px;
@@ -307,15 +242,8 @@
       font-size: 30px;
       box-shadow: 0 10px 25px rgba(106,27,154,0.4);
       cursor: pointer;
-      transition: transform 0.3s ease;
       z-index: 1000;
     }
-
-    .fab-button:hover {
-      transform: scale(1.1);
-    }
-
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -328,11 +256,9 @@
       align-items: center;
       justify-content: center;
     }
-
     .modal.active {
       display: flex;
     }
-
     .modal-content {
       background: white;
       width: 90%;
@@ -342,64 +268,31 @@
       max-height: 90vh;
       overflow-y: auto;
     }
-
     body.dark-mode .modal-content {
       background: #2d2d2d;
     }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .modal-header h3 {
-      font-size: 20px;
-      color: var(--primary);
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: var(--gray);
-    }
-
-    /* Form Elements */
     .form-group {
       margin-bottom: 15px;
     }
-
     .form-group label {
       display: block;
       margin-bottom: 5px;
       font-weight: 500;
       font-size: 14px;
     }
-
     .form-control {
       width: 100%;
       padding: 12px 15px;
       border: 2px solid #e0e0e0;
       border-radius: 12px;
       font-size: 14px;
-      transition: all 0.3s ease;
       background: white;
     }
-
     body.dark-mode .form-control {
       background: #1e1e1e;
       border-color: #444;
       color: white;
     }
-
-    .form-control:focus {
-      border-color: var(--primary);
-      outline: none;
-    }
-
     .btn {
       padding: 14px 20px;
       border: none;
@@ -407,36 +300,25 @@
       font-weight: 600;
       font-size: 14px;
       cursor: pointer;
-      transition: all 0.3s ease;
       width: 100%;
+      margin-top: 8px;
     }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
     }
-
-    .btn-success {
-      background: var(--success);
-      color: white;
-    }
-
     .btn-danger {
       background: var(--danger);
       color: white;
     }
-
     .btn-outline {
       background: transparent;
       border: 2px solid var(--primary);
       color: var(--primary);
     }
-
-    /* Transaction List */
     .transaction-list {
       margin-top: 20px;
     }
-
     .transaction-item {
       background: white;
       padding: 15px;
@@ -447,18 +329,15 @@
       align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-
     body.dark-mode .transaction-item {
       background: #2d2d2d;
     }
-
     .transaction-info {
       display: flex;
       align-items: center;
       gap: 15px;
       flex: 1;
     }
-
     .transaction-icon {
       width: 45px;
       height: 45px;
@@ -468,45 +347,46 @@
       justify-content: center;
       font-size: 20px;
     }
-
     .icon-udhar {
       background: #ffebee;
       color: var(--danger);
     }
-
     .icon-jama {
       background: #e8f5e9;
       color: var(--success);
     }
-
-    .transaction-details {
-      flex: 1;
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-size: 14px;
+      z-index: 3000;
+      display: none;
     }
-
-    .transaction-details h4 {
-      font-size: 16px;
-      margin-bottom: 3px;
+    .toast.show {
+      display: block;
+      animation: slideUp 0.3s ease;
     }
-
-    .transaction-details p {
-      font-size: 12px;
+    @keyframes slideUp {
+      from { opacity: 0; transform: translate(-50%, 20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+    .empty-state {
+      text-align: center;
+      padding: 50px 20px;
       color: var(--gray);
     }
-
-    .transaction-amount {
-      font-weight: 700;
-      font-size: 18px;
-      margin-right: 10px;
-    }
-
-    /* Image Gallery */
     .image-gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       margin: 10px 0;
     }
-
     .gallery-item {
       position: relative;
       aspect-ratio: 1;
@@ -514,26 +394,12 @@
       overflow: hidden;
       cursor: pointer;
     }
-
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-
-    .gallery-item .caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 4px;
-      font-size: 10px;
-      text-align: center;
-    }
-
-    .gallery-item .delete-photo {
+    .delete-photo {
       position: absolute;
       top: 5px;
       right: 5px;
@@ -547,10 +413,7 @@
       justify-content: center;
       font-size: 12px;
       cursor: pointer;
-      z-index: 2;
     }
-
-    /* Zoom Modal */
     #zoomModal {
       display: none;
       position: fixed;
@@ -563,107 +426,14 @@
       justify-content: center;
       align-items: center;
     }
-
     #zoomModal.active {
       display: flex;
     }
-
     #zoomImage {
       max-width: 95%;
       max-height: 95%;
       border-radius: 12px;
     }
-
-    .zoom-caption {
-      position: absolute;
-      bottom: 20px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      color: white;
-      font-size: 16px;
-    }
-
-    /* Analytics */
-    .chart-container {
-      background: white;
-      padding: 20px;
-      border-radius: 20px;
-      margin: 20px 0;
-    }
-
-    body.dark-mode .chart-container {
-      background: #2d2d2d;
-    }
-
-    /* Toast Notifications */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #333;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 50px;
-      font-size: 14px;
-      z-index: 3000;
-      display: none;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    }
-
-    .toast.show {
-      display: block;
-      animation: slideUp 0.3s ease;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translate(-50%, 20px);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-      }
-    }
-
-    /* Loading Spinner */
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 50px 20px;
-      color: var(--gray);
-    }
-
-    .empty-state i {
-      font-size: 60px;
-      margin-bottom: 20px;
-      opacity: 0.5;
-    }
-
-    /* Language Toggle */
-    .lang-toggle {
-      display: flex;
-      gap: 5px;
-      margin: 0 10px;
-    }
-
     .lang-btn {
       padding: 5px 10px;
       border: none;
@@ -673,1493 +443,100 @@
       font-size: 12px;
       cursor: pointer;
     }
-
     .lang-btn.active {
       background: white;
       color: var(--primary);
     }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-      .app-container {
-        width: 100%;
-      }
-      
-      .quick-actions {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      
-      .fab-button {
-        bottom: 20px;
-        right: 20px;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="app-container">
-    <!-- Header -->
-    <div class="app-header">
-      <div class="header-top">
-        <div class="logo">
-          <i class="fas fa-book-open"></i>
-          <h1 id="appTitle">Khata Mitra Pro</h1>
-        </div>
-        <div class="header-actions">
-          <div class="lang-toggle">
-            <button class="lang-btn active" onclick="setLanguage('hi')">हिंदी</button>
-            <button class="lang-btn" onclick="setLanguage('en')">ENG</button>
-          </div>
-          <i class="fas fa-bell" onclick="showNotifications()"></i>
-          <i class="fas fa-chart-pie" onclick="showAnalytics()"></i>
-          <i class="fas fa-moon" onclick="toggleDarkMode()" id="darkModeToggle"></i>
-        </div>
-      </div>
-      
-      <!-- Stats -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-label" id="statCustomers">कुल ग्राहक</div>
-          <div class="stat-value" id="totalCustomers">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label" id="statUdhar">कुल उधार</div>
-          <div class="stat-value" id="totalUdhar">₹0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label" id="statJama">कुल जमा</div>
-          <div class="stat-value" id="totalJama">₹0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label" id="statBalance">नेट बैलेंस</div>
-          <div class="stat-value" id="netBalance">₹0</div>
-        </div>
+<div class="app-container">
+  <div class="app-header">
+    <div class="header-top">
+      <div class="logo"><i class="fas fa-book-open"></i><h1 id="appTitle">खाता मित्र प्रो</h1></div>
+      <div class="header-actions">
+        <div class="lang-toggle"><button class="lang-btn active" onclick="setLanguage('hi')">हिंदी</button><button class="lang-btn" onclick="setLanguage('en')">ENG</button></div>
+        <i class="fas fa-chart-pie" onclick="switchTab('reports')"></i><i class="fas fa-moon" onclick="toggleDarkMode()"></i>
       </div>
     </div>
-
-    <!-- Navigation Tabs -->
-    <div class="nav-tabs">
-      <div class="nav-tab active" onclick="switchTab('dashboard')">
-        <i class="fas fa-home"></i> <span class="tab-label" data-hi="होम" data-en="Home">होम</span>
-      </div>
-      <div class="nav-tab" onclick="switchTab('customers')">
-        <i class="fas fa-users"></i> <span class="tab-label" data-hi="ग्राहक" data-en="Customers">ग्राहक</span>
-      </div>
-      <div class="nav-tab" onclick="switchTab('history')">
-        <i class="fas fa-history"></i> <span class="tab-label" data-hi="हिस्ट्री" data-en="History">हिस्ट्री</span>
-      </div>
-      <div class="nav-tab" onclick="switchTab('reports')">
-        <i class="fas fa-chart-bar"></i> <span class="tab-label" data-hi="रिपोर्ट" data-en="Reports">रिपोर्ट</span>
-      </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-      <!-- Dashboard Tab -->
-      <div class="tab-pane active" id="dashboard">
-        <!-- Quick Actions -->
-        <div class="quick-actions">
-          <div class="quick-action" onclick="openAddModal('customer')">
-            <i class="fas fa-user-plus"></i>
-            <span data-hi="नया ग्राहक" data-en="New Customer">नया ग्राहक</span>
-          </div>
-          <div class="quick-action" onclick="openAddModal('udhar')">
-            <i class="fas fa-arrow-up"></i>
-            <span data-hi="उधार दें" data-en="Give">उधार दें</span>
-          </div>
-          <div class="quick-action" onclick="openAddModal('jama')">
-            <i class="fas fa-arrow-down"></i>
-            <span data-hi="जमा करें" data-en="Receive">जमा करें</span>
-          </div>
-          <div class="quick-action" onclick="openAddModal('item')">
-            <i class="fas fa-box"></i>
-            <span data-hi="आइटम" data-en="Item">आइटम</span>
-          </div>
-        </div>
-
-        <!-- Recent Transactions -->
-        <h3 style="margin: 20px 0 10px 0;" data-hi="हाल के लेन-देन" data-en="Recent Transactions">हाल के लेन-देन</h3>
-        <div id="recentTransactions" class="transaction-list">
-          <!-- Will be populated by JS -->
-        </div>
-      </div>
-
-      <!-- Customers Tab -->
-      <div class="tab-pane" id="customers">
-        <div class="search-box">
-          <i class="fas fa-search"></i>
-          <input type="text" id="customerSearch" placeholder="🔍 ग्राहक खोजें..." onkeyup="searchCustomers()">
-        </div>
-        <div id="customerList" class="customer-grid">
-          <!-- Will be populated by JS -->
-        </div>
-      </div>
-
-      <!-- History Tab -->
-      <div class="tab-pane" id="history">
-        <div class="search-box">
-          <i class="fas fa-search"></i>
-          <input type="text" id="historySearch" placeholder="🔍 लेन-देन खोजें..." onkeyup="searchHistory()">
-        </div>
-        <div id="allTransactions" class="transaction-list">
-          <!-- Will be populated by JS -->
-        </div>
-      </div>
-
-      <!-- Reports Tab -->
-      <div class="tab-pane" id="reports">
-        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-          <select id="reportMonth" class="form-control" style="flex: 1;">
-            <option value="1" data-hi="जनवरी" data-en="January">जनवरी</option>
-            <option value="2" data-hi="फरवरी" data-en="February">फरवरी</option>
-            <option value="3" data-hi="मार्च" data-en="March">मार्च</option>
-            <option value="4" data-hi="अप्रैल" data-en="April">अप्रैल</option>
-            <option value="5" data-hi="मई" data-en="May">मई</option>
-            <option value="6" data-hi="जून" data-en="June">जून</option>
-            <option value="7" data-hi="जुलाई" data-en="July">जुलाई</option>
-            <option value="8" data-hi="अगस्त" data-en="August">अगस्त</option>
-            <option value="9" data-hi="सितंबर" data-en="September">सितंबर</option>
-            <option value="10" data-hi="अक्टूबर" data-en="October">अक्टूबर</option>
-            <option value="11" data-hi="नवंबर" data-en="November">नवंबर</option>
-            <option value="12" data-hi="दिसंबर" data-en="December">दिसंबर</option>
-          </select>
-          <select id="reportYear" class="form-control" style="flex: 1;">
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-          </select>
-        </div>
-        
-        <div class="chart-container">
-          <canvas id="monthlyChart"></canvas>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0;">
-          <div class="stat-card" style="background: var(--primary-light); color: white;">
-            <div data-hi="महीने का उधार" data-en="Monthly Given">महीने का उधार</div>
-            <div style="font-size: 24px; font-weight: 700;" id="monthlyUdhar">₹0</div>
-          </div>
-          <div class="stat-card" style="background: var(--success); color: white;">
-            <div data-hi="महीने का जमा" data-en="Monthly Received">महीने का जमा</div>
-            <div style="font-size: 24px; font-weight: 700;" id="monthlyJama">₹0</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FAB Button -->
-    <div class="fab-button" onclick="openQuickMenu()">
-      <i class="fas fa-plus"></i>
-    </div>
-
-    <!-- Quick Menu Modal -->
-    <div class="modal" id="quickMenuModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 data-hi="त्वरित कार्रवाई" data-en="Quick Actions">त्वरित कार्रवाई</h3>
-          <button class="close-btn" onclick="closeModal('quickMenuModal')">&times;</button>
-        </div>
-        <div style="display: grid; gap: 10px;">
-          <button class="btn btn-primary" onclick="openAddModal('customer'); closeModal('quickMenuModal')">
-            <i class="fas fa-user-plus"></i> <span data-hi="नया ग्राहक" data-en="New Customer">नया ग्राहक</span>
-          </button>
-          <button class="btn btn-primary" onclick="openAddModal('udhar'); closeModal('quickMenuModal')">
-            <i class="fas fa-arrow-up"></i> <span data-hi="उधार दें" data-en="Give Money">उधार दें</span>
-          </button>
-          <button class="btn btn-primary" onclick="openAddModal('jama'); closeModal('quickMenuModal')">
-            <i class="fas fa-arrow-down"></i> <span data-hi="जमा करें" data-en="Receive Money">जमा करें</span>
-          </button>
-          <button class="btn btn-primary" onclick="openAddModal('item'); closeModal('quickMenuModal')">
-            <i class="fas fa-box"></i> <span data-hi="आइटम जोड़ें" data-en="Add Item">आइटम जोड़ें</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add Customer Modal -->
-    <div class="modal" id="addCustomerModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 data-hi="नया ग्राहक" data-en="New Customer">नया ग्राहक</h3>
-          <button class="close-btn" onclick="closeModal('addCustomerModal')">&times;</button>
-        </div>
-        <div class="form-group">
-  <label>नाम *</label>
-  <input type="text" id="newCustomerName" class="form-control">
-</div>
-
-<div class="form-group">
-  <label>फोन नंबर</label>
-  <input type="tel" id="newCustomerPhone" class="form-control">
-</div>
-
-<div class="form-group">
-  <label>GST नंबर</label>
-  <input type="text" id="newCustomerGST" class="form-control">
-</div>
-
-<div class="form-group">
-  <label>कस्टमर / सप्लायर</label>
-  <select id="customerType" class="form-control">
-    <option value="customer">Customer</option>
-    <option value="supplier">Supplier</option>
-  </select>
-</div>
-
-<div class="form-group">
-  <label>स्टेट</label>
-  <input type="text" id="customerState" class="form-control">
-</div>
-
-<div class="form-group">
-  <label>सिटी</label>
-  <input type="text" id="customerCity" class="form-control">
-</div>
-
-<div class="form-group">
-  <label>पिनकोड</label>
-  <input type="number" id="customerPincode" class="form-control">
-</div>
-
-<div class="form-group">
-  <label>बिलिंग एड्रेस</label>
-  <textarea id="billingAddress" class="form-control"></textarea>
-</div>
-        <button class="btn btn-primary" onclick="addCustomer()" data-hi="ग्राहक जोड़ें" data-en="Add Customer">ग्राहक जोड़ें</button>
-      </div>
-    </div>
-
-    <!-- Add Transaction Modal -->
-    <div class="modal" id="addTransactionModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 id="transactionModalTitle">नया लेन-देन</h3>
-          <button class="close-btn" onclick="closeModal('addTransactionModal')">&times;</button>
-        </div>
-        
-        <div class="form-group">
-          <label data-hi="ग्राहक *" data-en="Customer *">ग्राहक *</label>
-          <select id="transactionCustomer" class="form-control">
-            <option value="" data-hi="ग्राहक चुनें" data-en="Select Customer">ग्राहक चुनें</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label data-hi="राशि *" data-en="Amount *">राशि *</label>
-          <input type="number" id="transactionAmount" class="form-control" placeholder="राशि">
-        </div>
-        
-        <div class="form-group">
-          <label data-hi="विवरण" data-en="Description">विवरण</label>
-          <input type="text" id="transactionNote" class="form-control" placeholder="क्या लिया/दिया">
-        </div>
-        
-        <div class="form-group">
-          <label data-hi="तारीख" data-en="Date">तारीख</label>
-          <input type="date" id="transactionDate" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label data-hi="भुगतान का तरीका" data-en="Payment Mode">भुगतान का तरीका</label>
-          <select id="transactionMode" class="form-control">
-            <option value="cash" data-hi="नकद" data-en="Cash">नकद</option>
-            <option value="upi" data-hi="UPI" data-en="UPI">UPI</option>
-            <option value="bank" data-hi="बैंक ट्रांसफर" data-en="Bank Transfer">बैंक ट्रांसफर</option>
-          </select>
-        </div>
-
-        <!-- Photo Upload Section -->
-        <div class="form-group">
-          <label data-hi="फोटो" data-en="Photo">फोटो</label>
-          <input type="file" id="transactionPhoto" accept="image/*" class="form-control" onchange="previewTransactionPhoto(event)">
-          <div id="photoPreview" style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;"></div>
-        </div>
-        
-        <button class="btn btn-primary" id="saveTransactionBtn" onclick="saveTransaction()" data-hi="सेव करें" data-en="Save">सेव करें</button>
-      </div>
-    </div>
-
-    <!-- Customer Detail Modal -->
-    <div class="modal" id="customerDetailModal">
-      <div class="modal-content" style="max-width: 500px;">
-        <div class="modal-header">
-          <h3 id="detailCustomerName">ग्राहक विवरण</h3>
-          <button class="close-btn" onclick="closeModal('customerDetailModal')">&times;</button>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <div style="font-size: 14px; opacity: 0.9;" data-hi="कुल बैलेंस" data-en="Total Balance">कुल बैलेंस</div>
-              <div style="font-size: 32px; font-weight: 700;" id="detailBalance">₹0</div>
-            </div>
-            <div>
-              <div style="font-size: 14px; opacity: 0.9;" data-hi="फोन" data-en="Phone">फोन</div>
-              <div style="font-size: 16px;" id="detailPhone">-</div>
-            </div>
-          </div>
-        </div>
-        
-        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-          <button class="btn btn-outline" style="flex: 1;" onclick="exportCustomerPDF()">
-            <i class="fas fa-file-pdf"></i> <span data-hi="PDF" data-en="PDF">PDF</span>
-          </button>
-          <button class="btn btn-outline" style="flex: 1;" onclick="shareOnWhatsApp()">
-            <i class="fab fa-whatsapp"></i> <span data-hi="WhatsApp" data-en="WhatsApp">WhatsApp</span>
-          </button>
-          <button class="btn btn-outline" style="flex: 1;" onclick="printCustomerDetail()">
-            <i class="fas fa-print"></i> <span data-hi="प्रिंट" data-en="Print">प्रिंट</span>
-          </button>
-        </div>
-
-        <!-- Photos Gallery -->
-        <h4 style="margin-bottom: 10px;" data-hi="फोटो गैलरी" data-en="Photo Gallery">फोटो गैलरी</h4>
-        <div id="customerPhotos" class="image-gallery" style="margin-bottom: 20px;">
-          <!-- Will be populated by JS -->
-        </div>
-        
-        <h4 style="margin-bottom: 15px;" data-hi="लेन-देन इतिहास" data-en="Transaction History">लेन-देन इतिहास</h4>
-        <div id="customerTransactions" class="transaction-list" style="max-height: 300px; overflow-y: auto;">
-          <!-- Will be populated by JS -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Zoom Modal -->
-    <div id="zoomModal">
-      <img id="zoomImage" src="" alt="">
-      <div class="zoom-caption" id="zoomCaption"></div>
-      <button class="close-btn" style="position: absolute; top: 20px; right: 20px; color: white; font-size: 30px;" onclick="closeZoom()">&times;</button>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
-
-    <!-- Loading Spinner (hidden by default) -->
-    <div id="loadingSpinner" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4000;">
-      <div class="spinner"></div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label" data-hi="कुल ग्राहक" data-en="Total Customers">कुल ग्राहक</div><div class="stat-value" id="totalCustomers">0</div></div>
+      <div class="stat-card"><div class="stat-label" data-hi="कुल उधार" data-en="Total Due">कुल उधार</div><div class="stat-value" id="totalUdhar">₹0</div></div>
+      <div class="stat-card"><div class="stat-label" data-hi="कुल जमा" data-en="Total Received">कुल जमा</div><div class="stat-value" id="totalJama">₹0</div></div>
+      <div class="stat-card"><div class="stat-label" data-hi="नेट बैलेंस" data-en="Net Balance">नेट बैलेंस</div><div class="stat-value" id="netBalance">₹0</div></div>
     </div>
   </div>
 
-  <!-- Install PWA Button (shown when not installed) -->
-  <div id="installPWA" style="display: none; position: fixed; bottom: 100px; left: 20px; right: 20px; background: var(--primary); color: white; padding: 15px; border-radius: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 2000; cursor: pointer;" onclick="installPWA()">
-    <i class="fas fa-download"></i> <span data-hi="ऐप इंस्टॉल करें" data-en="Install App">ऐप इंस्टॉल करें</span>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="switchTabManual('dashboard')"><i class="fas fa-home"></i> <span data-hi="होम" data-en="Home">होम</span></div>
+    <div class="nav-tab" onclick="switchTabManual('customers')"><i class="fas fa-users"></i> <span data-hi="ग्राहक" data-en="Customers">ग्राहक</span></div>
+    <div class="nav-tab" onclick="switchTabManual('history')"><i class="fas fa-history"></i> <span data-hi="हिस्ट्री" data-en="History">हिस्ट्री</span></div>
+    <div class="nav-tab" onclick="switchTabManual('reports')"><i class="fas fa-chart-bar"></i> <span data-hi="रिपोर्ट" data-en="Reports">रिपोर्ट</span></div>
   </div>
 
-  <script>
-    // ==================== LANGUAGE SUPPORT ====================
-    let currentLanguage = 'hi'; // Default Hindi
-    
-      function setLanguage(lang) {
-  currentLanguage = lang;
-
-  appState.settings.language = lang;
-  saveData();
-
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.textContent.includes(lang === 'hi' ? 'हिंदी' : 'ENG')) {
-      btn.classList.add('active');
-    }
-  });
-
-  document.querySelectorAll('[data-hi][data-en]').forEach(el => {
-    el.textContent = el.getAttribute(`data-${lang}`);
-  });
-
-  document.getElementById('appTitle').textContent = 
-    lang === 'hi' ? 'खाता मित्र प्रो' : 'Khata Mitra Pro';
-}
-
-      // Update all translatable elements
-      document.querySelectorAll('[data-hi][data-en]').forEach(el => {
-        if (el.tagName === 'OPTION') {
-          el.textContent = el.getAttribute(`data-${lang}`);
-        } else if (el.classList.contains('tab-label')) {
-          el.textContent = el.getAttribute(`data-${lang}`);
-        } else {
-          el.textContent = el.getAttribute(`data-${lang}`);
-        }
-      });
-
-      // Update app title
-      document.getElementById('appTitle').textContent = lang === 'hi' ? 'खाता मित्र प्रो' : 'Khata Mitra Pro';
-      
-      // Update placeholders
-      document.querySelectorAll('input[placeholder]').forEach(input => {
-        const placeholder = input.getAttribute(`data-${lang}-placeholder`);
-        if (placeholder) {
-          input.placeholder = placeholder;
-        }
-      });
-    }
-
-    // ==================== STATE MANAGEMENT ====================
-    let appState = {
-      customers: [],
-      transactions: [],
-      photos: [], // Store photos with transaction IDs
-      settings: {
-        darkMode: false,
-        language: 'hi',
-        autoReminder: false
-      }
-    };
-
-    // Load data from localStorage
-    function loadData() {
-      const saved = localStorage.getItem('khataMitraPro');
-      if (saved) {
-        try {
-          appState = JSON.parse(saved);
-        } catch (e) {
-          console.error('Error loading data', e);
-        }
-      }
-      
-      // Initialize with demo data if empty
-      if (appState.customers.length === 0) {
-        initDemoData();
-      }
-      
-      // Set language
-      if (appState.settings.language) {
-        setLanguage(appState.settings.language);
-      }
-      
-      updateUI();
-    }
-
-    // Save data to localStorage
-    function saveData() {
-      localStorage.setItem('khataMitraPro', JSON.stringify(appState));
-    }
-
-    // Demo data for testing
-    function initDemoData() {
-        appState.customers = [
-  { 
-    id: '1', name: 'राहुल कुमार', phone: '9876543210', address: 'दिल्ली',
-    gst: '', type: 'customer', state: 'Delhi', city: 'Delhi', pincode: '110001', billingAddress: '', balance: 0
-  },
-  { 
-    id: '2', name: 'सीता शर्मा', phone: '8765432109', address: 'नोएडा',
-    gst: '', type: 'customer', state: 'UP', city: 'Noida', pincode: '201301', billingAddress: '', balance: 0
-  }
-];   
-      
-      appState.transactions = [
-        { id: 't1', customerId: '1', type: 'udhar', amount: 500, note: 'पिज्जा के लिए', date: '2024-03-15', mode: 'cash' },
-        { id: 't2', customerId: '2', type: 'jama', amount: 200, note: 'चाय के पैसे', date: '2024-03-16', mode: 'upi' },
-        { id: 't3', customerId: '3', type: 'udhar', amount: 1000, note: 'किराने का सामान', date: '2024-03-17', mode: 'bank' }
-      ];
-      
-      saveData();
-    }
-
-    // ==================== UI UPDATE FUNCTIONS ====================
-    function updateUI() {
-      updateDashboard();
-      updateCustomerList();
-      updateRecentTransactions();
-      updateAllTransactions();
-      updateReports();
-    }
-
-    function updateDashboard() {
-      document.getElementById('totalCustomers').textContent = appState.customers.length;
-      
-      let totalUdhar = 0, totalJama = 0;
-      appState.customers.forEach(c => {
-        if (c.balance > 0) totalUdhar += c.balance;
-        else totalJama += Math.abs(c.balance);
-      });
-      
-      document.getElementById('totalUdhar').textContent = '₹' + totalUdhar;
-      document.getElementById('totalJama').textContent = '₹' + totalJama;
-      document.getElementById('netBalance').textContent = '₹' + (totalUdhar - totalJama);
-    }
-
-    function updateCustomerList() {
-      const list = document.getElementById('customerList');
-      const searchTerm = document.getElementById('customerSearch')?.value.toLowerCase() || '';
-      
-      const filtered = appState.customers.filter(c => 
-        c.name.toLowerCase().includes(searchTerm) || 
-        (c.phone && c.phone.includes(searchTerm))
-      );
-      
-      if (filtered.length === 0) {
-        list.innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-users"></i>
-            <p data-hi="कोई ग्राहक नहीं मिला" data-en="No customers found">कोई ग्राहक नहीं मिला</p>
-          </div>
-        `;
-        return;
-      }
-      
-      list.innerHTML = filtered.map(customer => `
-        <div class="customer-card" onclick="viewCustomer('${customer.id}')">
-          <div class="customer-info">
-            <h3>${customer.name}</h3>
-            <p>📞 ${customer.phone || (currentLanguage === 'hi' ? 'नंबर नहीं' : 'No number')}</p>
-         <p>🏙 ${customer.city || ''}, ${customer.state || ''}</p>
-<p>🧾 ${customer.gst || ''}</p>
-          </div>
-          <div class="customer-balance ${customer.balance >= 0 ? 'balance-positive' : 'balance-negative'}">
-            ${customer.balance >= 0 ? '₹' + customer.balance : '-₹' + Math.abs(customer.balance)}
-          </div>
-        </div>
-      `).join('');
-    }
-
-function deleteTransaction(id) {
-  if (!confirm(currentLanguage === 'hi' ? 'Delete करना है?' : 'Delete this transaction?')) return;
-
-  const index = appState.transactions.findIndex(t => t.id === id);
-  if (index === -1) return;
-
-  const t = appState.transactions[index];
-  const customer = appState.customers.find(c => c.id === t.customerId);
-
-  if (customer) {
-    // Reverse balance
-    if (t.type === 'udhar') {
-      customer.balance -= t.amount;
-    } else {
-      customer.balance += t.amount;
-    }
-  }
-
-  // Remove transaction
-  appState.transactions.splice(index, 1);
-
-  saveData();
-  updateUI();
-}
-    
-    function updateRecentTransactions() {
-      const recent = document.getElementById('recentTransactions');
-      const transactions = [...appState.transactions].reverse().slice(0, 5);
-      
-      if (transactions.length === 0) {
-        recent.innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-exchange-alt"></i>
-            <p data-hi="कोई लेन-देन नहीं" data-en="No transactions">कोई लेन-देन नहीं</p>
-          </div>
-        `;
-        return;
-      }
-      
-      recent.innerHTML = transactions.map(t => {
-        const customer = appState.customers.find(c => c.id === t.customerId);
-        const typeText = t.type === 'udhar' 
-          ? (currentLanguage === 'hi' ? 'उधार दिया' : 'Gave')
-          : (currentLanguage === 'hi' ? 'जमा लिया' : 'Received');
-        
-        return `
-          <div class="transaction-item" onclick="viewCustomer('${t.customerId}')">
-            <div class="transaction-info">
-              <div class="transaction-icon ${t.type === 'udhar' ? 'icon-udhar' : 'icon-jama'}">
-                <i class="fas ${t.type === 'udhar' ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
-              </div>
-              <div class="transaction-details">
-                <h4>${customer?.name || 'Unknown'}</h4>
-                <p>${t.note || (currentLanguage === 'hi' ? 'कोई विवरण नहीं' : 'No description')} • ${formatDate(t.date)}</p>
-              </div>
-            </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-  <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
-    ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
+  <div class="main-content">
+    <div class="tab-pane active" id="dashboard">
+      <div class="quick-actions">
+        <div class="quick-action" onclick="openAddCustomerModal()"><i class="fas fa-user-plus"></i><span data-hi="नया ग्राहक" data-en="New Cust.">नया ग्राहक</span></div>
+        <div class="quick-action" onclick="openTransactionModal('udhar')"><i class="fas fa-arrow-up"></i><span data-hi="उधार दें" data-en="Give">उधार दें</span></div>
+        <div class="quick-action" onclick="openTransactionModal('jama')"><i class="fas fa-arrow-down"></i><span data-hi="जमा करें" data-en="Receive">जमा करें</span></div>
+        <div class="quick-action" onclick="openTransactionModal('item')"><i class="fas fa-box"></i><span data-hi="आइटम" data-en="Item">आइटम</span></div>
+      </div>
+      <h3 data-hi="हाल के लेन-देन" data-en="Recent Transactions">हाल के लेन-देन</h3>
+      <div id="recentTransactions" class="transaction-list"></div>
+    </div>
+    <div class="tab-pane" id="customers"><div class="search-box"><i class="fas fa-search"></i><input type="text" id="customerSearch" placeholder="ग्राहक खोजें..." onkeyup="renderCustomerList()"></div><div id="customerList" class="customer-grid"></div></div>
+    <div class="tab-pane" id="history"><div class="search-box"><i class="fas fa-search"></i><input type="text" id="historySearch" placeholder="लेन-देन खोजें..." onkeyup="renderAllTransactions()"></div><div id="allTransactions" class="transaction-list"></div></div>
+    <div class="tab-pane" id="reports">
+      <div style="display:flex; gap:10px; margin-bottom:20px"><select id="reportMonth" class="form-control"><option value="1">जनवरी</option><option value="2">फरवरी</option><option value="3">मार्च</option><option value="4">अप्रैल</option><option value="5">मई</option><option value="6">जून</option><option value="7">जुलाई</option><option value="8">अगस्त</option><option value="9">सितंबर</option><option value="10">अक्टूबर</option><option value="11">नवंबर</option><option value="12">दिसंबर</option></select><select id="reportYear" class="form-control"><option value="2024">2024</option><option value="2025">2025</option></select></div>
+      <div class="chart-container"><canvas id="monthlyChart"></canvas></div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top:20px"><div class="stat-card" style="background:var(--primary-light); color:white"><div data-hi="महीने का उधार" data-en="Monthly Given">महीने का उधार</div><div style="font-size:24px; font-weight:700" id="monthlyUdhar">₹0</div></div><div class="stat-card" style="background:var(--success); color:white"><div data-hi="महीने का जमा" data-en="Monthly Received">महीने का जमा</div><div style="font-size:24px; font-weight:700" id="monthlyJama">₹0</div></div></div>
+    </div>
   </div>
+  <div class="fab-button" onclick="openQuickMenu()"><i class="fas fa-plus"></i></div>
 
-  <span onclick="deleteTransaction('${t.id}'); event.stopPropagation();" 
-        style="color:red; font-size:18px; cursor:pointer;">
-    ❌
-  </span>
+  <!-- Modals -->
+  <div class="modal" id="customerModal"><div class="modal-content"><div class="modal-header"><h3 data-hi="नया ग्राहक" data-en="New Customer">नया ग्राहक</h3><button class="close-btn" onclick="closeModal('customerModal')">&times;</button></div><div class="form-group"><label data-hi="नाम *" data-en="Name *">नाम *</label><input type="text" id="custName" class="form-control" placeholder="नाम"></div><div class="form-group"><label data-hi="फोन" data-en="Phone">फोन</label><input type="text" id="custPhone" class="form-control" placeholder="9876543210"></div><div class="form-group"><label data-hi="पता" data-en="Address">पता</label><textarea id="custAddress" class="form-control" rows="2"></textarea></div><div class="form-group"><label data-hi="पिन कोड" data-en="Pin Code">पिन कोड</label><input type="text" id="custPincode" class="form-control" placeholder="110001"></div><div class="form-group"><label data-hi="शहर" data-en="City">शहर</label><input type="text" id="custCity" class="form-control" placeholder="दिल्ली"></div><div class="form-group"><label data-hi="GST (वैकल्पिक)" data-en="GST (Optional)">GST</label><input type="text" id="custGst" class="form-control" placeholder="22AAAAA0000A1Z5"></div><button class="btn btn-primary" onclick="addCustomer()">सेव करें</button><button class="btn btn-danger" style="margin-top:10px" onclick="deleteCurrentCustomer()" id="deleteCustomerBtn" style="display:none">ग्राहक हटाएँ</button></div></div>
+
+  <div class="modal" id="transactionModal"><div class="modal-content"><div class="modal-header"><h3 id="transTitle">लेन-देन</h3><button class="close-btn" onclick="closeModal('transactionModal')">&times;</button></div><div class="form-group"><label data-hi="ग्राहक *" data-en="Customer *">ग्राहक *</label><select id="transCustomer" class="form-control"></select></div><div class="form-group"><label data-hi="राशि *" data-en="Amount *">राशि *</label><input type="number" id="transAmount" class="form-control"></div><div class="form-group"><label data-hi="विवरण" data-en="Note">विवरण</label><input type="text" id="transNote" class="form-control" placeholder="क्या लिया/दिया"></div><div class="form-group"><label data-hi="तारीख" data-en="Date">तारीख</label><input type="date" id="transDate" class="form-control"></div><div class="form-group"><label data-hi="तरीका" data-en="Mode">तरीका</label><select id="transMode" class="form-control"><option value="cash">नकद</option><option value="upi">UPI</option><option value="bank">बैंक</option></select></div><div class="form-group"><label data-hi="फोटो" data-en="Photo">फोटो</label><input type="file" id="transPhoto" accept="image/*" class="form-control"></div><button class="btn btn-primary" id="saveTransBtn" onclick="saveTransaction()">सेव करें</button></div></div>
+
+  <div class="modal" id="detailModal"><div class="modal-content"><div class="modal-header"><h3 id="detailName">ग्राहक</h3><button class="close-btn" onclick="closeModal('detailModal')">&times;</button></div><div style="background:var(--primary); color:white; padding:15px; border-radius:16px; margin-bottom:15px"><div>बैलेंस</div><div style="font-size:28px; font-weight:700" id="detailBal">₹0</div><div>📞 <span id="detailPhone"></span></div><div>📍 <span id="detailCity"></span> - <span id="detailPin"></span> | GST: <span id="detailGst"></span></div></div><div id="detailPhotos" class="image-gallery"></div><h4>लेन-देन</h4><div id="detailTransactions" class="transaction-list" style="max-height:300px; overflow:auto"></div><div style="display:flex; gap:8px; margin-top:15px"><button class="btn btn-outline" onclick="exportPDF()">📄 PDF</button><button class="btn btn-outline" onclick="printStatement()">🖨️ प्रिंट</button><button class="btn btn-outline" onclick="shareWhatsApp()">📱 WhatsApp</button><button class="btn btn-danger" onclick="deleteCustomerPermanent()">⚠️ हटाएँ (डिलीट)</button></div></div></div>
+
+  <div id="zoomModal"><img id="zoomImage" alt=""><button style="position:absolute;top:20px;right:20px;background:white;border:none;border-radius:50%;width:40px;height:40px" onclick="closeZoom()">✖</button></div>
+  <div class="toast" id="toast"></div>
 </div>
-
-          </div>
-        `;
-      }).join('');
-    }
-
-    function updateAllTransactions() {
-      const container = document.getElementById('allTransactions');
-      const searchTerm = document.getElementById('historySearch')?.value.toLowerCase() || '';
-      
-      let filtered = [...appState.transactions].reverse();
-      
-      if (searchTerm) {
-        filtered = filtered.filter(t => {
-          const customer = appState.customers.find(c => c.id === t.customerId);
-          return customer?.name.toLowerCase().includes(searchTerm) || 
-                 (t.note && t.note.toLowerCase().includes(searchTerm));
-        });
-      }
-      
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-history"></i>
-            <p data-hi="कोई लेन-देन नहीं" data-en="No transactions">कोई लेन-देन नहीं</p>
-          </div>
-        `;
-        return;
-      }
-      
-      container.innerHTML = filtered.map(t => {
-        const customer = appState.customers.find(c => c.id === t.customerId);
-        const typeText = t.type === 'udhar' 
-          ? (currentLanguage === 'hi' ? 'उधार' : 'Gave')
-          : (currentLanguage === 'hi' ? 'जमा' : 'Received');
-        
-        return `
-          <div class="transaction-item" onclick="viewCustomer('${t.customerId}')">
-            <div class="transaction-info">
-              <div class="transaction-icon ${t.type === 'udhar' ? 'icon-udhar' : 'icon-jama'}">
-                <i class="fas ${t.type === 'udhar' ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
-              </div>
-              <div class="transaction-details">
-                <h4>${customer?.name || 'Unknown'}</h4>
-                <p>${t.note || ''} • ${t.mode || 'cash'} • ${formatDate(t.date)}</p>
-              </div>
-            </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-  <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
-    ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
-  </div>
-
-  <span onclick="deleteTransaction('${t.id}'); event.stopPropagation();" 
-        style="color:red; font-size:18px; cursor:pointer;">
-    ❌
-  </span>
-</div>
-
-          </div>
-        `;
-      }).join('');
-    }
-
-    function updateReports() {
-      const month = document.getElementById('reportMonth')?.value || '3';
-      const year = document.getElementById('reportYear')?.value || '2024';
-      
-      const monthlyTransactions = appState.transactions.filter(t => {
-        const [y, m] = t.date.split('-');
-        return y === year && m === month.padStart(2, '0');
-      });
-      
-      let monthlyUdhar = 0, monthlyJama = 0;
-      monthlyTransactions.forEach(t => {
-        if (t.type === 'udhar') monthlyUdhar += t.amount;
-        else monthlyJama += t.amount;
-      });
-      
-      document.getElementById('monthlyUdhar').textContent = '₹' + monthlyUdhar;
-      document.getElementById('monthlyJama').textContent = '₹' + monthlyJama;
-      
-      // Update chart
-      updateChart(monthlyTransactions);
-    }
-
-    // Chart instance
-    let monthlyChart = null;
-
-    function updateChart(transactions) {
-      const ctx = document.getElementById('monthlyChart').getContext('2d');
-      
-      // Group by date
-      const dailyData = {};
-      transactions.forEach(t => {
-        const day = t.date.split('-')[2];
-        if (!dailyData[day]) {
-          dailyData[day] = { udhar: 0, jama: 0 };
-        }
-        if (t.type === 'udhar') dailyData[day].udhar += t.amount;
-        else dailyData[day].jama += t.amount;
-      });
-      
-      const days = Object.keys(dailyData).sort((a, b) => parseInt(a) - parseInt(b));
-      const udharData = days.map(d => dailyData[d].udhar);
-      const jamaData = days.map(d => dailyData[d].jama);
-      
-      if (monthlyChart) {
-        monthlyChart.destroy();
-      }
-      
-      monthlyChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: days.map(d => d + (currentLanguage === 'hi' ? ' तारीख' : '')),
-          datasets: [
-            {
-              label: currentLanguage === 'hi' ? 'उधार दिया' : 'Given',
-              data: udharData,
-              backgroundColor: '#e53935',
-              borderRadius: 8
-            },
-            {
-              label: currentLanguage === 'hi' ? 'जमा लिया' : 'Received',
-              data: jamaData,
-              backgroundColor: '#2ec4b6',
-              borderRadius: 8
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                callback: value => '₹' + value
-              }
-            }
-          }
-        }
-      });
-    }
-
-    // ==================== MODAL FUNCTIONS ====================
-    function openQuickMenu() {
-      document.getElementById('quickMenuModal').classList.add('active');
-    }
-
-    function openAddModal(type) {
-      closeModal('quickMenuModal');
-      
-      if (type === 'customer') {
-        document.getElementById('addCustomerModal').classList.add('active');
-      } else if (type === 'udhar' || type === 'jama') {
-        const title = document.getElementById('transactionModalTitle');
-        title.textContent = type === 'udhar' 
-          ? (currentLanguage === 'hi' ? 'उधार दें' : 'Give Money')
-          : (currentLanguage === 'hi' ? 'जमा करें' : 'Receive Money');
-        
-        document.getElementById('saveTransactionBtn').setAttribute('data-type', type);
-        
-        // Populate customer dropdown
-        const select = document.getElementById('transactionCustomer');
-        select.innerHTML = '<option value="">' + 
-          (currentLanguage === 'hi' ? 'ग्राहक चुनें' : 'Select Customer') + 
-          '</option>' + 
-          appState.customers.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-        
-        // Set today's date
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('transactionDate').value = today;
-        
-        // Clear photo preview
-        document.getElementById('photoPreview').innerHTML = '';
-        
-        document.getElementById('addTransactionModal').classList.add('active');
-      }
-    }
-
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove('active');
-    }
-
-    // ==================== PHOTO FUNCTIONS ====================
-    function previewTransactionPhoto(event) {
-      const preview = document.getElementById('photoPreview');
-      preview.innerHTML = '';
-      
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          img.style.width = '100px';
-          img.style.height = '100px';
-          img.style.objectFit = 'cover';
-          img.style.borderRadius = '10px';
-          preview.appendChild(img);
-        }
-        reader.readAsDataURL(file);
-      }
-    }
-
-    function savePhoto(transactionId, file, caption) {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const photo = {
-            id: Date.now().toString(),
-            transactionId: transactionId,
-            data: e.target.result,
-            caption: caption || '',
-            date: new Date().toISOString()
-          };
-          
-          if (!appState.photos) appState.photos = [];
-          appState.photos.push(photo);
-          resolve(photo);
-        }
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function getTransactionPhotos(transactionId) {
-      return appState.photos?.filter(p => p.transactionId === transactionId) || [];
-    }
-
-    function getCustomerPhotos(customerId) {
-      const transactionIds = appState.transactions
-        .filter(t => t.customerId === customerId)
-        .map(t => t.id);
-      
-      return appState.photos?.filter(p => transactionIds.includes(p.transactionId)) || [];
-    }
-
-    function deletePhoto(photoId) {
-      if (appState.photos) {
-        appState.photos = appState.photos.filter(p => p.id !== photoId);
-        saveData();
-        
-        // Refresh customer detail if open
-        const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
-        if (customerId) {
-          viewCustomer(customerId);
-        }
-        
-        showToast(currentLanguage === 'hi' ? 'फोटो हटा दी गई' : 'Photo deleted');
-      }
-    }
-
-    function openZoom(imageSrc, caption) {
-      document.getElementById('zoomImage').src = imageSrc;
-      document.getElementById('zoomCaption').textContent = caption || '';
-      document.getElementById('zoomModal').classList.add('active');
-    }
-
-    function closeZoom() {
-      document.getElementById('zoomModal').classList.remove('active');
-    }
-
-    // ==================== CRUD OPERATIONS ====================
-    function addCustomer() {
-  const name = document.getElementById('newCustomerName').value.trim();
-  const phone = document.getElementById('newCustomerPhone').value.trim();
-  const address = document.getElementById('newCustomerAddress').value.trim();
-
-  const gst = document.getElementById('newCustomerGST')?.value.trim();
-  const type = document.getElementById('customerType')?.value;
-  const state = document.getElementById('customerState')?.value.trim();
-  const city = document.getElementById('customerCity')?.value.trim();
-  const pincode = document.getElementById('customerPincode')?.value.trim();
-  const billingAddress = document.getElementById('billingAddress')?.value.trim();
-
-  if (!name) {
-    showToast(currentLanguage === 'hi' ? 'नाम दर्ज करें' : 'Enter name', 'error');
-    return;
-  }
-
-  const newCustomer = {
-    id: Date.now().toString(),
-    name,
-    phone,
-    address,
-    gst,
-    type,
-    state,
-    city,
-    pincode,
-    billingAddress,
-    balance: 0,
-    createdAt: new Date().toISOString()
-  };
-
-  appState.customers.push(newCustomer);
-  saveData();
-  updateUI();
-
-  closeModal('addCustomerModal');
-  showToast(currentLanguage === 'hi' ? 'ग्राहक जोड़ दिया गया' : 'Customer added');
-
-  // Clear form
-  document.getElementById('newCustomerName').value = '';
-  document.getElementById('newCustomerPhone').value = '';
-  document.getElementById('newCustomerAddress').value = '';
-  if(document.getElementById('newCustomerGST')) document.getElementById('newCustomerGST').value = '';
-}
-    
-    async function saveTransaction() {
-      const customerId = document.getElementById('transactionCustomer').value;
-      const amount = parseFloat(document.getElementById('transactionAmount').value);
-      const note = document.getElementById('transactionNote').value.trim();
-      const date = document.getElementById('transactionDate').value;
-      const mode = document.getElementById('transactionMode').value;
-      const type = document.getElementById('saveTransactionBtn').getAttribute('data-type');
-      const photoFile = document.getElementById('transactionPhoto').files[0];
-      
-      if (!customerId) {
-        showToast(currentLanguage === 'hi' ? 'ग्राहक चुनें' : 'Select customer', 'error');
-        return;
-      }
-      
-      if (!amount || amount <= 0) {
-        showToast(currentLanguage === 'hi' ? 'सही राशि दर्ज करें' : 'Enter valid amount', 'error');
-        return;
-      }
-      
-      // Show loading
-      document.getElementById('loadingSpinner').style.display = 'block';
-      
-      const transaction = {
-        id: Date.now().toString(),
-        customerId,
-        type,
-        amount,
-        note,
-        date,
-        mode,
-        createdAt: new Date().toISOString()
-      };
-      
-      // Update customer balance
-      const customer = appState.customers.find(c => c.id === customerId);
-      if (type === 'udhar') {
-        customer.balance += amount;
-      } else {
-        customer.balance -= amount;
-      }
-      
-      appState.transactions.push(transaction);
-      
-      // Save photo if uploaded
-      if (photoFile) {
-        await savePhoto(transaction.id, photoFile, note);
-      }
-      
-      saveData();
-      updateUI();
-      
-      // Hide loading
-      document.getElementById('loadingSpinner').style.display = 'none';
-      
-      closeModal('addTransactionModal');
-      showToast(currentLanguage === 'hi' ? 'लेन-देन सेव हो गया' : 'Transaction saved');
-      
-      // Clear form
-      document.getElementById('transactionAmount').value = '';
-      document.getElementById('transactionNote').value = '';
-      document.getElementById('transactionPhoto').value = '';
-      document.getElementById('photoPreview').innerHTML = '';
-    }
-
-    // ==================== CUSTOMER DETAILS ====================
-    function viewCustomer(customerId) {
-      const customer = appState.customers.find(c => c.id === customerId);
-      if (!customer) return;
-      
-      document.getElementById('detailCustomerName').textContent = customer.name;
-      document.getElementById('detailBalance').textContent = '₹' + Math.abs(customer.balance);
-      document.getElementById('detailPhone').textContent = customer.phone || '-';
-      
-      // Show customer photos
-      const photos = getCustomerPhotos(customerId);
-      const photosContainer = document.getElementById('customerPhotos');
-      
-      if (photos.length > 0) {
-        photosContainer.innerHTML = photos.map(photo => `
-          <div class="gallery-item">
-            <img src="${photo.data}" onclick="openZoom('${photo.data}', '${photo.caption}')">
-            <div class="caption">${photo.caption || ''}</div>
-            <div class="delete-photo" onclick="event.stopPropagation(); deletePhoto('${photo.id}')">
-              <i class="fas fa-times"></i>
-            </div>
-          </div>
-        `).join('');
-      } else {
-        photosContainer.innerHTML = `<p style="color: var(--gray); text-align: center; grid-column: span 3;" data-hi="कोई फोटो नहीं" data-en="No photos">कोई फोटो नहीं</p>`;
-      }
-      
-      // Show transactions
-      const transactions = appState.transactions
-        .filter(t => t.customerId === customerId)
-        .reverse();
-      
-      const container = document.getElementById('customerTransactions');
-      
-      if (transactions.length === 0) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-exchange-alt"></i>
-            <p data-hi="कोई लेन-देन नहीं" data-en="No transactions">कोई लेन-देन नहीं</p>
-          </div>
-        `;
-      } else {
-        container.innerHTML = transactions.map(t => {
-          const hasPhoto = getTransactionPhotos(t.id).length > 0;
-          return `
-            <div class="transaction-item">
-              <div class="transaction-info">
-                <div class="transaction-icon ${t.type === 'udhar' ? 'icon-udhar' : 'icon-jama'}">
-                  <i class="fas ${t.type === 'udhar' ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
-                </div>
-                <div class="transaction-details">
-                  <h4>${t.type === 'udhar' 
-                    ? (currentLanguage === 'hi' ? 'उधार दिया' : 'Gave') 
-                    : (currentLanguage === 'hi' ? 'जमा लिया' : 'Received')} 
-                    ${hasPhoto ? ' 📸' : ''}</h4>
-                  <p>${t.note || ''} • ${formatDate(t.date)}</p>
-                </div>
-              </div>
-              <div style="display:flex; align-items:center; gap:10px;">
-  <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
-    ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
-  </div>
-
-  <span onclick="deleteTransaction('${t.id}'); event.stopPropagation();" 
-        style="color:red; cursor:pointer;">
-    ❌
-  </span>
-</div>
-`;
-        }).join('');
-      }
-      
-      // Store customer ID for actions
-      document.getElementById('customerDetailModal').setAttribute('data-customer-id', customerId);
-      document.getElementById('customerDetailModal').classList.add('active');
-    }
-
-    // ==================== PDF EXPORT ====================
-    function exportCustomerPDF() {
-      const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
-      const customer = appState.customers.find(c => c.id === customerId);
-      
-      if (!customer) return;
-      
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      
-      // Colors
-      const primaryColor = [106, 27, 154]; // #6a1b9a
-      const successColor = [46, 196, 182]; // #2ec4b6
-      const dangerColor = [229, 57, 53]; // #e53935
-      
-      // Header
-      doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-      doc.rect(0, 0, 210, 40, 'F');
-      
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(22);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Khata Statement', 105, 20, { align: 'center' });
-      
-      // Customer Info
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(16);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Customer Details', 20, 55);
-      
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'normal');
-      doc.text(`Name: ${customer.name}`, 20, 65);
-doc.text(`Phone: ${customer.phone || 'N/A'}`, 20, 72);
-doc.text(`GST: ${customer.gst || 'N/A'}`, 20, 79);
-doc.text(`Type: ${customer.type || 'Customer'}`, 20, 86);
-doc.text(`City: ${customer.city || ''}`, 20, 93);
-doc.text(`State: ${customer.state || ''}`, 20, 100);
-doc.text(`Pincode: ${customer.pincode || ''}`, 20, 107);
-doc.text(`Address: ${customer.address || 'N/A'}`, 20, 114);
-      
-      // Balance
-      const balanceY = 95;
-      doc.setFillColor(customer.balance >= 0 ? dangerColor[0] : successColor[0], 
-                      customer.balance >= 0 ? dangerColor[1] : successColor[1], 
-                      customer.balance >= 0 ? dangerColor[2] : successColor[2]);
-      doc.roundedRect(20, balanceY - 5, 170, 25, 5, 5, 'F');
-      
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.text(`Current Balance: ₹${Math.abs(customer.balance)} ${customer.balance >= 0 ? '(To Receive)' : '(To Pay)'}`, 105, balanceY + 10, { align: 'center' });
-      
-      // Transactions Table
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Transaction History', 20, 135);
-      
-      const transactions = appState.transactions
-        .filter(t => t.customerId === customerId)
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
-      
-      let y = 150;
-      
-      // Table Header
-      doc.setFillColor(240, 240, 240);
-      doc.rect(20, y - 5, 170, 10, 'F');
-      
-      doc.setFontSize(10);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Date', 25, y);
-      doc.text('Type', 55, y);
-      doc.text('Description', 85, y);
-      doc.text('Amount', 160, y);
-      
-      y += 10;
-      
-      // Table Rows
-      doc.setFont('helvetica', 'normal');
-      let totalGiven = 0, totalReceived = 0;
-      
-      transactions.forEach((t, index) => {
-        if (y > 270) {
-          doc.addPage();
-          y = 30;
-          
-          // Header on new page
-          doc.setFillColor(240, 240, 240);
-          doc.rect(20, y - 5, 170, 10, 'F');
-          
-          doc.setFont('helvetica', 'bold');
-          doc.text('Date', 25, y);
-          doc.text('Type', 55, y);
-          doc.text('Description', 85, y);
-          doc.text('Amount', 160, y);
-          
-          y += 10;
-          doc.setFont('helvetica', 'normal');
-        }
-        
-        const amount = t.amount;
-        if (t.type === 'udhar') {
-          totalGiven += amount;
-          doc.setTextColor(dangerColor[0], dangerColor[1], dangerColor[2]);
-        } else {
-          totalReceived += amount;
-          doc.setTextColor(successColor[0], successColor[1], successColor[2]);
-        }
-        
-        doc.text(formatDate(t.date), 25, y);
-        doc.text(t.type === 'udhar' ? 'Given' : 'Received', 55, y);
-        
-        // Truncate long description
-        let desc = t.note || '-';
-        if (desc.length > 20) desc = desc.substring(0, 18) + '...';
-        doc.text(desc, 85, y);
-        
-        doc.text(`₹${amount}`, 170, y, { align: 'right' });
-        
-        y += 8;
-      });
-      
-      // Summary
-      y += 10;
-      doc.setDrawColor(200, 200, 200);
-      doc.line(20, y, 190, y);
-      y += 10;
-      
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(0, 0, 0);
-      doc.text('Summary:', 20, y);
-      y += 8;
-      
-      doc.setFont('helvetica', 'normal');
-      doc.text(`Total Given:`, 20, y);
-      doc.setTextColor(dangerColor[0], dangerColor[1], dangerColor[2]);
-      doc.text(`₹${totalGiven}`, 100, y);
-      
-      y += 8;
-      doc.setTextColor(0, 0, 0);
-      doc.text(`Total Received:`, 20, y);
-      doc.setTextColor(successColor[0], successColor[1], successColor[2]);
-      doc.text(`₹${totalReceived}`, 100, y);
-      
-      y += 8;
-      doc.setTextColor(0, 0, 0);
-      doc.text(`Net Balance:`, 20, y);
-      doc.setTextColor(customer.balance >= 0 ? dangerColor[0] : successColor[0], 
-                      customer.balance >= 0 ? dangerColor[1] : successColor[1], 
-                      customer.balance >= 0 ? dangerColor[2] : successColor[2]);
-      doc.setFont('helvetica', 'bold');
-      doc.text(`₹${Math.abs(customer.balance)} ${customer.balance >= 0 ? '(To Receive)' : '(To Pay)'}`, 100, y);
-      
-      // Footer
-      const totalPages = doc.internal.getNumberOfPages();
-      for (let i = 1; i <= totalPages; i++) {
-        doc.setPage(i);
-        doc.setFontSize(8);
-        doc.setTextColor(150, 150, 150);
-        doc.text(`Generated on ${new Date().toLocaleDateString()} - Page ${i} of ${totalPages}`, 105, 290, { align: 'center' });
-      }
-      
-      doc.save(`${customer.name.replace(/\s+/g, '_')}_Khata.pdf`);
-      showToast(currentLanguage === 'hi' ? 'PDF डाउनलोड हो रहा है' : 'PDF is downloading');
-// Back to app after download
-setTimeout(() => {
-  closeModal('customerDetailModal');
-}, 1000);
-    }
-    function printCustomerDetail() {
-      
-      const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
-      const customer = appState.customers.find(c => c.id === customerId);
-      
-      if (!customer) return;
-      
-      const printWindow = window.open('', '_blank', 'width=800,height=600');
-      printWindow.document.write(`
-        <html>
-          <head>
-            <title>${customer.name} - Khata Statement</title>
-            <style>
-              body { font-family: Arial, sans-serif; padding: 20px; }
-              .header { background: #6a1b9a; color: white; padding: 20px; text-align: center; }
-              .info { margin: 20px 0; }
-              .balance { padding: 15px; border-radius: 10px; color: white; margin: 20px 0; }
-              table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-              th { background: #f0f0f0; padding: 10px; text-align: left; }
-              td { padding: 10px; border-bottom: 1px solid #ddd; }
-              .given { color: #e53935; }
-              .received { color: #2ec4b6; }
-              .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; }
-            </style>
-          </head>
-          <body>
-            <div class="header">
-              <h1>Khata Statement</h1>
-            </div>
-            
-            <div class="info">
-              <h2>${customer.name}</h2>
-              <p>Phone: ${customer.phone || 'N/A'}</p>
-              <p>Address: ${customer.address || 'N/A'}</p>
-            </div>
-            
-            <div class="balance" style="background: ${customer.balance >= 0 ? '#e53935' : '#2ec4b6'}">
-              <h3>Current Balance: ₹${Math.abs(customer.balance)} ${customer.balance >= 0 ? '(To Receive)' : '(To Pay)'}</h3>
-            </div>
-            
-            <h3>Transaction History</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Description</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${appState.transactions
-                  .filter(t => t.customerId === customerId)
-                  .sort((a, b) => new Date(b.date) - new Date(a.date))
-                  .map(t => `
-                    <tr>
-                      <td>${formatDate(t.date)}</td>
-                      <td class="${t.type === 'udhar' ? 'given' : 'received'}">${t.type === 'udhar' ? 'Given' : 'Received'}</td>
-                      <td>${t.note || '-'}</td>
-                      <td class="${t.type === 'udhar' ? 'given' : 'received'}">₹${t.amount}</td>
-                    </tr>
-                  `).join('')}
-              </tbody>
-            </table>
-            
-            <div class="footer">
-              Generated on ${new Date().toLocaleString()}
-            </div>
-          </body>
-        </html>
-      `);
-      printWindow.document.close();
-      printWindow.onload = function() {
-  printWindow.print();
-  
-  // Auto close print window after print
-  setTimeout(() => {
-    printWindow.close();
-  }, 500);
-
-  // Back to app
-  setTimeout(() => {
-    closeModal('customerDetailModal');
-  }, 800);
-};
-    }
-
-
-
-    function backupData() {
-  const dataStr = JSON.stringify(appState);
-  const blob = new Blob([dataStr], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "khata_backup.json";
-  a.click();
-
-  showToast("Backup downloaded");
-}
-    
-    function restoreData(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      appState = JSON.parse(e.target.result);
-      saveData();
-      updateUI();
-      showToast("Backup restored successfully");
-    } catch (err) {
-      showToast("Invalid backup file", "error");
-    }
-  };
-  reader.readAsText(file);
-}
-
-    // ==================== UTILITY FUNCTIONS ====================
-    function formatDate(dateString) {
-      if (!dateString) return '';
-      const [year, month, day] = dateString.split('-');
-      return `${day}/${month}/${year}`;
-    }
-
-    function showToast(message, type = 'success') {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.style.background = type === 'success' ? '#2ec4b6' : '#e53935';
-      toast.classList.add('show');
-      
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
-
-    function switchTab(tabName, el) {
-  document.querySelectorAll('.nav-tab').forEach(tab => {
-    tab.classList.remove('active');
-  });
-
-  if (el) el.classList.add('active');
-
-  document.querySelectorAll('.tab-pane').forEach(pane => {
-    pane.classList.remove('active');
-  });
-
-  document.getElementById(tabName).classList.add('active');
-
-  if (tabName === 'reports') {
-    updateReports();
-  }
-}
-
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-      const icon = document.getElementById('darkModeToggle');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-      
-      appState.settings.darkMode = document.body.classList.contains('dark-mode');
-      saveData();
-    }
-
-    function searchCustomers() {
-      updateCustomerList();
-    }
-
-    function searchHistory() {
-      updateAllTransactions();
-    }
-
-    function shareOnWhatsApp() {
-  const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
-  const customer = appState.customers.find(c => c.id === customerId);
-
-  if (!customer) return;
-
-  const transactions = appState.transactions
-    .filter(t => t.customerId === customerId)
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  let message = `📒 *Khata Statement*\n\n`;
-  message += `👤 *${customer.name}*\n`;
-  message += `📞 ${customer.phone || '-'}\n`;
-  message += `🧾 GST: ${customer.gst || '-'}\n`;
-  message += `📍 ${customer.city || ''}, ${customer.state || ''}\n\n`;
-
-  message += `💰 *Balance:* ₹${Math.abs(customer.balance)} ${customer.balance >= 0 ? '(लेना है)' : '(देना है)'}\n\n`;
-
-  message += `📝 *Transactions:*\n`;
-
-  transactions.slice(0, 10).forEach(t => {
-    message += `📅 ${formatDate(t.date)} - ${t.type === 'udhar' ? 'उधार' : 'जमा'} ₹${t.amount}\n`;
-  });
-
-  message += `\n🙏 धन्यवाद`;
-
-  const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
-}
-    
-    function showNotifications() {
-      showToast(currentLanguage === 'hi' ? 'कोई नई सूचना नहीं' : 'No new notifications', 'info');
-    }
-
-    function showAnalytics() {
-      switchTab('reports');
-      document.querySelectorAll('.nav-tab')[3].click();
-    }
-
-    
-    // ==================== INITIALIZATION ====================
-    document.addEventListener('DOMContentLoaded', () => {
-      loadData();
-      
-      // Set up event listeners
-      document.getElementById('reportMonth').addEventListener('change', updateReports);
-      document.getElementById('reportYear').addEventListener('change', updateReports);
-      
-      // Close modals when clicking outside
-      window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) {
-          e.target.classList.remove('active');
-        }
-      });
-      
-      // Check for dark mode preference
-      if (appState.settings.darkMode) {
-        document.body.classList.add('dark-mode');
-        document.getElementById('darkModeToggle').classList.replace('fa-moon', 'fa-sun');
-      }
-
-      window.onpopstate = function () {
-  const openModal = document.querySelector('.modal.active');
-  if (openModal) {
-    openModal.classList.remove('active');
-  }
-};
-
-      setInterval(() => {
-  localStorage.setItem('khata_auto_backup', JSON.stringify(appState));
-}, 30000);
-      
-      // Register service worker for PWA
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').catch(err => {
-          console.log('Service worker registration failed:', err);
-        });
-      }
-    });
-  </script>
-
-  <!-- jsPDF for PDF export -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  
+<script>
+  let state = { customers: [], transactions: [], photos: [], settings: { darkMode: false, language: 'hi' } };
+  let currentTransType = 'udhar';
+  let currentCustomerIdForDelete = null;
+  function loadData() { const d = localStorage.getItem('khata_pro'); if(d) { state = JSON.parse(d); } if(state.customers.length===0) { state.customers = [{ id:'1', name:'राहुल', phone:'9876543210', address:'दिल्ली', city:'दिल्ली', pincode:'110001', gst:'', balance:0 },{ id:'2', name:'सीता', phone:'9876543211', address:'नोएडा', city:'नोएडा', pincode:'201301', gst:'', balance:0 }]; state.transactions = []; saveData(); } if(!state.photos) state.photos = []; setLanguage(state.settings.language || 'hi'); updateUI(); }
+  function saveData() { localStorage.setItem('khata_pro', JSON.stringify(state)); }
+  function updateUI() { updateStats(); renderCustomerList(); renderRecent(); renderAllTransactions(); updateReports(); }
+  function updateStats() { let totalUdhar=0,totalJama=0; state.customers.forEach(c=>{ if(c.balance>0) totalUdhar+=c.balance; else totalJama+=Math.abs(c.balance); }); document.getElementById('totalCustomers').innerText = state.customers.length; document.getElementById('totalUdhar').innerText = '₹'+totalUdhar; document.getElementById('totalJama').innerText = '₹'+totalJama; document.getElementById('netBalance').innerText = '₹'+(totalUdhar-totalJama); }
+  function renderCustomerList() { const list = document.getElementById('customerList'); const term = document.getElementById('customerSearch')?.value.toLowerCase()||''; const filtered = state.customers.filter(c=>c.name.toLowerCase().includes(term)||(c.phone&&c.phone.includes(term))); if(filtered.length===0) { list.innerHTML='<div class="empty-state"><i class="fas fa-users"></i><p>कोई ग्राहक नहीं</p></div>'; return; } list.innerHTML = filtered.map(c=>`<div class="customer-card" onclick="viewCustomer('${c.id}')"><div><h3>${c.name}</h3><p>📞 ${c.phone||'-'}</p></div><div class="customer-balance ${c.balance>=0?'balance-positive':'balance-negative'}">${c.balance>=0?'₹'+c.balance:'-₹'+Math.abs(c.balance)}</div></div>`).join(''); }
+  function renderRecent() { const recentDiv = document.getElementById('recentTransactions'); const recentTx = [...state.transactions].reverse().slice(0,5); if(recentTx.length===0){ recentDiv.innerHTML='<div class="empty-state"><i class="fas fa-exchange-alt"></i><p>कोई लेन-देन नहीं</p></div>'; return; } recentDiv.innerHTML = recentTx.map(t=>{ const c = state.customers.find(cu=>cu.id===t.customerId); return `<div class="transaction-item" onclick="viewCustomer('${t.customerId}')"><div class="transaction-info"><div class="transaction-icon ${t.type==='udhar'?'icon-udhar':'icon-jama'}"><i class="fas ${t.type==='udhar'?'fa-arrow-up':'fa-arrow-down'}"></i></div><div><h4>${c?.name}</h4><p>${t.note||''} • ${t.date}</p></div></div><div class="${t.type==='udhar'?'balance-negative':'balance-positive'}">${t.type==='udhar'?'-':'+'}₹${t.amount}</div></div>`; }).join(''); }
+  function renderAllTransactions() { const container = document.getElementById('allTransactions'); const term = document.getElementById('historySearch')?.value.toLowerCase()||''; let filtered = [...state.transactions].reverse(); if(term) filtered = filtered.filter(t=>{ const c = state.customers.find(cu=>cu.id===t.customerId); return c?.name.toLowerCase().includes(term)||(t.note&&t.note.toLowerCase().includes(term)); }); if(filtered.length===0){ container.innerHTML='<div class="empty-state"><i class="fas fa-history"></i><p>कोई डेटा नहीं</p></div>'; return; } container.innerHTML = filtered.map(t=>{ const c = state.customers.find(cu=>cu.id===t.customerId); return `<div class="transaction-item" onclick="viewCustomer('${t.customerId}')"><div><div class="transaction-icon ${t.type==='udhar'?'icon-udhar':'icon-jama'}"><i class="fas ${t.type==='udhar'?'fa-arrow-up':'fa-arrow-down'}"></i></div><div><h4>${c?.name}</h4><p>${t.note||''} • ${t.mode} • ${t.date}</p></div></div><div>${t.type==='udhar'?'-':'+'}₹${t.amount}</div></div>`; }).join(''); }
+  function openAddCustomerModal() { currentCustomerIdForDelete = null; document.getElementById('deleteCustomerBtn').style.display = 'none'; document.getElementById('custName').value=''; document.getElementById('custPhone').value=''; document.getElementById('custAddress').value=''; document.getElementById('custPincode').value=''; document.getElementById('custCity').value=''; document.getElementById('custGst').value=''; document.getElementById('customerModal').classList.add('active'); }
+  function addCustomer() { const name = document.getElementById('custName').value.trim(); if(!name) return toast('नाम दें'); const newCust = { id: Date.now().toString(), name, phone: document.getElementById('custPhone').value, address: document.getElementById('custAddress').value, city: document.getElementById('custCity').value, pincode: document.getElementById('custPincode').value, gst: document.getElementById('custGst').value, balance: 0 }; state.customers.push(newCust); saveData(); updateUI(); closeModal('customerModal'); toast('ग्राहक जुड़ गया'); }
+  function openTransactionModal(type) { currentTransType = type; const title = document.getElementById('transTitle'); title.innerText = (type==='udhar'?'उधार दें':'जमा करें'); const select = document.getElementById('transCustomer'); select.innerHTML = '<option value="">ग्राहक चुनें</option>'+state.customers.map(c=>`<option value="${c.id}">${c.name}</option>`).join(''); document.getElementById('transAmount').value=''; document.getElementById('transNote').value=''; document.getElementById('transDate').value = new Date().toISOString().split('T')[0]; document.getElementById('transactionModal').classList.add('active'); document.getElementById('saveTransBtn').setAttribute('data-type', type); }
+  async function saveTransaction() { const custId = document.getElementById('transCustomer').value; const amount = parseFloat(document.getElementById('transAmount').value); if(!custId || !amount) return toast('ग्राहक और राशि भरें'); const type = document.getElementById('saveTransBtn').getAttribute('data-type'); const customer = state.customers.find(c=>c.id===custId); if(type==='udhar') customer.balance += amount; else customer.balance -= amount; const transaction = { id: Date.now().toString(), customerId: custId, type: type==='udhar'?'udhar':'jama', amount, note: document.getElementById('transNote').value, date: document.getElementById('transDate').value, mode: document.getElementById('transMode').value }; state.transactions.push(transaction); const photoFile = document.getElementById('transPhoto').files[0]; if(photoFile) { const reader = new FileReader(); reader.onload = e => { state.photos.push({ id: Date.now().toString(), transactionId: transaction.id, data: e.target.result, caption: transaction.note }); saveData(); }; reader.readAsDataURL(photoFile); } saveData(); updateUI(); closeModal('transactionModal'); toast('लेन-देन सेव'); }
+  function viewCustomer(id) { currentCustomerIdForDelete = id; const c = state.customers.find(c=>c.id===id); if(!c) return; document.getElementById('detailName').innerText = c.name; document.getElementById('detailBal').innerText = '₹'+Math.abs(c.balance) + (c.balance>=0?' (लेना)':' (देना)'); document.getElementById('detailPhone').innerText = c.phone||'-'; document.getElementById('detailCity').innerText = c.city||'-'; document.getElementById('detailPin').innerText = c.pincode||'-'; document.getElementById('detailGst').innerText = c.gst||'-'; const trans = state.transactions.filter(t=>t.customerId===id).reverse(); const container = document.getElementById('detailTransactions'); if(trans.length===0) container.innerHTML='<div class="empty-state">कोई लेन-देन नहीं</div>'; else container.innerHTML = trans.map(t=>`<div class="transaction-item"><div><div class="transaction-icon ${t.type==='udhar'?'icon-udhar':'icon-jama'}"><i class="fas ${t.type==='udhar'?'fa-arrow-up':'fa-arrow-down'}"></i></div><div><strong>${t.type==='udhar'?'उधार दिया':'जमा लिया'}</strong><br>${t.note||''} • ${t.date}</div></div><div>₹${t.amount}</div></div>`).join(''); const photosDiv = document.getElementById('detailPhotos'); const relatedPhotoIds = state.transactions.filter(t=>t.customerId===id).map(t=>t.id); const photos = state.photos.filter(p=>relatedPhotoIds.includes(p.transactionId)); if(photos.length) photosDiv.innerHTML = photos.map(p=>`<div class="gallery-item"><img src="${p.data}" onclick="openZoomImage('${p.data}')"><div class="delete-photo" onclick="event.stopPropagation(); deletePhotoById('${p.id}')">✖</div></div>`).join(''); else photosDiv.innerHTML = '<p>कोई फोटो नहीं</p>'; document.getElementById('detailModal').classList.add('active'); }
+  function deletePhotoById(photoId) { state.photos = state.photos.filter(p=>p.id !== photoId); saveData(); viewCustomer(currentCustomerIdForDelete); toast('फोटो हटा दी'); }
+  function openZoomImage(src) { document.getElementById('zoomImage').src = src; document.getElementById('zoomModal').classList.add('active'); }
+  function closeZoom() { document.getElementById('zoomModal').classList.remove('active'); }
+  function exportPDF() { const c = state.customers.find(c=>c.id===currentCustomerIdForDelete); if(!c) return; const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.setFillColor(106,27,154); doc.rect(0,0,210,35,'F'); doc.setTextColor(255,255,255); doc.setFontSize(20); doc.text('खाता विवरण',105,20,{align:'center'}); doc.setTextColor(0,0,0); doc.setFontSize(12); doc.text(`नाम: ${c.name}`,20,50); doc.text(`फोन: ${c.phone||'-'}`,20,58); doc.text(`शहर: ${c.city||'-'} पिन: ${c.pincode||'-'}`,20,66); doc.text(`GST: ${c.gst||'-'}`,20,74); doc.setFillColor(c.balance>=0?229,57,53:46,196,182); doc.roundedRect(20,85,170,12,3,3,'F'); doc.setTextColor(255,255,255); doc.text(`बैलेंस: ₹${Math.abs(c.balance)} ${c.balance>=0?'(लेना है)':'(देना है)'}`,105,93,{align:'center'}); doc.setTextColor(0,0,0); doc.text('लेन-देन:',20,110); let y=120; const trans = state.transactions.filter(t=>t.customerId===c.id).sort((a,b)=>new Date(b.date)-new Date(a.date)); trans.forEach(t=>{ if(y>270){ doc.addPage(); y=30; } doc.text(`${t.date} | ${t.type==='udhar'?'उधार':'जमा'} | ₹${t.amount} | ${t.note||''}`,20,y); y+=8; }); doc.save(`${c.name}_khata.pdf`); toast('PDF डाउनलोड'); }
+  function printStatement() { const c = state.customers.find(c=>c.id===currentCustomerIdForDelete); if(!c) return; const win = window.open('','_blank'); const trans = state.transactions.filter(t=>t.customerId===c.id).reverse(); win.document.write(`<html><head><title>${c.name} खाता</title><style>body{font-family:sans-serif;padding:20px}</style></head><body><h2>${c.name}</h2><p>फोन: ${c.phone||'-'} | पिन: ${c.pincode||'-'} | GST: ${c.gst||'-'}</p><h3>बैलेंस: ₹${Math.abs(c.balance)} ${c.balance>=0?'(लेना)':'(देना)'}</h3><table border="1" cellpadding="5"><tr><th>तारीख</th><th>प्रकार</th><th>राशि</th><th>विवरण</th></tr>${trans.map(t=>`<tr><td>${t.date}</td><td>${t.type==='udhar'?'उधार':'जमा'}</td><td>₹${t.amount}</td><td>${t.note||''}</td></tr>`).join('')}</table><p>${new Date().toLocaleString()}</p></body></html>`); win.print(); }
+  function shareWhatsApp() { const c = state.customers.find(c=>c.id===currentCustomerIdForDelete); if(!c) return; const trans = state.transactions.filter(t=>t.customerId===c.id).slice(0,5); let msg = `${c.name} का खाता\nबैलेंस: ₹${Math.abs(c.balance)} ${c.balance>=0?'लेना है':'देना है'}\nलेन-देन:\n`; trans.forEach(t=>msg+=`${t.date}: ${t.type==='udhar'?'उधार':'जमा'} ₹${t.amount} ${t.note||''}\n`); window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`,'_blank'); }
+  function deleteCustomerPermanent() { if(!confirm('⚠️ एक बार डिलीट करने पर ग्राहक और उसके सभी लेन-देन हमेशा के लिए हट जाएंगे। यह क्रिया वापस नहीं ली जा सकती। क्या आप हटाना चाहते हैं?')) return; const custId = currentCustomerIdForDelete; state.customers = state.customers.filter(c=>c.id !== custId); state.transactions = state.transactions.filter(t=>t.customerId !== custId); state.photos = state.photos.filter(p=>{ const tx = state.transactions.find(t=>t.id===p.transactionId); return tx; }); saveData(); updateUI(); closeModal('detailModal'); toast('ग्राहक और डेटा हटा दिया गया'); }
+  function deleteCurrentCustomer() { deleteCustomerPermanent(); }
+  function updateReports() { const month = document.getElementById('reportMonth').value; const year = document.getElementById('reportYear').value; const filtered = state.transactions.filter(t=>{ const [y,m]=t.date.split('-'); return y===year && m===month.padStart(2,'0'); }); let udhar=0,jama=0; filtered.forEach(t=>{ if(t.type==='udhar') udhar+=t.amount; else jama+=t.amount; }); document.getElementById('monthlyUdhar').innerText='₹'+udhar; document.getElementById('monthlyJama').innerText='₹'+jama; const ctx = document.getElementById('monthlyChart').getContext('2d'); const daily={}; filtered.forEach(t=>{ const day=t.date.split('-')[2]; if(!daily[day]) daily[day]={udhar:0,jama:0}; if(t.type==='udhar') daily[day].udhar+=t.amount; else daily[day].jama+=t.amount; }); const days=Object.keys(daily).sort(); if(window.myChart) window.myChart.destroy(); window.myChart = new Chart(ctx,{ type:'bar', data:{ labels:days, datasets:[{ label:'उधार', data:days.map(d=>daily[d].udhar), backgroundColor:'#e53935'},{ label:'जमा', data:days.map(d=>daily[d].jama), backgroundColor:'#2ec4b6'}] } }); }
+  function switchTabManual(tab) { document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active')); document.getElementById(tab).classList.add('active'); document.querySelectorAll('.nav-tab').forEach((t,i)=>{ if((tab==='dashboard'&&i===0)||(tab==='customers'&&i===1)||(tab==='history'&&i===2)||(tab==='reports'&&i===3)) t.classList.add('active'); else t.classList.remove('active'); }); if(tab==='reports') updateReports(); }
+  function openQuickMenu() { openAddCustomerModal(); }
+  function setLanguage(lang) { document.querySelectorAll('[data-hi][data-en]').forEach(el=>{ el.innerText = el.getAttribute(`data-${lang}`); }); document.getElementById('appTitle').innerText = lang==='hi'?'खाता मित्र प्रो':'Khata Mitra Pro'; state.settings.language = lang; saveData(); }
+  function toggleDarkMode() { document.body.classList.toggle('dark-mode'); state.settings.darkMode = document.body.classList.contains('dark-mode'); saveData(); }
+  function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+  function toast(msg) { const t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+  document.getElementById('reportMonth').addEventListener('change',updateReports); document.getElementById('reportYear').addEventListener('change',updateReports); loadData();
+</script>
 </body>
 </html>
