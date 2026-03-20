@@ -883,17 +883,47 @@
           <button class="close-btn" onclick="closeModal('addCustomerModal')">&times;</button>
         </div>
         <div class="form-group">
-          <label data-hi="नाम *" data-en="Name *">नाम *</label>
-          <input type="text" id="newCustomerName" class="form-control" placeholder="ग्राहक का नाम">
-        </div>
-        <div class="form-group">
-          <label data-hi="फोन नंबर" data-en="Phone Number">फोन नंबर</label>
-          <input type="tel" id="newCustomerPhone" class="form-control" placeholder="9876543210">
-        </div>
-        <div class="form-group">
-          <label data-hi="पता" data-en="Address">पता</label>
-          <textarea id="newCustomerAddress" class="form-control" rows="2" placeholder="पता"></textarea>
-        </div>
+  <label>नाम *</label>
+  <input type="text" id="newCustomerName" class="form-control">
+</div>
+
+<div class="form-group">
+  <label>फोन नंबर</label>
+  <input type="tel" id="newCustomerPhone" class="form-control">
+</div>
+
+<div class="form-group">
+  <label>GST नंबर</label>
+  <input type="text" id="newCustomerGST" class="form-control">
+</div>
+
+<div class="form-group">
+  <label>कस्टमर / सप्लायर</label>
+  <select id="customerType" class="form-control">
+    <option value="customer">Customer</option>
+    <option value="supplier">Supplier</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label>स्टेट</label>
+  <input type="text" id="customerState" class="form-control">
+</div>
+
+<div class="form-group">
+  <label>सिटी</label>
+  <input type="text" id="customerCity" class="form-control">
+</div>
+
+<div class="form-group">
+  <label>पिनकोड</label>
+  <input type="number" id="customerPincode" class="form-control">
+</div>
+
+<div class="form-group">
+  <label>बिलिंग एड्रेस</label>
+  <textarea id="billingAddress" class="form-control"></textarea>
+</div>
         <button class="btn btn-primary" onclick="addCustomer()" data-hi="ग्राहक जोड़ें" data-en="Add Customer">ग्राहक जोड़ें</button>
       </div>
     </div>
@@ -1018,15 +1048,27 @@
   <script>
     // ==================== LANGUAGE SUPPORT ====================
     let currentLanguage = 'hi'; // Default Hindi
+    
+      function setLanguage(lang) {
+  currentLanguage = lang;
 
-    function setLanguage(lang) {
-      currentLanguage = lang;
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent.includes(lang === 'hi' ? 'हिंदी' : 'ENG')) {
-          btn.classList.add('active');
-        }
-      });
+  appState.settings.language = lang;
+  saveData();
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.textContent.includes(lang === 'hi' ? 'हिंदी' : 'ENG')) {
+      btn.classList.add('active');
+    }
+  });
+
+  document.querySelectorAll('[data-hi][data-en]').forEach(el => {
+    el.textContent = el.getAttribute(`data-${lang}`);
+  });
+
+  document.getElementById('appTitle').textContent = 
+    lang === 'hi' ? 'खाता मित्र प्रो' : 'Khata Mitra Pro';
+}
 
       // Update all translatable elements
       document.querySelectorAll('[data-hi][data-en]').forEach(el => {
@@ -1094,11 +1136,16 @@
 
     // Demo data for testing
     function initDemoData() {
-      appState.customers = [
-        { id: '1', name: 'राहुल कुमार', phone: '9876543210', address: 'दिल्ली', balance: '0' },
-        { id: '2', name: 'सीता शर्मा', phone: '8765432109', address: 'नोएडा', balance: '0' },
-        { id: '3', name: 'मोहन सिंह', phone: '7654321098', address: 'गुड़गांव', balance: '0' }
-      ];
+        appState.customers = [
+  { 
+    id: '1', name: 'राहुल कुमार', phone: '9876543210', address: 'दिल्ली',
+    gst: '', type: 'customer', state: 'Delhi', city: 'Delhi', pincode: '110001', billingAddress: '', balance: 0
+  },
+  { 
+    id: '2', name: 'सीता शर्मा', phone: '8765432109', address: 'नोएडा',
+    gst: '', type: 'customer', state: 'UP', city: 'Noida', pincode: '201301', billingAddress: '', balance: 0
+  }
+];   
       
       appState.transactions = [
         { id: 't1', customerId: '1', type: 'udhar', amount: 500, note: 'पिज्जा के लिए', date: '2024-03-15', mode: 'cash' },
@@ -1156,6 +1203,8 @@
           <div class="customer-info">
             <h3>${customer.name}</h3>
             <p>📞 ${customer.phone || (currentLanguage === 'hi' ? 'नंबर नहीं' : 'No number')}</p>
+         <p>🏙 ${customer.city || ''}, ${customer.state || ''}</p>
+<p>🧾 ${customer.gst || ''}</p>
           </div>
           <div class="customer-balance ${customer.balance >= 0 ? 'balance-positive' : 'balance-negative'}">
             ${customer.balance >= 0 ? '₹' + customer.balance : '-₹' + Math.abs(customer.balance)}
@@ -1164,6 +1213,31 @@
       `).join('');
     }
 
+function deleteTransaction(id) {
+  if (!confirm(currentLanguage === 'hi' ? 'Delete करना है?' : 'Delete this transaction?')) return;
+
+  const index = appState.transactions.findIndex(t => t.id === id);
+  if (index === -1) return;
+
+  const t = appState.transactions[index];
+  const customer = appState.customers.find(c => c.id === t.customerId);
+
+  if (customer) {
+    // Reverse balance
+    if (t.type === 'udhar') {
+      customer.balance -= t.amount;
+    } else {
+      customer.balance += t.amount;
+    }
+  }
+
+  // Remove transaction
+  appState.transactions.splice(index, 1);
+
+  saveData();
+  updateUI();
+}
+    
     function updateRecentTransactions() {
       const recent = document.getElementById('recentTransactions');
       const transactions = [...appState.transactions].reverse().slice(0, 5);
@@ -1195,9 +1269,17 @@
                 <p>${t.note || (currentLanguage === 'hi' ? 'कोई विवरण नहीं' : 'No description')} • ${formatDate(t.date)}</p>
               </div>
             </div>
-            <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
-              ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
-            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+  <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
+    ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
+  </div>
+
+  <span onclick="deleteTransaction('${t.id}'); event.stopPropagation();" 
+        style="color:red; font-size:18px; cursor:pointer;">
+    ❌
+  </span>
+</div>
+
           </div>
         `;
       }).join('');
@@ -1244,9 +1326,17 @@
                 <p>${t.note || ''} • ${t.mode || 'cash'} • ${formatDate(t.date)}</p>
               </div>
             </div>
-            <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
-              ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
-            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+  <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
+    ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
+  </div>
+
+  <span onclick="deleteTransaction('${t.id}'); event.stopPropagation();" 
+        style="color:red; font-size:18px; cursor:pointer;">
+    ❌
+  </span>
+</div>
+
           </div>
         `;
       }).join('');
@@ -1457,37 +1547,51 @@
 
     // ==================== CRUD OPERATIONS ====================
     function addCustomer() {
-      const name = document.getElementById('newCustomerName').value.trim();
-      const phone = document.getElementById('newCustomerPhone').value.trim();
-      const address = document.getElementById('newCustomerAddress').value.trim();
-      
-      if (!name) {
-        showToast(currentLanguage === 'hi' ? 'नाम दर्ज करें' : 'Enter name', 'error');
-        return;
-      }
-      
-      const newCustomer = {
-        id: Date.now().toString(),
-        name,
-        phone,
-        address,
-        balance: 0,
-        createdAt: new Date().toISOString()
-      };
-      
-      appState.customers.push(newCustomer);
-      saveData();
-      updateUI();
-      
-      closeModal('addCustomerModal');
-      showToast(currentLanguage === 'hi' ? 'ग्राहक जोड़ दिया गया' : 'Customer added');
-      
-      // Clear form
-      document.getElementById('newCustomerName').value = '';
-      document.getElementById('newCustomerPhone').value = '';
-      document.getElementById('newCustomerAddress').value = '';
-    }
+  const name = document.getElementById('newCustomerName').value.trim();
+  const phone = document.getElementById('newCustomerPhone').value.trim();
+  const address = document.getElementById('newCustomerAddress').value.trim();
 
+  const gst = document.getElementById('newCustomerGST')?.value.trim();
+  const type = document.getElementById('customerType')?.value;
+  const state = document.getElementById('customerState')?.value.trim();
+  const city = document.getElementById('customerCity')?.value.trim();
+  const pincode = document.getElementById('customerPincode')?.value.trim();
+  const billingAddress = document.getElementById('billingAddress')?.value.trim();
+
+  if (!name) {
+    showToast(currentLanguage === 'hi' ? 'नाम दर्ज करें' : 'Enter name', 'error');
+    return;
+  }
+
+  const newCustomer = {
+    id: Date.now().toString(),
+    name,
+    phone,
+    address,
+    gst,
+    type,
+    state,
+    city,
+    pincode,
+    billingAddress,
+    balance: 0,
+    createdAt: new Date().toISOString()
+  };
+
+  appState.customers.push(newCustomer);
+  saveData();
+  updateUI();
+
+  closeModal('addCustomerModal');
+  showToast(currentLanguage === 'hi' ? 'ग्राहक जोड़ दिया गया' : 'Customer added');
+
+  // Clear form
+  document.getElementById('newCustomerName').value = '';
+  document.getElementById('newCustomerPhone').value = '';
+  document.getElementById('newCustomerAddress').value = '';
+  if(document.getElementById('newCustomerGST')) document.getElementById('newCustomerGST').value = '';
+}
+    
     async function saveTransaction() {
       const customerId = document.getElementById('transactionCustomer').value;
       const amount = parseFloat(document.getElementById('transactionAmount').value);
@@ -1610,11 +1714,17 @@
                   <p>${t.note || ''} • ${formatDate(t.date)}</p>
                 </div>
               </div>
-              <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
-                ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
-              </div>
-            </div>
-          `;
+              <div style="display:flex; align-items:center; gap:10px;">
+  <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
+    ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
+  </div>
+
+  <span onclick="deleteTransaction('${t.id}'); event.stopPropagation();" 
+        style="color:red; cursor:pointer;">
+    ❌
+  </span>
+</div>
+`;
         }).join('');
       }
       
@@ -1656,8 +1766,13 @@
       doc.setFontSize(12);
       doc.setFont('helvetica', 'normal');
       doc.text(`Name: ${customer.name}`, 20, 65);
-      doc.text(`Phone: ${customer.phone || 'N/A'}`, 20, 72);
-      doc.text(`Address: ${customer.address || 'N/A'}`, 20, 79);
+doc.text(`Phone: ${customer.phone || 'N/A'}`, 20, 72);
+doc.text(`GST: ${customer.gst || 'N/A'}`, 20, 79);
+doc.text(`Type: ${customer.type || 'Customer'}`, 20, 86);
+doc.text(`City: ${customer.city || ''}`, 20, 93);
+doc.text(`State: ${customer.state || ''}`, 20, 100);
+doc.text(`Pincode: ${customer.pincode || ''}`, 20, 107);
+doc.text(`Address: ${customer.address || 'N/A'}`, 20, 114);
       
       // Balance
       const balanceY = 95;
@@ -1783,15 +1898,19 @@
       
       doc.save(`${customer.name.replace(/\s+/g, '_')}_Khata.pdf`);
       showToast(currentLanguage === 'hi' ? 'PDF डाउनलोड हो रहा है' : 'PDF is downloading');
+// Back to app after download
+setTimeout(() => {
+  closeModal('customerDetailModal');
+}, 1000);
     }
-
     function printCustomerDetail() {
+      
       const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
       const customer = appState.customers.find(c => c.id === customerId);
       
       if (!customer) return;
       
-      const printWindow = window.open('', '_blank');
+      const printWindow = window.open('', '_blank', 'width=800,height=600');
       printWindow.document.write(`
         <html>
           <head>
@@ -1856,8 +1975,53 @@
         </html>
       `);
       printWindow.document.close();
-      printWindow.print();
+      printWindow.onload = function() {
+  printWindow.print();
+  
+  // Auto close print window after print
+  setTimeout(() => {
+    printWindow.close();
+  }, 500);
+
+  // Back to app
+  setTimeout(() => {
+    closeModal('customerDetailModal');
+  }, 800);
+};
     }
+
+
+
+    function backupData() {
+  const dataStr = JSON.stringify(appState);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "khata_backup.json";
+  a.click();
+
+  showToast("Backup downloaded");
+}
+    
+    function restoreData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      appState = JSON.parse(e.target.result);
+      saveData();
+      updateUI();
+      showToast("Backup restored successfully");
+    } catch (err) {
+      showToast("Invalid backup file", "error");
+    }
+  };
+  reader.readAsText(file);
+}
 
     // ==================== UTILITY FUNCTIONS ====================
     function formatDate(dateString) {
@@ -1877,23 +2041,23 @@
       }, 3000);
     }
 
-    function switchTab(tabName) {
-      // Update tab buttons
-      document.querySelectorAll('.nav-tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      event.currentTarget.classList.add('active');
-      
-      // Show selected tab
-      document.querySelectorAll('.tab-pane').forEach(pane => {
-        pane.classList.remove('active');
-      });
-      document.getElementById(tabName).classList.add('active');
-      
-      if (tabName === 'reports') {
-        updateReports();
-      }
-    }
+    function switchTab(tabName, el) {
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+
+  if (el) el.classList.add('active');
+
+  document.querySelectorAll('.tab-pane').forEach(pane => {
+    pane.classList.remove('active');
+  });
+
+  document.getElementById(tabName).classList.add('active');
+
+  if (tabName === 'reports') {
+    updateReports();
+  }
+}
 
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
@@ -1914,30 +2078,35 @@
     }
 
     function shareOnWhatsApp() {
-      const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
-      const customer = appState.customers.find(c => c.id === customerId);
-      
-      if (!customer) return;
-      
-      const transactions = appState.transactions
-        .filter(t => t.customerId === customerId)
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
-      
-      let message = `*${customer.name}* का खाता विवरण\n`;
-      message += `📞 ${customer.phone || 'नंबर नहीं'}\n`;
-      message += `💰 बैलेंस: ₹${Math.abs(customer.balance)} ${customer.balance >= 0 ? '(लेना है)' : '(देना है)'}\n\n`;
-      message += `📝 लेन-देन:\n`;
-      
-      transactions.forEach(t => {
-        message += `${formatDate(t.date)}: ${t.type === 'udhar' ? 'उधार दिया' : 'जमा लिया'} ₹${t.amount}`;
-        if (t.note) message += ` (${t.note})`;
-        message += '\n';
-      });
-      
-      const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
+  const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
+  const customer = appState.customers.find(c => c.id === customerId);
 
+  if (!customer) return;
+
+  const transactions = appState.transactions
+    .filter(t => t.customerId === customerId)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  let message = `📒 *Khata Statement*\n\n`;
+  message += `👤 *${customer.name}*\n`;
+  message += `📞 ${customer.phone || '-'}\n`;
+  message += `🧾 GST: ${customer.gst || '-'}\n`;
+  message += `📍 ${customer.city || ''}, ${customer.state || ''}\n\n`;
+
+  message += `💰 *Balance:* ₹${Math.abs(customer.balance)} ${customer.balance >= 0 ? '(लेना है)' : '(देना है)'}\n\n`;
+
+  message += `📝 *Transactions:*\n`;
+
+  transactions.slice(0, 10).forEach(t => {
+    message += `📅 ${formatDate(t.date)} - ${t.type === 'udhar' ? 'उधार' : 'जमा'} ₹${t.amount}\n`;
+  });
+
+  message += `\n🙏 धन्यवाद`;
+
+  const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+}
+    
     function showNotifications() {
       showToast(currentLanguage === 'hi' ? 'कोई नई सूचना नहीं' : 'No new notifications', 'info');
     }
@@ -1968,9 +2137,17 @@
         document.body.classList.add('dark-mode');
         document.getElementById('darkModeToggle').classList.replace('fa-moon', 'fa-sun');
       }
-      
-      // Add APK generation button
-      addAPKButton();
+
+      window.onpopstate = function () {
+  const openModal = document.querySelector('.modal.active');
+  if (openModal) {
+    openModal.classList.remove('active');
+  }
+};
+
+      setInterval(() => {
+  localStorage.setItem('khata_auto_backup', JSON.stringify(appState));
+}, 30000);
       
       // Register service worker for PWA
       if ('serviceWorker' in navigator) {
@@ -1984,14 +2161,5 @@
   <!-- jsPDF for PDF export -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   
-  <!-- Service Worker for PWA -->
-  <script>
-    // Simple service worker for offline support
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(err => {
-        console.log('Service worker registration failed');
-      });
-    }
-  </script>
 </body>
 </html>
