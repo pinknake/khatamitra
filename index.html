@@ -3405,17 +3405,6 @@ if (!firebase.apps.length) {
 const provider = new firebase.auth.GoogleAuthProvider();
 let currentUser = null;
 
-firebase.auth().getRedirectResult().then((result) => {
-  if (result && result.user) {
-    currentUser = result.user;
-    showToast('Login ho gaya: ' + currentUser.displayName);
-    cloudRestore();
-    updateLoginButton();
-  }
-}).catch((error) => {
-  console.log(error);
-  showToast('Login Error: ' + error.message, 'error');
-});
 
 firebase.auth().onAuthStateChanged(user => {
   currentUser = user;
