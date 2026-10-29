@@ -3438,13 +3438,20 @@ function updateLoginButton(){
 
 async function googleLogin() {
   try {
-    await firebase.auth().signInWithRedirect(provider);
+    const result = await firebase.auth()
+      .signInWithPopup(provider);
+
+    currentUser = result.user;
+    window.currentUser = result.user;
+
+    updateLoginButton();
+
+    showToast("Login successful: " + result.user.email);
+    console.log("FIREBASE LOGIN SUCCESS", result.user.uid);
+
   } catch (error) {
-    console.error("Google Login Error:", error.code, error.message);
-    showToast(
-      "Login failed: " + error.code,
-      "error"
-    );
+    console.error("GOOGLE LOGIN ERROR:", error.code, error.message);
+    showToast("Login failed: " + error.code, "error");
   }
 }
 
