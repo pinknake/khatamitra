@@ -3401,7 +3401,7 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-
+  
 const provider = new firebase.auth.GoogleAuthProvider();
 let currentUser = null;
 
@@ -3423,6 +3423,29 @@ firebase.auth().onAuthStateChanged(user => {
   updateLoginButton();
   if(user) cloudRestore();
 });
+
+  async function testFirebaseWrite() {
+  const user = firebase.auth().currentUser;
+
+  if (!user) {
+    alert("Firebase login active nahi hai");
+    return;
+  }
+
+  try {
+    await firebase.database()
+      .ref("users/" + user.uid + "/debug")
+      .set({
+        test: "success",
+        time: Date.now()
+      });
+
+    alert("Firebase write SUCCESS");
+  } catch (e) {
+    alert("Firebase ERROR: " + e.code);
+    console.error(e);
+  }
+}
 
 function updateLoginButton(){
   const btn = document.getElementById('loginBtn');
