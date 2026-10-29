@@ -3440,8 +3440,16 @@ function updateLoginButton(){
   }
 }
 
-function googleLogin() { 
-  firebase.auth().signInWithRedirect(provider);
+async function googleLogin() {
+  try {
+    await firebase.auth().signInWithRedirect(provider);
+  } catch (error) {
+    console.error("Google Login Error:", error.code, error.message);
+    showToast(
+      "Login failed: " + error.code,
+      "error"
+    );
+  }
 }
 
 function googleLogout() { 
