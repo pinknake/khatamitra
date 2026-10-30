@@ -1163,6 +1163,10 @@
   </button>
 </div>
 
+
+      <button onclick="recoverBeforeRestore()">
+  ↩️ Recover Purana Data
+</button>
       
     <!-- FAB Button -->
     <div class="fab-button" onclick="openQuickMenu()">
@@ -3178,6 +3182,55 @@ async function shareBackup() {
     }
   }
 }
+
+
+  
+function recoverBeforeRestore() {
+  try {
+    const saved = localStorage.getItem('khataMitraPro_beforeRestore');
+
+    if (!saved) {
+      showToast("Purana data safety copy nahi mili.", "error");
+      return;
+    }
+
+    const oldData = JSON.parse(saved);
+
+    if (!Array.isArray(oldData.customers) ||
+        !Array.isArray(oldData.transactions)) {
+      showToast("Safety copy ka data valid nahi hai.", "error");
+      return;
+    }
+
+    const count = oldData.customers.length;
+
+    if (!confirm(
+      count + " purane customers recover honge. Kya aap recover karna chahte hain?"
+    )) return;
+
+    // Abhi ke restored data ko bhi alag safe rakho
+    localStorage.setItem(
+      'khataMitraPro_afterRestore',
+      localStorage.getItem('khataMitraPro')
+    );
+
+    // Purana data wapas lao
+    appState = oldData;
+    localStorage.setItem(
+      'khataMitraPro',
+      JSON.stringify(oldData)
+    );
+
+    updateUI();
+
+    showToast("Purana data recover ho gaya!", "success");
+
+  } catch (error) {
+    console.error("RECOVERY ERROR:", error);
+    showToast("Recovery nahi ho payi.", "error");
+  }
+}
+
 
 function restoreBackupData(text) {
   let oldState = appState;
