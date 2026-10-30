@@ -1142,6 +1142,28 @@
   </button>
 </div>
       
+<div style="margin-top:15px; padding:15px; border:1px solid #ddd; border-radius:12px;">
+  <h3>♻️ Restore Backup</h3>
+  <p>JSON backup file select karo ya backup text paste karo.</p>
+
+  <input type="file" id="restoreBackupFile"
+    accept=".json,application/json"
+    onchange="importBackup(this)"
+    style="width:100%; margin:12px 0;">
+
+  <textarea id="restoreBackupText"
+    class="form-control"
+    rows="5"
+    placeholder="Yahan JSON backup paste karein..."></textarea>
+
+  <button class="btn btn-success"
+    onclick="restoreBackupText()"
+    style="margin-top:10px;">
+    ♻️ Paste Backup Restore Karein
+  </button>
+</div>
+
+      
     <!-- FAB Button -->
     <div class="fab-button" onclick="openQuickMenu()">
       <i class="fas fa-plus"></i>
@@ -3157,26 +3179,79 @@ async function shareBackup() {
   }
 }
 
-function importBackup(event) {
-  const file = event.target.files[0];
+function restoreBackupData(text) {
+  let oldState = appState;
+  let oldStorage = localStorage.getItem('khataMitraPro');
+
+  try {
+    const parsed = JSON.parse(text);
+    const data = parsed.data || parsed;
+
+    if (!data ||
+        !Array.isArray(data.customers) ||
+        !Array.isArray(data.transactions) ||
+        typeof data.company !== "object" ||
+        typeof data.settings !== "object") {
+      throw new Error("Invalid backup structure");
+    }
+
+    if (!confirm("Restore karne se current data replace hoga. Kya aapne current data ka backup save kar liya hai?")) {
+      return;
+    }
+
+    // Current data ki safety copy
+    localStorage.setItem(
+      'khataMitraPro_beforeRestore',
+      JSON.stringify(oldState)
+    );
+
+    appState = data;
+    saveData();
+    updateUI();
+
+    showToast("Backup successfully restore ho gaya!", "success");
+
+  } catch (error) {
+    appState = oldState;
+
+    if (oldStorage !== null) {
+      localStorage.setItem('khataMitraPro', oldStorage);
+    }
+
+    console.error("RESTORE ERROR:", error);
+    showToast("Backup galat hai ya restore nahi hua.", "error");
+  }
+}
+
+function importBackup(input) {
+  const file = input.files && input.files[0];
   if (!file) return;
 
-  if(!confirm(currentLanguage === 'hi'? 'Kya purana data overwrite karna hai?' : 'Overwrite existing data?')) return;
-
   const reader = new FileReader();
+
   reader.onload = function(e) {
-    try {
-      const importedData = JSON.parse(e.target.result);
-      appState = importedData;
-      saveData();
-      updateUI();
-      showToast(currentLanguage === 'hi'? 'Backup restore ho gaya' : 'Backup restored');
-    } catch(err) {
-      showToast(currentLanguage === 'hi'? 'Galat file hai' : 'Invalid file', 'error');
-    }
-  }
+    restoreBackupData(e.target.result);
+    input.value = "";
+  };
+
+  reader.onerror = function() {
+    showToast("File read nahi ho payi.", "error");
+  };
+
   reader.readAsText(file);
 }
+
+function restoreBackupText() {
+  const text = document.getElementById('restoreBackupText').value.trim();
+
+  if (!text) {
+    showToast("Pehle backup text paste karo.", "error");
+    return;
+  }
+
+  restoreBackupData(text);
+}
+
 
 // Har 7 din me auto backup download
 function autoBackupToFile() {
