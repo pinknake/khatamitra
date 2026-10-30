@@ -3232,47 +3232,112 @@ function recoverBeforeRestore() {
 }
 
 
-function restoreBackupData(text) {
-  let oldState = appState;
-  let oldStorage = localStorage.getItem('khataMitraPro');
 
+function restoreBackupData(text) {
   try {
     const parsed = JSON.parse(text);
-    const data = parsed.data || parsed;
+    const backup = parsed.data || parsed;
+    const current = appState;
 
-    if (!data ||
-        !Array.isArray(data.customers) ||
-        !Array.isArray(data.transactions) ||
-        typeof data.company !== "object" ||
-        typeof data.settings !== "object") {
+    // Backup validation
+    if (!backup ||
+        !Array.isArray(backup.customers) ||
+        !Array.isArray(backup.transactions) ||
+        !backup.company ||
+        !backup.settings) {
       throw new Error("Invalid backup structure");
     }
 
-    if (!confirm("Restore karne se current data replace hoga. Kya aapne current data ka backup save kar liya hai?")) {
-      return;
-    }
+    if (!confirm(
+      "MERGE BACKUP?\n\nCurrent aur backup dono ka data rahega. Duplicate IDs dobara add nahi honge. Aage badhein?"
+    )) return;
 
     // Current data ki safety copy
+    const currentJSON = JSON.stringify(current);
+
     localStorage.setItem(
-      'khataMitraPro_beforeRestore',
-      JSON.stringify(oldState)
+      'khataMitraPro_beforeMerge',
+      currentJSON
     );
 
-    appState = data;
-    saveData();
-    updateUI();
+    // ID ke basis par records merge
+    function mergeRecords(oldList, newList) {
+      const result = [...(oldList || [])];
+      const ids = new Set(
+        result.filter(x => x.id != null).map(x => String(x.id))
+      );
 
-    showToast("Backup successfully restore ho gaya!", "success");
+      (newList || []).forEach(item => {
+        if (item.id != null) {
+          if (!ids.has(String(item.id))) {
+            result.push(item);
+            ids.add(String(item.id));
+          }
+        } else {
+          result.push(item);
+        }
+      });
 
-  } catch (error) {
-    appState = oldState;
-
-    if (oldStorage !== null) {
-      localStorage.setItem('khataMitraPro', oldStorage);
+      return result;
     }
 
-    console.error("RESTORE ERROR:", error);
-    showToast("Backup galat hai ya restore nahi hua.", "error");
+    // Current data ko priority, backup ka naya data add
+    const merged = {
+      ...backup,
+      ...current,
+
+      company: {
+        ...(backup.company || {}),
+        ...(current.company || {})
+      },
+
+      settings: {
+        ...(backup.settings || {}),
+        ...(current.settings || {})
+      },
+
+      customers: mergeRecords(
+        current.customers,
+        backup.customers
+      ),
+
+      transactions: mergeRecords(
+        current.transactions,
+        backup.transactions
+      ),
+
+      photos: mergeRecords(
+        current.photos,
+        backup.photos
+      ),
+
+      billsGenerated: Math.max(
+        Number(current.billsGenerated || 0),
+        Number(backup.billsGenerated || 0)
+      )
+    };
+
+    // Pehle local storage mein save
+    localStorage.setItem(
+      'khataMitraPro',
+      JSON.stringify(merged)
+    );
+
+    appState = merged;
+    updateUI();
+
+    showToast(
+      "Merge successful! Customers: " +
+      merged.customers.length,
+      "success"
+    );
+
+  } catch (error) {
+    console.error("MERGE ERROR:", error);
+    showToast(
+      "Merge nahi hua. Current data safe rakha gaya.",
+      "error"
+    );
   }
 }
 
