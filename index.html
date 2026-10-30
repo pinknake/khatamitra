@@ -1129,6 +1129,18 @@
   </button>
   <p style="font-size:13px; color:var(--gray);">Login ke baad data auto save hoga</p>
 </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+  <button onclick="exportBackup()" 
+    style="background:#2563eb;color:white;padding:12px 16px;border:0;border-radius:8px;flex:1;">
+    📋 Copy Backup
+  </button>
+
+  <button onclick="shareBackup()" 
+    style="background:#0d9488;color:white;padding:12px 16px;border:0;border-radius:8px;flex:1;">
+    📤 Share Backup
+  </button>
+</div>
       
     <!-- FAB Button -->
     <div class="fab-button" onclick="openQuickMenu()">
@@ -3068,33 +3080,81 @@ function exportCustomerPDF() {
 
 // ==================== BACKUP FUNCTIONS - APP CREATOR FIX ====================
 function exportBackup() {
-  const dataStr = JSON.stringify(appState);
-  const fileName = `KhataBackup_${new Date().toISOString().split('T')[0]}.khatamitra`;
+  try {
+    // Pehle current data local storage mein save karo
+    localStorage.setItem('khataMitraPro', JSON.stringify(appState));
 
-  // Tarika 1: Clipboard me copy - Sabse safe for App Creator
-  navigator.clipboard.writeText(dataStr).then(() => {
-    showToast(currentLanguage === 'hi'?
-      'Data copy ho gaya! Notes me paste karke.khatamitra file bana lo' :
-      'Data copied! Paste in Notes and save as.khatamitra file');
+    const backupData = JSON.stringify({
+      app: "Khata Mitra Pro",
+      backupDate: new Date().toISOString(),
+      version: 1,
+      data: appState
+    }, null, 2);
 
-    // Saath me share option bhi khol dete hain
-    if(navigator.share) {
-      navigator.share({
-        title: 'Khata Mitra Backup',
-        text: dataStr
-      });
+    // Clipboard API try karo
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(backupData)
+        .then(() => {
+          showToast("Backup copy ho gaya! Ab Notes mein paste karke save karo.");
+        })
+        .catch(() => backupCopyFallback(backupData));
     } else {
-      // WhatsApp option
-      window.open(`https://wa.me/?text=${encodeURIComponent(dataStr.substring(0,1000))}...`, '_blank');
+      backupCopyFallback(backupData);
     }
 
-  }).catch(() => {
-    // Agar clipboard fail ho to direct download try
-    const blob = new Blob([dataStr], {type: "application/json"});
-    const url = URL.createObjectURL(blob);
-    window.open(url, '_blank');
-    showToast(currentLanguage === 'hi'? 'Naye tab me file khul gayi. Waha se Save karo' : 'File opened in new tab. Save from there');
-  });
+  } catch (error) {
+    console.error("BACKUP ERROR:", error);
+    showToast("Backup banane mein problem hui.", "error");
+  }
+}
+
+function backupCopyFallback(backupData) {
+  const textarea = document.createElement("textarea");
+  textarea.value = backupData;
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    const copied = document.execCommand("copy");
+    showToast(copied
+      ? "Backup copy ho gaya! Notes mein paste karke save karo."
+      : "Copy nahi hua. Share Backup try karo.",
+      copied ? "success" : "error");
+  } catch (error) {
+    showToast("Copy nahi hua. Share Backup try karo.", "error");
+  }
+
+  document.body.removeChild(textarea);
+}
+
+async function shareBackup() {
+  try {
+    localStorage.setItem('khataMitraPro', JSON.stringify(appState));
+
+    const backupData = JSON.stringify({
+      app: "Khata Mitra Pro",
+      backupDate: new Date().toISOString(),
+      version: 1,
+      data: appState
+    }, null, 2);
+
+    if (navigator.share) {
+      await navigator.share({
+        title: "Khata Mitra Pro Backup",
+        text: backupData
+      });
+    } else {
+      exportBackup();
+    }
+
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      console.error("SHARE BACKUP ERROR:", error);
+      showToast("Share nahi ho paya. Copy Backup try karo.", "error");
+    }
+  }
 }
 
 function importBackup(event) {
