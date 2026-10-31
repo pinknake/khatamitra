@@ -3701,7 +3701,24 @@ function updateLoginButton(){
   }
 }
 
+
+let googleLoginInProgress = false;
+
 async function googleLogin() {
+  if (googleLoginInProgress) {
+    console.log("Google login already running");
+    return;
+  }
+
+  googleLoginInProgress = true;
+
+  const btn = document.getElementById('loginBtn');
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = "⏳ Connecting...";
+  }
+
   try {
     const result = await firebase.auth()
       .signInWithPopup(provider);
@@ -3715,14 +3732,28 @@ async function googleLogin() {
     console.log("FIREBASE LOGIN SUCCESS", result.user.uid);
 
   } catch (error) {
-    console.error("GOOGLE LOGIN ERROR:", error.code, error.message);
+    console.error(
+      "GOOGLE LOGIN ERROR:",
+      error.code,
+      error.message
+    );
+
     showToast("Login failed: " + error.code, "error");
-    alert(
-  "Error Code: " + error.code +
-  "\nMessage: " + error.message
-);
+
+  } finally {
+    googleLoginInProgress = false;
+
+    if (!currentUser) {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = "G Google se Login";
+      }
+    } else {
+      updateLoginButton();
+    }
   }
 }
+
 
 function googleLogout() { 
   firebase.auth().signOut().then(()=>{ 
