@@ -3717,6 +3717,10 @@ async function googleLogin() {
   } catch (error) {
     console.error("GOOGLE LOGIN ERROR:", error.code, error.message);
     showToast("Login failed: " + error.code, "error");
+    alert(
+  "Error Code: " + error.code +
+  "\nMessage: " + error.message
+);
   }
 }
 
