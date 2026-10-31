@@ -1,0 +1,3882 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="msvalidate.01" content="6A5216B40BA355ACBFACF5106BAFDD3F" />
+  <title>Khata Mitra Pro 💰</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- FIREBASE COMPAT - GOOGLE LOGIN KE LIYE BEST -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  
+  <script>(function(s){s.dataset.zone='11370318',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6a1b9a;
+      --primary-dark: #4a0072;
+      --primary-light: #9c4dcc;
+      --secondary: #ff6b35;
+      --success: #2ec4b6;
+      --danger: #e53935;
+      --warning: #ffb74d;
+      --dark: #1e3d58;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode {
+      background: #121212;
+      color: #fff;
+    }
+
+    
+    /* App Container */
+    .app-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .app-container {
+      background: #1e1e1e;
+    }
+
+    /* Header */
+    .app-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 20px;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 4px 20px rgba(106,27,154,0.3);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      font-size: 28px;
+    }
+
+    .logo h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    .header-actions i {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      background: white;
+      padding: 10px;
+      border-radius: 30px;
+      margin: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .nav-tabs {
+      background: #2d2d2d;
+    }
+
+    .nav-tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .nav-tab.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .nav-tab i {
+      margin-right: 5px;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 0 20px 80px 20px;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Search Box */
+    .search-box {
+      background: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    body.dark-mode .search-box {
+      background: #2d2d2d;
+    }
+
+    .search-box i {
+      color: var(--gray);
+    }
+
+    .search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 14px;
+    }
+
+    body.dark-mode .search-box input {
+      color: white;
+    }
+
+    /* Customer Cards */
+    .customer-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .customer-card {
+      background: white;
+      padding: 15px;
+      border-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    body.dark-mode .customer-card {
+      background: #2d2d2d;
+    }
+
+    .customer-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(106,27,154,0.2);
+    }
+
+    .customer-info h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .customer-info p {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .customer-balance {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .balance-positive {
+      color: var(--success);
+    }
+
+    .balance-negative {
+      color: var(--danger);
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .quick-action {
+      background: white;
+      padding: 15px 5px;
+      border-radius: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    body.dark-mode .quick-action {
+      background: #2d2d2d;
+    }
+
+    .quick-action i {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .quick-action span {
+      font-size: 12px;
+      display: block;
+    }
+
+    /* FAB Button */
+    .fab-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 30px;
+      box-shadow: 0 10px 25px rgba(106,27,154,0.4);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .fab-button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 30px;
+      padding: 25px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    body.dark-mode .modal-content {
+      background: #2d2d2d;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--gray);
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    body.dark-mode .form-control {
+      background: #1e1e1e;
+      border-color: #444;
+      color: white;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    .btn {
+      padding: 14px 20px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    /* Transaction List */
+    .transaction-list {
+      margin-top: 20px;
+    }
+
+    .transaction-item {
+      background: white;
+      padding: 15px;
+      border-radius: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    body.dark-mode .transaction-item {
+      background: #2d2d2d;
+    }
+
+    .transaction-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 1;
+    }
+
+    .transaction-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .icon-udhar {
+      background: #ffebee;
+      color: var(--danger);
+    }
+
+    .icon-jama {
+      background: #e8f5e9;
+      color: var(--success);
+    }
+
+    .transaction-details {
+      flex: 1;
+    }
+
+    .transaction-details h4 {
+      font-size: 16px;
+      margin-bottom: 3px;
+    }
+
+    .transaction-details p {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .transaction-amount {
+      font-weight: 700;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    /* Image Gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-item .caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 4px;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    .gallery-item .delete-photo {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: var(--danger);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Zoom Modal */
+    #zoomModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #zoomModal.active {
+      display: flex;
+    }
+
+    #zoomImage {
+      max-width: 95%;
+      max-height: 95%;
+      border-radius: 12px;
+    }
+
+    .zoom-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+    }
+
+    /* Analytics */
+    .chart-container {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+
+    body.dark-mode .chart-container {
+      background: #2d2d2d;
+    }
+
+    /* Toast Notifications */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-size: 14px;
+      z-index: 3000;
+      display: none;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .toast.show {
+      display: block;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 50px 20px;
+      color: var(--gray);
+    }
+
+    .empty-state i {
+      font-size: 60px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    /* Language Toggle */
+    .lang-toggle {
+      display: flex;
+      gap: 5px;
+      margin: 0 10px;
+    }
+
+    .lang-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: white;
+      color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .app-container {
+        width: 100%;
+      }
+      
+      .quick-actions {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      
+      .fab-button {
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+/* ========= MOBILE CARD VIEW FOR BILL ========= */
+@media (max-width: 768px) {
+  /* Modal ko full screen kar do */
+  #billModal .modal-content {
+    max-width: 100%!important;
+    width: 100%!important;
+    height: 100vh!important;
+    margin: 0!important;
+    border-radius: 0!important;
+  }
+  
+  /* Item grid ka naam de diya taaki pakka lage */
+  .item-input-grid {
+    grid-template-columns: 1fr 1fr!important;
+  }
+
+  /* Item input 2x2 grid */
+  #billModal div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr 1fr!important;
+  }
+  #billModal button {
+    grid-column: span 2;
+  }
+
+  /* Bill table ko sirf screen pe hide karo, print me nahi */
+  #billContent table {
+    display: none!important; /* Bada table hide */
+  }
+  /* MOBILE CARD SHOW */
+  #billContent .mobile-only {
+    display: block!important;
+  }
+  #billContent .bill-total-card {
+    display: block!important;
+  }
+
+  /* Naye card banenge */
+  .bill-card {
+    border: 1px solid #000;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    background: #fff;
+  }
+  .bill-card-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 0;
+  }
+  .bill-card-title {
+    font-weight: bold;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+  
+  /* Total wala hissa */
+  .bill-total-card {
+    border: 2px solid #000;
+    padding: 8px;
+    margin-top: 10px;
+    font-size: 13px;
+    background: #fff;
+  }
+  .bill-total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+  }
+}
+
+/* ========= PRINT KE LIYE ========= */
+@media print {
+  body * { visibility: hidden; } /* Sab hide */
+  #billContent, #billContent * { visibility: visible; } /* Sirf bill dikhe */
+  #billContent { 
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    width: 100%;
+  }
+  
+  /* PRINT ME HAMESHA TABLE DIKHAO */
+  #billContent table {
+    display: table!important; /* Ye line sabse imp hai */
+    visibility: visible!important;
+  }
+  
+  /* PRINT ME CARD HIDE */
+  .mobile-only, .bill-card, .bill-total-card { 
+    display: none!important; 
+  }
+}
+
+  /* LOGIN-FIRST GATE */
+  body:not(.authenticated) .app-container { display: none !important; }
+  #authGate {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 24px; background: var(--background, #f4f6f9); box-sizing: border-box;
+  }
+  #authGate .auth-card {
+    width: 100%; max-width: 420px; background: var(--card-bg, #fff); color: var(--text, #222);
+    padding: 28px 22px; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,.12); text-align: center;
+  }
+  #authGate button { width: 100%; margin-top: 18px; }
+  #authGateStatus { margin-top: 14px; font-size: 13px; color: #b45309; overflow-wrap: anywhere; }
+  body.dark-mode #authGate { background: #121826; }
+  body.dark-mode #authGate .auth-card { background: #1e293b; color: #f8fafc; }
+
+  </style>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+  </head>
+<body>
+  <section id="authGate" aria-live="polite">
+    <div class="auth-card">
+      <div style="font-size:42px; margin-bottom:8px;">📒</div>
+      <h2 style="margin:0 0 8px;">Khata Mitra Pro</h2>
+      <p style="margin:0; line-height:1.5;">अपना निजी खाता खोलने के लिए Google से Login करें। आपका डेटा आपके अकाउंट में सुरक्षित रहेगा।</p>
+      <button id="gateLoginBtn" class="btn btn-primary" onclick="googleLogin()">G Google se Login</button>
+      <div id="authGateStatus">Login की जाँच हो रही है…</div>
+    </div>
+  </section>
+  <div class="app-container">
+    <!-- Header -->
+    <div class="app-header">
+      <div class="header-top">
+        <div class="logo">
+          <i class="fas fa-book-open"></i>
+          <h1 id="appTitle">Khata Mitra Pro</h1>
+        </div>
+        <div class="header-actions">
+          <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLanguage('hi')">हिंदी</button>
+            <button class="lang-btn" onclick="setLanguage('en')">ENG</button>
+          </div>
+          <i class="fas fa-bell" onclick="showNotifications()"></i>
+          <i class="fas fa-chart-pie" onclick="showAnalytics()"></i>
+          <i class="fas fa-moon" onclick="toggleDarkMode()" id="darkModeToggle"></i>
+        </div>
+        
+      </div>
+      
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label" id="statCustomers">कुल ग्राहक</div>
+          <div class="stat-value" id="totalCustomers">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label" id="statUdhar">कुल उधार</div>
+          <div class="stat-value" id="totalUdhar">₹0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label" id="statJama">कुल जमा</div>
+          <div class="stat-value" id="totalJama">₹0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label" id="statBalance">नेट बैलेंस</div>
+          <div class="stat-value" id="netBalance">₹0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+      <div class="nav-tab active" onclick="switchTab('dashboard')">
+        <i class="fas fa-home"></i> <span class="tab-label" data-hi="होम" data-en="Home">होम</span>
+      </div>
+      <div class="nav-tab" onclick="switchTab('customers')">
+        <i class="fas fa-users"></i> <span class="tab-label" data-hi="ग्राहक" data-en="Customers">ग्राहक</span>
+      </div>
+      <div class="nav-tab" onclick="switchTab('history')">
+        <i class="fas fa-history"></i> <span class="tab-label" data-hi="हिस्ट्री" data-en="History">हिस्ट्री</span>
+      </div>
+      <div class="nav-tab" onclick="switchTab('reports')">
+        <i class="fas fa-chart-bar"></i> <span class="tab-label" data-hi="रिपोर्ट" data-en="Reports">रिपोर्ट</span>
+      </div>
+      
+      <div class="nav-tab" onclick="switchTab('settings')">
+    <i class="fas fa-cog"></i> 
+    <span class="tab-label" data-hi="सेटिंग" data-en="Settings">सेटिंग</span>
+</div>
+      
+    </div>
+  
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Dashboard Tab -->
+      <div class="tab-pane active" id="dashboard">
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <div class="quick-action" onclick="openAddModal('customer')">
+            <i class="fas fa-user-plus"></i>
+            <span data-hi="नया ग्राहक" data-en="New Customer">नया ग्राहक</span>
+          </div>
+          <div class="quick-action" onclick="openAddModal('udhar')">
+            <i class="fas fa-arrow-up"></i>
+            <span data-hi="उधार दें" data-en="Give">उधार दें</span>
+          </div>
+          <div class="quick-action" onclick="openAddModal('jama')">
+            <i class="fas fa-arrow-down"></i>
+            <span data-hi="जमा करें" data-en="Receive">जमा करें</span>
+          </div>
+          <div class="quick-action" onclick="openAddModal('item')">
+            <i class="fas fa-box"></i>
+            <span data-hi="आइटम" data-en="Item">आइटम</span>
+          </div>
+
+        </div>
+
+        <!-- Recent Transactions -->
+          <button class="btn btn-primary" onclick="openBillModal()" style="margin-bottom: 15px;">
+    <i class="fas fa-file-invoice"></i> <span data-hi="GST बिल बनाएं" data-en="Generate GST Bill">GST बिल बनाएं</span>
+</button>
+        <h3 style="margin: 20px 0 10px 0;" data-hi="हाल के लेन-देन" data-en="Recent Transactions">हाल के लेन-देन</h3>
+        <div id="recentTransactions" class="transaction-list">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+      
+
+      <!-- Customers Tab -->
+      <div class="tab-pane" id="customers">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="customerSearch" placeholder="🔍 ग्राहक खोजें..." onkeyup="searchCustomers()">
+        </div>
+        <div id="customerList" class="customer-grid">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+
+      <!-- History Tab -->
+      <div class="tab-pane" id="history">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="historySearch" placeholder="🔍 लेन-देन खोजें..." onkeyup="searchHistory()">
+        </div>
+        <div id="allTransactions" class="transaction-list">
+          <!-- Will be populated by JS -->
+        </div>
+        </div>
+
+<!-- UDHAAR/JAMA RECEIPT VIEW MODAL -->
+<div class="modal" id="paymentViewModal">
+  <div class="modal-content" style="max-width: 500px;">
+    <div class="modal-header">
+      <h3 data-hi="पेमेंट रसीद" data-en="Payment Receipt">पेमेंट रसीद</h3>
+      <button class="close-btn" onclick="closePaymentViewModal()">&times;</button> <!-- YE CHANGE -->
+    </div>
+    <div id="paymentViewContent"></div>
+    
+    <div style="display:flex; gap:10px; padding:0 20px 20px 20px;">
+      <button class="btn btn-outline" style="flex:1;" onclick="printPaymentReceipt()">
+        <i class="fas fa-print"></i> प्रिंट
+      </button>
+      <button class="btn btn-outline" style="flex:1;" onclick="sharePaymentWhatsApp()">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+      
+      
+<!-- Bill Modal -->
+<div class="modal" id="billModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+  <div class="modal-content" style="background:white; padding:20px; border-radius:15px; max-width: 800px; width: 90%;">
+    <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+      <h3>GST बिल</h3>
+      <button class="close-btn" onclick="closeBillModal()" style="font-size:28px; border:none; background:none; cursor:pointer;">&times;</button> <!-- Yaha change -->
+    </div>
+  
+    <!-- CUSTOMER SELECT -->
+    <div style="padding: 15px; background: #f5f5f5; border-bottom: 1px solid #ddd;">
+      <label data-hi="ग्राहक चुनें" data-en="Select Customer">ग्राहक चुनें</label>
+      <select id="billCustomerSelect" class="form-control" style="margin-top:5px;" onchange="generateBillPreview()">
+        <option value="cash" data-hi="Cash Customer" data-en="Cash Customer">Cash Customer</option>
+      </select>
+    </div>
+    <div style="padding: 15px; background: #fff; border-bottom: 1px solid #ddd;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:10px;">
+        <input type="text" id="billVehicleNo" placeholder="Vehicle No" class="form-control" onchange="generateBillPreview()">
+        <input type="text" id="billBuyerBank" placeholder="Buyer Bank Details" class="form-control" onchange="generateBillPreview()">
+    </div>
+</div>
+
+    <!-- ITEM ADD KARNE WALA -->
+    <div style="padding: 15px; background: #fff; border-bottom: 1px solid #ddd;">
+      <h4 data-hi="आइटम जोड़ें" data-en="Add Items">आइटम जोड़ें</h4>
+      <div class="item-input-grid" style="display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr auto; gap:8px; margin-bottom:10px;">
+        <input type="text" id="itemName" placeholder="Item Name" class="form-control">
+        <input type="text" id="itemHSN" placeholder="HSN" class="form-control">
+        <input type="number" id="itemBags" placeholder="Bags" class="form-control" value="1">
+        <input type="number" id="itemQty" placeholder="Qty/Kg" class="form-control" value="50">
+        <input type="number" id="itemRate" placeholder="Rate" class="form-control">
+        <input type="number" id="itemGST" placeholder="GST%" class="form-control" value="18">
+        <button class="btn btn-primary" onclick="addItemToBill()" style="padding: 8px 12px;"><i class="fas fa-plus"></i></button>
+      </div>
+      <div id="billItemsList"></div>
+    </div>
+    
+    <!-- BILL PREVIEW -->
+    <div id="billContent" style="padding: 15px; background: white; color: black; max-height: 400px; overflow-y: auto; font-size:12px;"> 
+    
+    <!-- HEADER TABLE -->
+    <table style="width:100%; border-collapse:collapse; border:2px solid #000;">
+        <tr>
+            <td colspan="2" style="text-align:center; border-bottom:2px solid #000; padding:5px;">
+                <h2 style="margin:0;">TAX INVOICE</h2>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center; padding:5px;">
+<!-- NAYA -->
+<h3 style="margin:0;" id="billCompanyName"></h3>
+<p style="margin:2px 0;" id="billCompanyAddress"></p>
+<p style="margin:2px 0;"><b>GST:</b> <span id="billCompanyGST"></span> | <b>PAN:</b> <span id="billCompanyPAN"></span></p>
+<p style="margin:2px 0;"><b>Mobile:</b> <span id="billCompanyMobile"></span> | <b>Email:</b> <span id="billCompanyEmail"></span></p>
+<p style="margin:2px 0;"><b>Bank:</b> <span id="billCompanyBank"></span></p>    </td>
+        </tr>
+    </table>
+
+    <!-- BUYER + INVOICE TABLE -->
+    <table style="width:100%; border-collapse:collapse; margin-top:5px; border:1px solid #000;">
+        <tr>
+            <td style="width:50%; border-right:1px solid #000; padding:5px; vertical-align:top;">
+                <b>Buyer:</b> <span id="buyerName"></span><br>
+                <span id="buyerAddress"></span><br>
+                <b>Mobile:</b> <span id="buyerMobile"></span><br>
+                <b>GSTIN:</b> <span id="buyerGSTIN"></span><br>
+                <b>PAN:</b> <span id="buyerPAN"></span><br>
+                <b>Bank:</b> <span id="buyerBank"></span>
+            </td>
+            <td style="width:50%; padding:5px; vertical-align:top;">
+                <b>Invoice No.</b> <span id="invoiceNo"></span><br>
+                <b>Date:</b> <span id="invoiceDate"></span><br>
+                <b>Vehicle No.</b> <span id="vehicleNo"></span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- ITEM TABLE - ye wala already thik hai -->
+    <table id="itemTable" style="width:100%; border-collapse:collapse; margin-top:5px; border:1px solid #000;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th style="border:1px solid #000; padding:4px;">#</th>
+                <th style="border:1px solid #000; padding:4px;">Item</th>
+                <th style="border:1px solid #000; padding:4px;">HSN</th>
+                <th style="border:1px solid #000; padding:4px;">Bags</th>
+                <th style="border:1px solid #000; padding:4px;">Qty</th>
+                <th style="border:1px solid #000; padding:4px;">Rate</th>
+                <th style="border:1px solid #000; padding:4px;">GST%</th>
+                <th style="border:1px solid #000; padding:4px;">Amount</th>
+            </tr>
+        </thead>
+        <tbody id="itemTableBody"></tbody>
+    </table>
+
+    <!-- TOTAL TABLE -->
+    <table style="width:100%; border-collapse:collapse; margin-top:5px;">
+        <tr>
+            <td style="width:60%; border:1px solid #000;"></td>
+            <td style="width:40%;">
+                <table style="width:100%; border-collapse:collapse; border:1px solid #000;">
+                    <tr><td style="border:1px solid #000; padding:4px;"><b>Subtotal</b></td><td style="border:1px solid #000; padding:4px; text-align:right;" id="subTotal">₹0.00</td></tr>
+                    <tr><td style="border:1px solid #000; padding:4px;"><b>CGST</b></td><td style="border:1px solid #000; padding:4px; text-align:right;" id="totalCGST">₹0.00</td></tr>
+                    <tr><td style="border:1px solid #000; padding:4px;"><b>SGST</b></td><td style="border:1px solid #000; padding:4px; text-align:right;" id="totalSGST">₹0.00</td></tr>
+                    <tr style="background:#f0f0f0;"><td style="border:1px solid #000; padding:4px;"><b>GRAND TOTAL</b></td><td style="border:1px solid #000; padding:4px; text-align:right;" id="grandTotal">₹0.00</td></tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<style>@media print {.no-print{display:none !important;}}</style>
+    
+
+    <!-- BUTTONS -->
+    <div style="padding: 15px; background: #f5f5f5; border-top: 1px solid #ddd; display: flex; gap: 10px;">
+        <button class="btn btn-primary" onclick="downloadBillAsImage()">
+    <i class="fas fa-download"></i> <span>Bill Save Kare</span>
+        </button>
+      <button class="btn btn-success" onclick="openBillInBrowser()">
+    <i class="fas fa-external-link-alt"></i> <span>Browser me Print kare</span>
+</button>
+
+<button class="btn btn-whatsapp" onclick="shareBillOnWhatsApp()">
+    <i class="fab fa-whatsapp"></i> <span>WhatsApp pe Bheje</span>
+</button>
+      
+        <button class="btn btn-secondary" onclick="closeModal('billModal')" style="flex:1;">
+            <span data-hi="बंद करें" data-en="Close">बंद करें</span>
+        </button>
+    </div>
+  </div>
+</div>
+    
+<!-- Reports Tab -->
+<div class="tab-pane" id="reports">
+  <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <select id="reportMonth" class="form-control" style="flex: 1;">
+      <option value="1" data-hi="जनवरी" data-en="January">जनवरी</option>
+      <option value="2" data-hi="फरवरी" data-en="February">फरवरी</option>
+      <option value="3" data-hi="मार्च" data-en="March">मार्च</option>
+      <option value="4" data-hi="अप्रैल" data-en="April">अप्रैल</option>
+      <option value="5" data-hi="मई" data-en="May">मई</option>
+      <option value="6" data-hi="जून" data-en="June">जून</option>
+      <option value="7" data-hi="जुलाई" data-en="July">जुलाई</option>
+      <option value="8" data-hi="अगस्त" data-en="August">अगस्त</option>
+      <option value="9" data-hi="सितंबर" data-en="September">सितंबर</option>
+      <option value="10" data-hi="अक्टूबर" data-en="October">अक्टूबर</option>
+      <option value="11" data-hi="नवंबर" data-en="November">नवंबर</option>
+      <option value="12" data-hi="दिसंबर" data-en="December">दिसंबर</option>
+    </select>
+    <select id="reportYear" class="form-control" style="flex: 1;">
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+    </select>
+  </div>
+  
+  <div class="chart-container">
+    <canvas id="monthlyChart"></canvas>
+  </div>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0;">
+    <div class="stat-card" style="background: var(--primary-light); color: white;">
+      <div data-hi="महीने का उधार" data-en="Monthly Given">महीने का उधार</div>
+      <div style="font-size: 24px; font-weight: 700;" id="monthlyUdhar">₹0</div>
+    </div>
+    <div class="stat-card" style="background: var(--success); color: white;">
+      <div data-hi="महीने का जमा" data-en="Monthly Received">महीने का जमा</div>
+      <div style="font-size: 24px; font-weight: 700;" id="monthlyJama">₹0</div>
+    </div>
+  </div>
+
+</div>
+  
+    <div class="chart-container" style="margin-top: 30px;">
+  <h3>🔐 Google Cloud Backup</h3>
+  <button id="loginBtn" class="btn btn-primary" onclick="googleLogin()" style="width:100%; margin-bottom:10px;">
+    G Google se Login
+  </button>
+  <p style="font-size:13px; color:var(--gray);">Login ke baad data auto save hoga</p>
+</div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+  <button onclick="exportBackup()" 
+    style="background:#2563eb;color:white;padding:12px 16px;border:0;border-radius:8px;flex:1;">
+    📋 Copy Backup
+  </button>
+
+  <button onclick="shareBackup()" 
+    style="background:#0d9488;color:white;padding:12px 16px;border:0;border-radius:8px;flex:1;">
+    📤 Share Backup
+  </button>
+</div>
+      
+<div style="margin-top:15px; padding:15px; border:1px solid #ddd; border-radius:12px;">
+  <h3>♻️ Restore Backup</h3>
+  <p>JSON backup file select karo ya backup text paste karo.</p>
+
+  <input type="file" id="restoreBackupFile"
+    accept=".json,application/json"
+    onchange="importBackup(this)"
+    style="width:100%; margin:12px 0;">
+
+  <textarea id="restoreBackupText"
+    class="form-control"
+    rows="5"
+    placeholder="Yahan JSON backup paste karein..."></textarea>
+
+  <button class="btn btn-success"
+    onclick="restoreBackupText()"
+    style="margin-top:10px;">
+    ♻️ Paste Backup Restore Karein
+  </button>
+</div>
+
+
+      <button onclick="recoverBeforeRestore()">
+  ↩️ Recover Purana Data
+</button>
+      
+    <!-- FAB Button -->
+    <div class="fab-button" onclick="openQuickMenu()">
+      <i class="fas fa-plus"></i>
+    </div>
+
+    <!-- Quick Menu Modal -->
+    <div class="modal" id="quickMenuModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-hi="त्वरित कार्रवाई" data-en="Quick Actions">त्वरित कार्रवाई</h3>
+          <button class="close-btn" onclick="closeModal('quickMenuModal')">&times;</button>
+        </div>
+        <div style="display: grid; gap: 10px;">
+          <button class="btn btn-primary" onclick="openAddModal('customer'); closeModal('quickMenuModal')">
+            <i class="fas fa-user-plus"></i> <span data-hi="नया ग्राहक" data-en="New Customer">नया ग्राहक</span>
+          </button>
+          <button class="btn btn-primary" onclick="openAddModal('udhar'); closeModal('quickMenuModal')">
+            <i class="fas fa-arrow-up"></i> <span data-hi="उधार दें" data-en="Give Money">उधार दें</span>
+          </button>
+          <button class="btn btn-primary" onclick="openAddModal('jama'); closeModal('quickMenuModal')">
+            <i class="fas fa-arrow-down"></i> <span data-hi="जमा करें" data-en="Receive Money">जमा करें</span>
+          </button>
+          <button class="btn btn-primary" onclick="openAddModal('item'); closeModal('quickMenuModal')">
+            <i class="fas fa-box"></i> <span data-hi="आइटम जोड़ें" data-en="Add Item">आइटम जोड़ें</span>
+          </button>
+        </div>
+      </div>      
+    </div>
+
+  <!-- Settings Tab -->
+<div class="tab-pane" id="settings">
+  <h3 data-hi="कंपनी सेटिंग" data-en="Company Settings">कंपनी सेटिंग</h3>
+  
+  <!-- ===== SUBSCRIPTION CARD NEW ===== -->
+  <div id="subscriptionCard" class="settings-card" style="background: linear-gradient(135deg,#2ec4b6,#20a39e); color:white; padding:20px; border-radius:15px; margin-bottom:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h3 style="margin:0; color:white;">🚀 <span data-hi="Pro Membership" data-en="Pro Membership">Pro Membership</span></h3>
+        <p id="proStatus" style="margin:5px 0 0 0; font-size:13px;">Free Plan - 10 Bill Limit</p>
+        <p id="proWaitStatus" style="margin:5px 0 0 0; font-size:12px; color:#ffc107; font-weight:bold;"></p>
+        <p style="margin-top:15px; font-size:14px;">
+          <span>Payment ke baad screenshot ispe bhejo:</span><br>
+          <a href="https://wa.me/918708986767" style="color:#25D366; font-weight:bold;">8708986767</a>
+        </p>
+      </div>
+      <button onclick="openSubscriptionModal()" id="upgradeBtn" class="btn" style="background:white; color:#2ec4b6; font-weight:bold;">
+        <span data-hi="Upgrade ₹99" data-en="Upgrade ₹99">Upgrade ₹99</span>
+      </button>
+    </div>
+  </div>
+  <!-- ===== SUBSCRIPTION CARD END ===== -->
+
+  <div class="form-group">
+    <label data-hi="दुकान का नाम" data-en="Shop Name">दुकान का नाम</label>
+    <input type="text" id="companyName" class="form-control" placeholder="Khata Mitra">
+  </div>
+  
+  <div class="form-group">
+    <label data-hi="पता" data-en="Address">पता</label>
+    <textarea id="companyAddress" class="form-control" rows="2" placeholder="पूरा पता"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label data-hi="GST नंबर" data-en="GST No">GST नंबर</label>
+    <input type="text" id="companyGST" class="form-control" placeholder="22AAAAA0000A1Z5" style="text-transform:uppercase;">
+  </div>
+  
+  <div class="form-group">
+    <label data-hi="PAN नंबर" data-en="PAN No">PAN नंबर</label>
+    <input type="text" id="companyPAN" class="form-control" placeholder="AAAAA0000A" style="text-transform:uppercase;">
+  </div>
+  
+  <div class="form-group">
+    <label data-hi="बैंक A/C" data-en="Bank A/C">बैंक A/C</label>
+    <input type="text" id="companyBank" class="form-control" placeholder="1234567890">
+  </div>
+
+  <div class="form-group">
+    <label>UPI ID</label>
+    <input type="text" id="companyUPI" class="form-control" placeholder="upi@paytm">
+  </div>
+
+  <div class="form-group">
+    <label>Company Mobile</label>
+    <input type="text" id="companyMobile" class="form-control" placeholder="98123XXXXX">
+  </div>
+
+  <div class="form-group">
+    <label>Company Email</label>
+    <input type="email" id="companyEmail" class="form-control" placeholder="khata@gmail.com">
+  </div>
+  
+  <button class="btn btn-primary" onclick="saveSettings()">
+    <i class="fas fa-save"></i> <span data-hi="सेव करें" data-en="Save">सेव करें</span>
+  </button>
+
+  <!-- ===== ADMIN PANEL ===== -->
+  <hr style="margin:20px 0;">
+  <h4 style="color:#dc3545;" data-hi="Admin Panel" data-en="Admin Panel">Admin Panel</h4>
+  <div class="form-group">
+    <input type="password" id="adminPass" class="form-control" placeholder="Admin Password" data-hi="Admin Password" data-en="Admin Password">
+  </div>
+  <button class="btn btn-danger" onclick="adminActivatePro()" style="background:#dc3545;">
+    <i class="fas fa-crown"></i> <span data-hi="Pro Activate Kare" data-en="Activate Pro">Pro Activate Kare</span>
+  </button>
+  <button class="btn btn-secondary" onclick="adminDeactivatePro()" style="background:#6c757d; margin-left:10px;">
+    <span data-hi="Pro Band Kare" data-en="Deactivate Pro">Pro Band Kare</span>
+  </button>
+  
+</div> <!-- Bas 1 hi closing div -->
+
+<!-- Add Customer Modal -->
+<div class="modal" id="addCustomerModal">
+  <div class="modal-content" style="max-width:500px;">
+    <div class="modal-header">
+      <h3 data-hi="नया ग्राहक" data-en="New Customer">नया ग्राहक</h3>
+      <button class="close-btn" onclick="closeModal('addCustomerModal')">&times;</button>
+    </div>
+    <div class="form-group">
+      <label data-hi="नाम *" data-en="Name *">नाम *</label>
+      <input type="text" id="newCustomerName" class="form-control" placeholder="ग्राहक का नाम" required>
+    </div>
+    <div class="form-group">
+      <label data-hi="फोन नंबर" data-en="Phone Number">फोन नंबर</label>
+      <input type="tel" id="newCustomerPhone" class="form-control" placeholder="9876543210">
+    </div>
+    <div class="form-group">
+      <label data-hi="पता" data-en="Address">पता</label>
+      <textarea id="newCustomerAddress" class="form-control" rows="2" placeholder="पता"></textarea>
+    </div>
+    
+    <hr style="margin:10px 0;">
+    <h4 data-hi="GST/Bank Details" data-en="GST/Bank Details">GST/Bank Details</h4>
+    
+    <div class="form-group">
+      <label>GST No.</label>
+      <input type="text" id="newCustomerGST" class="form-control" placeholder="22AAAAA0000A1Z5">
+    </div>
+    <div class="form-group">
+      <label>PAN No.</label>
+      <input type="text" id="newCustomerPAN" class="form-control" placeholder="AAAAA0000A">
+    </div>
+    <div class="form-group">
+      <label>Vehicle No.</label>
+      <input type="text" id="newCustomerVehicle" class="form-control" placeholder="HR12AB1234">
+    </div>
+    <div class="form-group">
+      <label>Bank A/C No.</label>
+      <input type="text" id="newCustomerBank" class="form-control" placeholder="1234567890">
+    </div>
+
+    <!-- 🔥 YE 2 NAYE FIELD ADD KAR -->
+    <div class="form-group">
+      <label>Customer Email</label>
+      <input type="email" id="newCustomerEmail" class="form-control" placeholder="customer@gmail.com">
+    </div>
+    <div class="form-group">
+      <label>Preferred Payment Mode</label>
+      <select id="newCustomerPaymentMode" class="form-control">
+        <option value="cash" data-hi="नकद" data-en="Cash">नकद Cash</option>
+        <option value="upi" data-hi="UPI" data-en="UPI">UPI</option>
+        <option value="bank" data-hi="बैंक ट्रांसफर" data-en="Bank Transfer">बैंक ट्रांसफर</option>
+      </select>
+    </div>
+    
+    <button class="btn btn-primary" onclick="addCustomer()" data-hi="ग्राहक जोड़ें" data-en="Add Customer">ग्राहक जोड़ें</button>
+  </div>
+</div>
+
+       <!-- Add Transaction Modal -->
+    <div class="modal" id="addTransactionModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="transactionModalTitle">नया लेन-देन</h3>
+          <button class="close-btn" onclick="closeModal('addTransactionModal')">&times;</button>
+        </div>
+
+         <div id="customerHistoryBox" style="background:#f5f5f5; padding:10px; border-radius:8px; margin-bottom:10px; display:none;">
+  <b data-hi="बकाया:" data-en="Balance:">बकाया:</b> <span id="oldBalance">₹0</span>
+</div>
+        
+<div class="form-group">
+          <label data-hi="ग्राहक *" data-en="Customer *">ग्राहक *</label>
+          <select id="transactionCustomer" class="form-control">
+            <option value="" data-hi="ग्राहक चुनें" data-en="Select Customer">ग्राहक चुनें</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label data-hi="राशि *" data-en="Amount *">राशि *</label>
+          <input type="number" id="transactionAmount" class="form-control" placeholder="राशि">
+        </div>
+        
+        <div class="form-group">
+          <label data-hi="विवरण" data-en="Description">विवरण</label>
+          <input type="text" id="transactionNote" class="form-control" placeholder="क्या लिया/दिया">
+        </div>
+        
+        <div class="form-group">
+          <label data-hi="तारीख" data-en="Date">तारीख</label>
+          <input type="date" id="transactionDate" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label data-hi="भुगतान का तरीका" data-en="Payment Mode">भुगतान का तरीका</label>
+          <select id="transactionMode" class="form-control">
+            <option value="cash" data-hi="नकद" data-en="Cash">नकद</option>
+            <option value="upi" data-hi="UPI" data-en="UPI">UPI</option>
+            <option value="bank" data-hi="बैंक ट्रांसफर" data-en="Bank Transfer">बैंक ट्रांसफर</option>
+          </select>
+        </div>
+
+        <!-- Photo Upload Section -->
+        <div class="form-group">
+          <label data-hi="फोटो" data-en="Photo">फोटो</label>
+          <input type="file" id="transactionPhoto" accept="image/*" class="form-control" onchange="previewTransactionPhoto(event)">
+          <div id="photoPreview" style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;"></div>
+        </div>
+        
+        <button class="btn btn-primary" id="saveTransactionBtn" onclick="saveTransaction()" data-hi="सेव करें" data-en="Save">सेव करें</button>
+      </div>
+    </div>
+
+    <!-- Customer Detail Modal -->
+    <!-- Customer Detail Modal -->
+    <div class="modal" id="customerDetailModal">
+      <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-header">
+          <h3 id="detailCustomerName">ग्राहक विवरण</h3>
+          <button class="close-btn" onclick="closeModal('customerDetailModal')">&times;</button>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 20px; border-radius: 16px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 14px; opacity: 0.9;" data-hi="कुल बैलेंस" data-en="Total Balance">कुल बैलेंस</div>
+              <div style="font-size: 32px; font-weight: 700;" id="detailBalance">₹0</div>
+            </div>
+            <div>
+              <div style="font-size: 14px; opacity: 0.9;" data-hi="फोन" data-en="Phone">फोन</div>
+              <div style="font-size: 16px;" id="detailPhone">-</div>
+            </div>
+          </div>
+        </div>
+
+
+
+    <!-- ===== NEW: CUSTOMER BUSINESS DETAILS ===== -->
+<!-- ===== CUSTOMER BUSINESS DETAILS ===== -->
+<div style="background:#f8f9fa; padding:15px; border-radius:12px; margin-bottom:20px; border:1px solid #e9ecef;">
+  <h4 style="margin:0 0 12px 0; font-size:14px; color:#666;">व्यापार विवरण</h4>
+  
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:13px;">
+    <div><b>GST:</b> <span id="detailGST">-</span></div>
+    <div><b>PAN:</b> <span id="detailPAN">-</span></div>
+    <div><b>ईमेल:</b> <span id="detailEmail">-</span></div> <!-- INPUT HATA, SIRF SPAN -->
+    <div><b>बैंक:</b> <span id="detailBank">-</span></div>
+    <div><b>वाहन:</b> <span id="detailVehicle">-</span></div>
+    <div><b>Payment Mode:</b> <span id="detailPaymentMode">-</span></div> <!-- INPUT HATA -->
+  </div>
+</div>
+    <!-- ===== END ===== -->
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+          <button class="btn btn-outline" style="flex: 1;" onclick="exportCustomerPDF()">
+            <i class="fas fa-file-pdf"></i> <span data-hi="PDF" data-en="PDF">PDF</span>
+          </button>
+          <button class="btn btn-outline" style="flex: 1;" onclick="shareOnWhatsApp()">
+            <i class="fab fa-whatsapp"></i> <span data-hi="WhatsApp" data-en="WhatsApp">WhatsApp</span>
+          </button>
+          <button class="btn btn-outline" style="flex: 1;" onclick="printCustomerDetail()">
+            <i class="fas fa-print"></i> <span data-hi="प्रिंट" data-en="Print">प्रिंट</span>
+          </button>
+        </div>
+
+        <!-- Photos Gallery -->
+        <h4 style="margin-bottom: 10px;" data-hi="फोटो गैलरी" data-en="Photo Gallery">फोटो गैलरी</h4>
+        <div id="customerPhotos" class="image-gallery" style="margin-bottom: 20px;">
+          <!-- Will be populated by JS -->
+        </div>
+
+        <!-- YE 3 BUTTON EK BAAR -->
+        <div id="ledgerFilterBtns" style="display:flex; gap:5px; margin-bottom:15px;">
+            <button onclick="filterCustomerTx('all')" class="btn btn-outline btn-sm">All</button>
+            <button onclick="filterCustomerTx('payment')" class="btn btn-outline btn-sm">Udhar/Jama</button>
+            <button onclick="filterCustomerTx('bill')" class="btn btn-outline btn-sm">Bill</button>
+        </div>
+                
+        <h4 style="margin-bottom: 15px;" data-hi="लेन-देन इतिहास" data-en="Transaction History">लेन-देन इतिहास</h4>
+        <div id="customerTransactions" class="transaction-list" style="max-height: 300px; overflow-y: auto;">
+          <!-- Will be populated by JS -->
+        </div>
+      </div>
+    </div>
+
+      <!-- BILL VIEW MODAL -->
+<div class="modal" id="billViewModal">
+  <div class="modal-content" style="max-width: 700px;">
+    <div class="modal-header">
+      <h3 data-hi="बिल विवरण" data-en="Bill Details">बिल विवरण</h3>
+      <button class="close-btn" onclick="closeModal('billViewModal')">&times;</button>
+    </div>
+    <div id="billViewContent">
+      <!-- JS se bhar jayega -->
+    </div>
+  </div>
+</div>
+    
+      <!-- Zoom Modal -->
+    <div id="zoomModal">
+      <img id="zoomImage" src="" alt="">
+      <div class="zoom-caption" id="zoomCaption"></div>
+      <button class="close-btn" style="position: absolute; top: 20px; right: 20px; color: white; font-size: 30px;" onclick="closeZoom()">&times;</button>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Loading Spinner (hidden by default) -->
+    <div id="loadingSpinner" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 4000;">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <!-- Install PWA Button (shown when not installed) -->
+  <div id="installPWA" style="display: none; position: fixed; bottom: 100px; left: 20px; right: 20px; background: var(--primary); color: white; padding: 15px; border-radius: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 2000; cursor: pointer;" onclick="installPWA()">
+    <i class="fas fa-download"></i> <span data-hi="ऐप इंस्टॉल करें" data-en="Install App">ऐप इंस्टॉल करें</span>
+  </div>
+  
+<script>
+
+// ==================== LANGUAGE SUPPORT ====================
+let currentLanguage = 'hi'; 
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.textContent.includes(lang === 'hi' ? 'हिंदी' : 'ENG')) {
+      btn.classList.add('active');
+    }
+  });
+  document.querySelectorAll('[data-hi][data-en]').forEach(el => {
+    el.textContent = el.getAttribute(`data-${lang}`);
+  });
+  document.getElementById('appTitle').textContent = lang === 'hi' ? 'खाता मित्र प्रो' : 'Khata Mitra Pro';
+  appState.settings.language = lang;
+  saveData();
+}
+
+// ==================== STATE MANAGEMENT ====================
+let appState = {
+  company: { name: '', address: '', gst: '', pan: '', bank: '', upi: '', mobile: '', email: '' },
+  customers: [],
+  customers: [],
+  transactions: [],
+  photos: [], 
+  settings: { darkMode: false, language: 'hi', autoReminder: false }
+};
+
+let currentBillItems = []; // upar global me dalna
+
+function addItemToBill() {
+    let item = {
+        name: document.getElementById('itemName').value,
+        hsn: document.getElementById('itemHSN').value,
+        bags: document.getElementById('itemBags').value,
+        qty: parseFloat(document.getElementById('itemQty').value),
+        rate: parseFloat(document.getElementById('itemRate').value),
+        gst: parseFloat(document.getElementById('itemGST').value)
+    };
+    if(!item.name || !item.rate) { alert('Item name aur rate dalo'); return; }
+    currentBillItems.push(item);
+    generateBillPreview();
+    
+    // input khali kar do
+    document.getElementById('itemName').value = '';
+    document.getElementById('itemRate').value = '';
+
+  
+}
+
+  function renderBillItems() {
+    let list = document.getElementById('billItemsList');
+    list.innerHTML = '';
+    currentBillItems.forEach((item, i) => {
+        list.innerHTML += `<div style="padding:5px; border-bottom:1px solid #eee;">${i+1}. ${item.name} - ${item.qty}Kg @ ₹${item.rate} 
+        <button onclick="deleteItem(${i})" style="float:right; color:red;">X</button></div>`;
+    });
+}
+
+function deleteItem(i) {
+    currentBillItems.splice(i,1);
+    renderBillItems();
+    generateBillPreview();
+}
+
+
+function generateBillPreview() {
+    let customer = appState.customers.find(c => c.id == document.getElementById('billCustomerSelect').value) || {};
+    let company = appState.company || {}; // SETTING SE DATA
+    let total = 0, totalCGST = 0, totalSGST = 0;
+
+  if((appState.billsGenerated || 0) >= 10 && !appState.settings.isPro) {
+  showToast(currentLanguage === 'hi'? 'Free limit khatam. ₹99 me Pro lelo' : 'Free limit over. Buy Pro for ₹99', 'error');
+  openSubscriptionModal();
+  return;
+}
+appState.billsGenerated = (appState.billsGenerated || 0) + 1;
+saveData();
+  
+// NAYA
+document.getElementById('billCompanyName').innerText = company.name || 'Khata Mitra';
+document.getElementById('billCompanyAddress').innerText = company.address || '';
+document.getElementById('billCompanyGST').innerText = company.gst || '';
+document.getElementById('billCompanyPAN').innerText = company.pan || '';
+document.getElementById('billCompanyMobile').innerText = company.mobile || '';
+document.getElementById('billCompanyEmail').innerText = company.email || '';
+document.getElementById('billCompanyBank').innerText = company.bank || '';
+    
+    // 1. BUYER DETAIL - NAAM MAP KAR DIYA
+document.getElementById('buyerName').innerText = customer.name || 'Cash Customer';
+document.getElementById('buyerAddress').innerText = customer.address || '';
+document.getElementById('buyerMobile').innerText = customer.phone || '';        // phone -> mobile
+document.getElementById('buyerGSTIN').innerText = customer.gst || '';           // gst -> gstin
+document.getElementById('buyerPAN').innerText = customer.pan || '';
+document.getElementById('buyerBank').innerText = document.getElementById('billBuyerBank').value || customer.bank || '';
+
+// 2. INVOICE DETAIL
+document.getElementById('invoiceNo').innerText = 'KM' + Date.now().toString().slice(-6);
+document.getElementById('invoiceDate').innerText = new Date().toLocaleDateString('en-IN');
+document.getElementById('vehicleNo').innerText = document.getElementById('billVehicleNo').value || customer.vehicle || ''; // vehicle -> vehicleNo
+
+  
+    // 3. ITEM TABLE
+    let tbody = document.getElementById('itemTableBody');
+    tbody.innerHTML = '';
+    currentBillItems.forEach((item, i) => {
+        let amount = item.qty * item.rate;
+        let gstRate = item.gst || 0;
+        let cgst = (amount * gstRate/2) / 100;
+        let sgst = (amount * gstRate/2) / 100;
+        
+        total += amount;
+        totalCGST += cgst;
+        totalSGST += sgst;
+        
+        tbody.innerHTML += `<tr>
+            <td style="border:1px solid #000; padding:4px;">${i+1}</td>
+            <td style="border:1px solid #000; padding:4px;">${item.name}</td>
+            <td style="border:1px solid #000; padding:4px;">${item.hsn}</td>
+            <td style="border:1px solid #000; padding:4px;">${item.bags}</td>
+            <td style="border:1px solid #000; padding:4px;">${item.qty} Kg</td>
+            <td style="border:1px solid #000; padding:4px;">₹${item.rate}</td>
+            <td style="border:1px solid #000; padding:4px;">${gstRate}%</td>
+            <td style="border:1px solid #000; padding:4px;">₹${amount.toFixed(2)}</td>
+        </tr>`;
+    });
+    
+    // 4. TOTAL
+    document.getElementById('subTotal').innerText = '₹' + total.toFixed(2);
+    document.getElementById('totalCGST').innerText = '₹' + totalCGST.toFixed(2);
+    document.getElementById('totalSGST').innerText = '₹' + totalSGST.toFixed(2);
+    document.getElementById('grandTotal').innerText = '₹' + (total + totalCGST + totalSGST).toFixed(2);
+
+  
+    saveBillToHistory();
+  }
+
+  // BILL KHOLTE HAI
+function openBillModal() {
+    currentBillItems = []; // SABSE PEHLE KHALI KARO
+    renderBillItems(); // Table bhi khali karo
+    
+    const modal = document.getElementById('billModal');
+    const customerSelect = document.getElementById('billCustomerSelect');
+
+    document.getElementById('billVehicleNo').value = '';
+    document.getElementById('billBuyerBank').value = '';
+    
+    // Customer list
+    customerSelect.innerHTML = '<option value="cash">Cash Customer</option>';
+    if(appState && appState.customers && appState.customers.length > 0) {
+        appState.customers.forEach(c => {
+            customerSelect.innerHTML += `<option value="${c.id}">${c.name} - ${c.phone}</option>`;
+        });
+    }
+    
+    generateBillPreview(); // 0 ka bill banega
+    modal.style.display = 'flex';
+}
+
+  function saveBillToHistory() {
+    const customerId = document.getElementById('billCustomerSelect').value;
+    if(!customerId || customerId === 'cash') return;
+
+    const customer = appState.customers.find(c => c.id === customerId);
+    if(!customer) return;
+
+    const grandTotal = parseFloat(document.getElementById('grandTotal').innerText.replace('₹',''));
+    if(grandTotal === 0) return;
+
+    // YE SARI INFO EK SAATH SAVE KARO
+    const billTransaction = {
+        id: 'BILL_' + Date.now(),
+        type: 'bill',
+        customerId: customerId,
+        amount: grandTotal,
+        date: new Date().toISOString().split('T')[0],
+        
+        // NAYE FIELDS
+        invoiceNo: document.getElementById('invoiceNo').innerText,
+        vehicleNo: document.getElementById('vehicleNo').innerText,
+        paymentMode: document.getElementById('billPaymentMode')?.value || 'Cash', // agar dropdown hai to
+        items: currentBillItems, // pura item array: name, hsn, qty, rate, gst, bags
+        company: appState.company // company gst, pan bhi
+    };
+
+    appState.transactions.push(billTransaction);
+    customer.balance = (customer.balance || 0) + billTransaction.amount;
+
+    saveData();
+    updateUI();
+}
+  
+// ==================== LOAD + SAVE - FIREBASE ====================
+let cloudReady = false;
+let cloudSaveQueue = Promise.resolve();
+let cloudLoadError = null;
+
+function normalizeAppData(data) {
+  const base = {
+    company: { name: '', address: '', gst: '', pan: '', bank: '', upi: '', mobile: '', email: '' },
+    customers: [], transactions: [], photos: [],
+    settings: { darkMode: false, language: 'hi', autoReminder: false }
+  };
+  const value = data && typeof data === 'object' ? data : {};
+  return {
+    ...base, ...value,
+    company: { ...base.company, ...(value.company || {}) },
+    settings: { ...base.settings, ...(value.settings || {}) },
+    customers: Array.isArray(value.customers) ? value.customers : [],
+    transactions: Array.isArray(value.transactions) ? value.transactions : [],
+    photos: Array.isArray(value.photos) ? value.photos : []
+  };
+}
+
+// Existing cloud records are retained; records are matched by ID.
+function mergeAppData(existingData, incomingData, incomingWins) {
+  const existing = normalizeAppData(existingData);
+  const incoming = normalizeAppData(incomingData);
+  function mergeList(oldList, newList) {
+    const result = [...oldList];
+    const positions = new Map();
+    result.forEach((item, index) => { if (item && item.id != null) positions.set(String(item.id), index); });
+    newList.forEach(item => {
+      if (!item || item.id == null) { result.push(item); return; }
+      const key = String(item.id);
+      if (positions.has(key)) {
+        if (incomingWins) result[positions.get(key)] = item;
+      } else { positions.set(key, result.length); result.push(item); }
+    });
+    return result;
+  }
+  return {
+    ...(incomingWins ? { ...existing, ...incoming } : { ...incoming, ...existing }),
+    company: incomingWins ? { ...existing.company, ...incoming.company } : { ...incoming.company, ...existing.company },
+    settings: incomingWins ? { ...existing.settings, ...incoming.settings } : { ...incoming.settings, ...existing.settings },
+    customers: mergeList(existing.customers, incoming.customers),
+    transactions: mergeList(existing.transactions, incoming.transactions),
+    photos: mergeList(existing.photos, incoming.photos),
+    billsGenerated: Math.max(Number(existing.billsGenerated || 0), Number(incoming.billsGenerated || 0))
+  };
+}
+
+async function cloudRestore() {
+  cloudReady = false;
+  const status = document.getElementById('authGateStatus');
+  if (status) status.textContent = 'आपका Cloud Data सुरक्षित रूप से लोड हो रहा है…';
+  const user = firebase.auth().currentUser;
+  if (!user) return;
+  const ref = firebase.database().ref('users/' + user.uid);
+  try {
+    const snapshot = await ref.once('value');
+    const cloudData = snapshot.exists() ? normalizeAppData(snapshot.val()) : normalizeAppData({});
+    // Same-origin पुराना local backup हो तो उसे केवल merge करें; हटाएँ नहीं।
+    let oldLocal = null;
+    try {
+      const raw = localStorage.getItem('khataMitraPro');
+      if (raw) oldLocal = normalizeAppData(JSON.parse(raw));
+    } catch (e) { console.warn('Old local data could not be read:', e); }
+    let combined = oldLocal ? mergeAppData(cloudData, oldLocal, false) : cloudData;
+    // Transaction के कारण load के बीच आया Cloud Data भी सुरक्षित रहता है।
+    const result = await ref.transaction(latest => mergeAppData(latest || {}, combined, false));
+    if (!result.committed) throw new Error('Cloud merge पूरा नहीं हुआ');
+    appState = normalizeAppData(result.snapshot.val());
+    cloudReady = true;
+    cloudLoadError = null;
+    if (appState.settings.language) currentLanguage = appState.settings.language;
+    if (appState.settings.darkMode) document.body.classList.add('dark-mode');
+    setLanguage(appState.settings.language || 'hi');
+    loadSettings();
+    updateUI();
+    document.body.classList.add('authenticated');
+    const gate = document.getElementById('authGate');
+    if (gate) gate.style.display = 'none';
+    const backupStatus = document.getElementById('backupStatus');
+    if (backupStatus) backupStatus.innerText = '☁️ Cloud connected';
+  } catch (error) {
+    cloudReady = false;
+    cloudLoadError = error;
+    console.error('CLOUD RESTORE ERROR:', error);
+    document.body.classList.remove('authenticated');
+    if (status) status.textContent = 'Cloud Data लोड नहीं हुआ: ' + (error.message || error) + '। Internet और Firebase Rules जाँचें, फिर दोबारा Login करें।';
+    throw error;
+  }
+}
+
+function saveData() {
+  if (!cloudReady || !window.currentUser || !navigator.onLine) return;
+  const uid = window.currentUser.uid;
+  const outgoing = normalizeAppData(appState);
+  cloudSaveQueue = cloudSaveQueue.then(async () => {
+    if (!cloudReady || !window.currentUser || window.currentUser.uid !== uid) return;
+    const ref = firebase.database().ref('users/' + uid);
+    const result = await ref.transaction(latest => mergeAppData(latest || {}, outgoing, true));
+    if (!result.committed) throw new Error('Cloud save transaction cancelled');
+    const el = document.getElementById('backupStatus');
+    if (el) el.innerText = '☁️ Backup: ' + new Date().toLocaleTimeString();
+  }).catch(error => {
+    console.error('CLOUD SAVE ERROR:', error);
+    const el = document.getElementById('backupStatus');
+    if (el) el.innerText = '⚠️ Cloud save failed';
+  });
+  return cloudSaveQueue;
+}
+
+function loadData() {
+  // Data अब केवल सफल Google Login और Cloud Restore के बाद खुलेगा।
+  return cloudRestore();
+}
+
+// ==================== SETTINGS FUNCTIONS ====================
+function loadSettings() {
+    document.getElementById('companyName').value = appState.company.name || '';
+    document.getElementById('companyAddress').value = appState.company.address || '';
+    document.getElementById('companyGST').value = appState.company.gst || '';
+    document.getElementById('companyPAN').value = appState.company.pan || '';
+    document.getElementById('companyBank').value = appState.company.bank || '';
+    document.getElementById('companyUPI').value = appState.company.upi || '';
+  document.getElementById('companyMobile').value = appState.company.mobile || '';
+    document.getElementById('companyEmail').value = appState.company.email || '';
+}
+
+function saveSettings() {
+    appState.company.name = document.getElementById('companyName').value;
+    appState.company.address = document.getElementById('companyAddress').value;
+    appState.company.gst = document.getElementById('companyGST').value.toUpperCase();
+    appState.company.pan = document.getElementById('companyPAN').value.toUpperCase();
+    appState.company.bank = document.getElementById('companyBank').value;
+    appState.company.upi = document.getElementById('companyUPI').value;
+    appState.company.mobile = document.getElementById('companyMobile').value;
+    appState.company.email = document.getElementById('companyEmail').value;
+      saveData();
+    alert('सेटिंग्स सेव हो गई');
+}
+
+
+
+function showBillDetail(billId) {
+    const bill = appState.transactions.find(t => t.id === billId);
+    if(!bill) return;
+
+    // Bill ka HTML banayenge
+    let itemsHtml = bill.items.map((item, i) => `
+        <tr>
+            <td>${i+1}</td>
+            <td>${item.name}</td>
+            <td>${item.hsn || '-'}</td>
+            <td>${item.bags || '-'}</td>
+            <td>${item.qty}</td>
+            <td>₹${item.rate}</td>
+            <td>${item.gst}%</td>
+            <td>₹${item.total}</td>
+        </tr>
+    `).join('');
+
+    const html = `
+        <div style="padding:15px; max-height:80vh; overflow-y:auto;">
+            <h3 style="text-align:center; margin-bottom:10px;">${appState.company.name}</h3>
+            <p style="text-align:center; font-size:12px;">GST: ${appState.company.gst} | PAN: ${appState.company.pan}</p>
+            <hr>
+            <p><b>Bill No:</b> ${bill.invoiceNo || bill.id} 
+               <b style="float:right;">Date:</b> ${formatDate(bill.date)}</p>
+            <p><b>Customer:</b> ${appState.customers.find(c=>c.id===bill.customerId)?.name}</p>
+            <p><b>Vehicle No:</b> ${bill.vehicleNo || '-'} 
+               <b style="float:right;">Payment:</b> ${bill.paymentMode || 'Cash'}</p>
+            <hr>
+            <table style="width:100%; font-size:12px; border-collapse:collapse;">
+                <tr style="background:#f2f2f2;">
+                    <th>#</th><th>Item</th><th>HSN</th><th>Bags</th><th>Qty</th><th>Rate</th><th>GST</th><th>Total</th>
+                </tr>
+                ${itemsHtml}
+            </table>
+            <hr>
+            <h4 style="text-align:right;">Grand Total: ₹${bill.amount.toFixed(2)}</h4>
+            <button onclick="closeModal('billViewModal')" class="btn btn-primary" style="width:100%; margin-top:10px;">बंद करें</button>
+        </div>
+    `;
+
+    document.getElementById('billViewContent').innerHTML = html;
+    document.getElementById('billViewModal').classList.add('active');
+}
+
+  
+// ==================== UI UPDATE FUNCTIONS ====================
+function updateUI() {
+  updateDashboard();
+  updateCustomerList();
+  updateRecentTransactions();
+  updateAllTransactions();
+  updateReports();
+}
+
+function updateDashboard() {
+  document.getElementById('totalCustomers').textContent = appState.customers.length;
+  let totalUdhar = 0, totalJama = 0;
+  appState.customers.forEach(c => {
+    if (c.balance > 0) totalUdhar += c.balance;
+    else totalJama += Math.abs(c.balance);
+  });
+  document.getElementById('totalUdhar').textContent = '₹' + totalUdhar;
+  document.getElementById('totalJama').textContent = '₹' + totalJama;
+  document.getElementById('netBalance').textContent = '₹' + (totalUdhar - totalJama);
+}
+
+// App data is loaded only by Firebase Auth after successful login.
+
+
+    function updateCustomerList() {
+      const list = document.getElementById('customerList');
+      const searchTerm = document.getElementById('customerSearch')?.value.toLowerCase() || '';
+      
+      const filtered = appState.customers.filter(c => 
+        c.name.toLowerCase().includes(searchTerm) || 
+        (c.phone && c.phone.includes(searchTerm))
+      );
+      
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-users"></i>
+            <p data-hi="कोई ग्राहक नहीं मिला" data-en="No customers found">कोई ग्राहक नहीं मिला</p>
+          </div>
+        `;
+        return;
+      }
+      
+      list.innerHTML = filtered.map(customer => `
+        <div class="customer-card" onclick="viewCustomer('${customer.id}')">
+          <div class="customer-info">
+            <h3>${customer.name}</h3>
+            <p>📞 ${customer.phone || (currentLanguage === 'hi' ? 'नंबर नहीं' : 'No number')}</p>
+          </div>
+          <div class="customer-balance ${customer.balance >= 0 ? 'balance-positive' : 'balance-negative'}">
+            ${customer.balance >= 0 ? '₹' + customer.balance : '-₹' + Math.abs(customer.balance)}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateRecentTransactions() {
+      const recent = document.getElementById('recentTransactions');
+      const transactions = [...appState.transactions].reverse().slice(0, 5);
+      
+      if (transactions.length === 0) {
+        recent.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-exchange-alt"></i>
+            <p data-hi="कोई लेन-देन नहीं" data-en="No transactions">कोई लेन-देन नहीं</p>
+          </div>
+        `;
+        return;
+      }
+      
+      recent.innerHTML = transactions.map(t => {
+        const customer = appState.customers.find(c => c.id === t.customerId);
+        const typeText = t.type === 'udhar' 
+          ? (currentLanguage === 'hi' ? 'उधार दिया' : 'Gave')
+          : (currentLanguage === 'hi' ? 'जमा लिया' : 'Received');
+        
+        return `
+          <div class="transaction-item" onclick="viewCustomer('${t.customerId}')">
+            <div class="transaction-info">
+              <div class="transaction-icon ${t.type === 'udhar' ? 'icon-udhar' : 'icon-jama'}">
+                <i class="fas ${t.type === 'udhar' ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
+              </div>
+              <div class="transaction-details">
+                <h4>${customer?.name || 'Unknown'}</h4>
+                <p>${t.note || (currentLanguage === 'hi' ? 'कोई विवरण नहीं' : 'No description')} • ${formatDate(t.date)}</p>
+              </div>
+            </div>
+            <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
+              ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateAllTransactions() {
+      const container = document.getElementById('allTransactions');
+      const searchTerm = document.getElementById('historySearch')?.value.toLowerCase() || '';
+      
+      let filtered = [...appState.transactions].reverse();
+      
+      if (searchTerm) {
+        filtered = filtered.filter(t => {
+          const customer = appState.customers.find(c => c.id === t.customerId);
+          return customer?.name.toLowerCase().includes(searchTerm) || 
+                 (t.note && t.note.toLowerCase().includes(searchTerm));
+        });
+      }
+      
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-history"></i>
+            <p data-hi="कोई लेन-देन नहीं" data-en="No transactions">कोई लेन-देन नहीं</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = filtered.map(t => {
+        const customer = appState.customers.find(c => c.id === t.customerId);
+        const typeText = t.type === 'udhar' 
+          ? (currentLanguage === 'hi' ? 'उधार' : 'Gave')
+          : (currentLanguage === 'hi' ? 'जमा' : 'Received');
+        
+        return `
+          <div class="transaction-item" onclick="viewCustomer('${t.customerId}')">
+            <div class="transaction-info">
+              <div class="transaction-icon ${t.type === 'udhar' ? 'icon-udhar' : 'icon-jama'}">
+                <i class="fas ${t.type === 'udhar' ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
+              </div>
+              <div class="transaction-details">
+                <h4>${customer?.name || 'Unknown'}</h4>
+                <p>${t.note || ''} • ${t.mode || 'cash'} • ${formatDate(t.date)}</p>
+              </div>
+            </div>
+            <div class="transaction-amount ${t.type === 'udhar' ? 'balance-negative' : 'balance-positive'}">
+              ${t.type === 'udhar' ? '-' : '+'} ₹${t.amount}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateReports() {
+      const month = document.getElementById('reportMonth')?.value || '3';
+      const year = document.getElementById('reportYear')?.value || '2024';
+      
+      const monthlyTransactions = appState.transactions.filter(t => {
+        const [y, m] = t.date.split('-');
+        return y === year && m === month.padStart(2, '0');
+      });
+      
+      let monthlyUdhar = 0, monthlyJama = 0;
+      monthlyTransactions.forEach(t => {
+        if (t.type === 'udhar') monthlyUdhar += t.amount;
+        else monthlyJama += t.amount;
+      });
+      
+      document.getElementById('monthlyUdhar').textContent = '₹' + monthlyUdhar;
+      document.getElementById('monthlyJama').textContent = '₹' + monthlyJama;
+      
+      // Update chart
+      updateChart(monthlyTransactions);
+    }
+
+    // Chart instance
+    let monthlyChart = null;
+
+    function updateChart(transactions) {
+      const ctx = document.getElementById('monthlyChart').getContext('2d');
+      
+      // Group by date
+      const dailyData = {};
+      transactions.forEach(t => {
+        const day = t.date.split('-')[2];
+        if (!dailyData[day]) {
+          dailyData[day] = { udhar: 0, jama: 0 };
+        }
+        if (t.type === 'udhar') dailyData[day].udhar += t.amount;
+        else dailyData[day].jama += t.amount;
+      });
+      
+      const days = Object.keys(dailyData).sort((a, b) => parseInt(a) - parseInt(b));
+      const udharData = days.map(d => dailyData[d].udhar);
+      const jamaData = days.map(d => dailyData[d].jama);
+      
+      if (monthlyChart) {
+        monthlyChart.destroy();
+      }
+      
+      monthlyChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: days.map(d => d + (currentLanguage === 'hi' ? ' तारीख' : '')),
+          datasets: [
+            {
+              label: currentLanguage === 'hi' ? 'उधार दिया' : 'Given',
+              data: udharData,
+              backgroundColor: '#e53935',
+              borderRadius: 8
+            },
+            {
+              label: currentLanguage === 'hi' ? 'जमा लिया' : 'Received',
+              data: jamaData,
+              backgroundColor: '#2ec4b6',
+              borderRadius: 8
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: value => '₹' + value
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // ==================== MODAL FUNCTIONS ====================
+    function openQuickMenu() {
+      document.getElementById('quickMenuModal').classList.add('active');
+    }
+
+    function openAddModal(type) {
+      closeModal('quickMenuModal');
+      
+      if (type === 'customer') {
+        document.getElementById('addCustomerModal').classList.add('active');
+      } else if (type === 'udhar' || type === 'jama') {
+        const title = document.getElementById('transactionModalTitle');
+        title.textContent = type === 'udhar' 
+          ? (currentLanguage === 'hi' ? 'उधार दें' : 'Give Money')
+          : (currentLanguage === 'hi' ? 'जमा करें' : 'Receive Money');
+        
+        document.getElementById('saveTransactionBtn').setAttribute('data-type', type);
+        
+        // Populate customer dropdown
+        const select = document.getElementById('transactionCustomer');
+        select.innerHTML = '<option value="">' + 
+          (currentLanguage === 'hi' ? 'ग्राहक चुनें' : 'Select Customer') + 
+          '</option>' + 
+          appState.customers.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+        
+        // Set today's date
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('transactionDate').value = today;
+        
+        // Clear photo preview
+        document.getElementById('photoPreview').innerHTML = '';
+        
+        document.getElementById('addTransactionModal').classList.add('active');
+      }
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    // ==================== PHOTO FUNCTIONS ====================
+    function previewTransactionPhoto(event) {
+      const preview = document.getElementById('photoPreview');
+      preview.innerHTML = '';
+      
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.width = '100px';
+          img.style.height = '100px';
+          img.style.objectFit = 'cover';
+          img.style.borderRadius = '10px';
+          preview.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function savePhoto(transactionId, file, caption) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const photo = {
+            id: Date.now().toString(),
+            transactionId: transactionId,
+            data: e.target.result,
+            caption: caption || '',
+            date: new Date().toISOString()
+          };
+          
+          if (!appState.photos) appState.photos = [];
+          appState.photos.push(photo);
+          resolve(photo);
+        }
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function getTransactionPhotos(transactionId) {
+      return appState.photos?.filter(p => p.transactionId === transactionId) || [];
+    }
+
+    function getCustomerPhotos(customerId) {
+      const transactionIds = appState.transactions
+        .filter(t => t.customerId === customerId)
+        .map(t => t.id);
+      
+      return appState.photos?.filter(p => transactionIds.includes(p.transactionId)) || [];
+    }
+
+    function deletePhoto(photoId) {
+      if (appState.photos) {
+        appState.photos = appState.photos.filter(p => p.id !== photoId);
+        saveData();
+        
+        // Refresh customer detail if open
+        const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
+        if (customerId) {
+          viewCustomer(customerId);
+        }
+        
+        showToast(currentLanguage === 'hi' ? 'फोटो हटा दी गई' : 'Photo deleted');
+      }
+    }
+
+    function openZoom(imageSrc, caption) {
+      document.getElementById('zoomImage').src = imageSrc;
+      document.getElementById('zoomCaption').textContent = caption || '';
+      document.getElementById('zoomModal').classList.add('active');
+    }
+
+    function closeZoom() {
+      document.getElementById('zoomModal').classList.remove('active');
+    }
+
+    // ==================== CRUD OPERATIONS ====================
+    function addCustomer() {
+  const name = document.getElementById('newCustomerName').value.trim();
+  const phone = document.getElementById('newCustomerPhone').value.trim();
+  const address = document.getElementById('newCustomerAddress').value.trim();
+  const gst = document.getElementById('newCustomerGST').value.trim().toUpperCase();
+  const pan = document.getElementById('newCustomerPAN').value.trim().toUpperCase();
+  const vehicle = document.getElementById('newCustomerVehicle').value.trim().toUpperCase();
+  const bank = document.getElementById('newCustomerBank').value.trim();
+  const email = document.getElementById('newCustomerEmail').value.trim(); // NAYA
+  const paymentMode = document.getElementById('newCustomerPaymentMode').value; // NAYA
+
+     if (!name) {
+        showToast(currentLanguage === 'hi' ? 'नाम दर्ज करें' : 'Enter name', 'error');
+        return;
+      }
+      
+      const newCustomer = {
+        id: Date.now().toString(),
+        name,
+        phone,
+        address,
+        gst,        // <-- Naya add kiya
+        pan,        // <-- Naya add kiya  
+        vehicle,    // <-- Naya add kiya
+        bank,       // <-- Naya add kiya
+      email,
+        paymentMode,
+        balance: 0,
+        createdAt: new Date().toISOString()
+      };
+      
+      appState.customers.push(newCustomer);
+      saveData();
+      updateUI();
+      
+      closeModal('addCustomerModal');
+      showToast(currentLanguage === 'hi' ? 'ग्राहक जोड़ दिया गया' : 'Customer added');
+      
+      // Clear form - sab field clear
+      document.getElementById('newCustomerName').value = '';
+      document.getElementById('newCustomerPhone').value = '';
+      document.getElementById('newCustomerAddress').value = '';
+      document.getElementById('newCustomerGST').value = '';
+      document.getElementById('newCustomerPAN').value = '';
+      document.getElementById('newCustomerVehicle').value = '';
+      document.getElementById('newCustomerBank').value = '';
+      document.getElementById('newCustomerEmail').value = '';
+document.getElementById('newCustomerPaymentMode').value = 'cash';
+    }
+
+    
+   
+  async function saveTransaction() {
+  const customerId = document.getElementById('transactionCustomer').value;
+  const amount = parseFloat(document.getElementById('transactionAmount').value);
+  const note = document.getElementById('transactionNote').value.trim();
+  const date = document.getElementById('transactionDate').value;
+  const mode = document.getElementById('transactionMode').value;
+  const type = document.getElementById('saveTransactionBtn').getAttribute('data-type');
+  const photoFile = document.getElementById('transactionPhoto').files[0];
+
+  // YAHAN SE EMAIL WALA HATA DE - YE TRANSACTION ME NAHI AATA
+
+  if (!customerId) {
+    showToast(currentLanguage === 'hi'? 'ग्राहक चुनें' : 'Select customer', 'error');
+    return;
+  }
+
+  if (!amount || amount <= 0) {
+    showToast(currentLanguage === 'hi'? 'सही राशि दर्ज करें' : 'Enter valid amount', 'error');
+    return;
+  }
+
+  document.getElementById('loadingSpinner').style.display = 'block';
+
+  // 1. PEHLE CUSTOMER UTHAO
+  const customer = appState.customers.find(c => c.id === customerId);
+  if(!customer){
+    showToast('Customer nahi mila', 'error');
+    return;
+  }
+
+  // 2. PREVIOUS BALANCE SAVE KAR LO
+  const previousBalance = customer.balance;
+
+  // 3. BALANCE UPDATE KARO
+  if (type === 'udhar') {
+    customer.balance += amount;
+  } else {
+    customer.balance -= amount;
+  }
+
+  // 4. TRANSACTION OBJECT BANAO 🔥 YE MISSING THA
+  const transaction = {
+    id: Date.now().toString(),
+    customerId,
+    type,
+    amount,
+    note,
+    date,
+    mode,
+    previousBalance, // RECEIPT KE LIYE ZARURI
+    createdAt: new Date().toISOString()
+  };
+
+  appState.transactions.push(transaction);
+
+  // 5. PHOTO SAVE
+  if (photoFile) {
+    await savePhoto(transaction.id, photoFile, note);
+  }
+
+  saveData();
+  updateUI();
+
+  document.getElementById('loadingSpinner').style.display = 'none';
+
+  closeModal('addTransactionModal');
+  showToast(currentLanguage === 'hi'? 'लेन-देन सेव हो गया' : 'Transaction saved');
+
+  // 6. FORM CLEAR
+  document.getElementById('transactionAmount').value = '';
+  document.getElementById('transactionNote').value = '';
+  document.getElementById('transactionPhoto').value = '';
+  document.getElementById('photoPreview').innerHTML = '';
+}
+
+    // ==================== CUSTOMER DETAILS ====================
+    function viewCustomer(customerId) {
+    const customer = appState.customers.find(c => c.id === customerId);
+    if (!customer) return;
+
+    // Store for filter
+    window.currentCustomerId = customerId;
+
+    document.getElementById('detailCustomerName').textContent = customer.name;
+    document.getElementById('detailBalance').textContent = '₹' + Math.abs(customer.balance || 0);
+    document.getElementById('detailPhone').textContent = customer.phone || '-';
+
+    
+    // =================================
+document.getElementById('detailGST').textContent = customer.gst || '-';
+document.getElementById('detailPAN').textContent = customer.pan || '-';
+document.getElementById('detailEmail').textContent = customer.email || '-'; // NAYA
+document.getElementById('detailBank').textContent = customer.bank || '-';
+document.getElementById('detailVehicle').textContent = customer.vehicle || '-';
+document.getElementById('detailPaymentMode').textContent = 
+  customer.paymentMode === 'upi' ? 'UPI' : 
+  customer.paymentMode === 'bank' ? 'Bank' : 'Cash'; // NAYA
+      
+      // Show customer photos
+    const photos = getCustomerPhotos(customerId);
+    const photosContainer = document.getElementById('customerPhotos');
+    if (photos.length > 0) {
+      photosContainer.innerHTML = photos.map(photo => `
+        <div class="gallery-item">
+          <img src="${photo.data}" onclick="openZoom('${photo.data}', '${photo.caption}')">
+          <div class="caption">${photo.caption || ''}</div>
+          <div class="delete-photo" onclick="event.stopPropagation(); deletePhoto('${photo.id}')">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      photosContainer.innerHTML = `<p style="color: var(--gray); text-align: center; grid-column: span 3;" data-hi="कोई फोटो नहीं" data-en="No photos">कोई फोटो नहीं</p>`;
+    }
+
+    // YE WALI 3 LINE HATA DE - KYUKI BUTTON AB HTML ME HAIN
+    // const txHeader = document.querySelector('#customerTransactions').parentElement.querySelector('h4');
+    // txHeader.insertAdjacentHTML('beforebegin', `...`);
+
+    renderCustomerTransactions('all'); // Pehli baar all dikhao
+
+    // Store customer ID for actions
+    document.getElementById('customerDetailModal').setAttribute('data-customer-id', customerId);
+    document.getElementById('customerDetailModal').classList.add('active');
+}
+
+// 1. FILTER KE LIYE
+function filterCustomerTx(type) {
+    renderCustomerTransactions(type);
+}
+
+function printPaymentReceipt() {
+  try {
+    const txId = document.getElementById('paymentViewModal').getAttribute('data-tx-id');
+    if(!txId) throw new Error("Transaction ID nahi mila");
+
+    const t = appState.transactions.find(x => x.id === txId);
+    if(!t) throw new Error("Transaction nahi mila");
+
+    const customer = appState.customers.find(c => c.id === t.customerId);
+    if(!customer) throw new Error("Customer nahi mila");
+
+    const company = document.getElementById('companyName')?.value || 'KhataMitra';
+
+    // 1. SIRF PLAIN TEXT BANAO - KOI HTML TAG NAHI
+    let receipt = company + "\n";
+    receipt += "PAYMENT RECEIPT\n";
+    receipt += "========================\n\n";
+    receipt += "Customer: " + customer.name + "\n";
+    receipt += "Mobile: " + (customer.phone || '-') + "\n";
+    receipt += "Date: " + formatDate(t.date) + "\n";
+    receipt += "Type: " + (t.type === 'udhar'? 'उधार दिया' : 'जमा लिया') + "\n";
+    receipt += "Amount: Rs " + Number(t.amount).toFixed(2) + "\n";
+    receipt += "Previous Balance: Rs " + Number(t.previousBalance || 0).toFixed(2) + "\n";
+    receipt += "Current Balance: Rs " + Number(customer.balance).toFixed(2) + "\n";
+    receipt += "Note: " + (t.note || '-') + "\n";
+    receipt += "Payment Mode: " + (t.mode || '-') + "\n\n";
+    receipt += "========================\n";
+    receipt += "Powered by Khata Mitra Pro";
+
+    // 2. BLOB BANAO - TEXT FILE
+    const blob = new Blob([receipt], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    // 3. LINK BANAKE CLICK KARWA DO - AppCrater isko pakad lega
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Receipt_${customer.name}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showToast('Receipt Download ho gaya. File Manager me kholo', 'success');
+
+  } catch(err) {
+    console.error(err);
+    showErrorPopup('Print Error', err.message);
+  }
+}
+
+  
+function sharePaymentWhatsApp() {
+  const txId = document.getElementById('paymentViewModal').getAttribute('data-tx-id');
+  const t = appState.transactions.find(x => x.id === txId);
+  const customer = appState.customers.find(c => c.id === t.customerId);
+  
+  let phone = (customer.phone || '').replace(/\D/g,'');
+  if(phone.length === 10) phone = '91' + phone;
+
+  let typeText = t.type === 'udhar' ? 'उधार दिया' : 'जमा लिया';
+  
+  let msg = `*${document.getElementById('companyName')?.value || 'KhataMitra'} Receipt*\n\n`;
+  msg += `*${typeText}:* ₹${Number(t.amount).toFixed(2)}\n`;
+  msg += `*Customer:* ${customer.name}\n`;
+  msg += `*Mobile:* ${customer.phone}\n`;
+  msg += `*Date:* ${formatDate(t.date)}\n`;
+  msg += `*Note:* ${t.note || '-'}\n`;
+  msg += `*Current Balance:* ₹${Number(customer.balance).toFixed(2)}`;
+
+  let whatsappURL = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(msg)}`;
+  let webURL = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+  // AppCrater ke liye trick
+  window.location.href = whatsappURL; 
+  
+  // Agar 2 sec me app nahi khula to web pe bhej do
+  setTimeout(() => {
+    window.open(webURL, '_blank');
+  }, 2000);
+}
+  
+function renderCustomerTransactions(filter = 'all') {
+  const customerId = window.currentCustomerId;
+  let transactions = appState.transactions.filter(t => t.customerId === customerId);
+
+  // FILTER LAGA
+  if(filter === 'payment') {
+    transactions = transactions.filter(t => t.type === 'udhar' || t.type === 'jama');
+  }
+  if(filter === 'bill') {
+    transactions = transactions.filter(t => t.type === 'bill');
+  }
+  // 'all' me kuch nahi karna
+
+  transactions.reverse(); // Naya upar
+
+  const container = document.getElementById('customerTransactions');
+
+  if (transactions.length === 0) {
+    container.innerHTML = `<div class="empty-state"><i class="fas fa-exchange-alt"></i><p data-hi="कोई लेन-देन नहीं" data-en="No transactions">कोई लेन-देन नहीं</p></div>`;
+    return;
+  }
+
+  // MAP CHALAO
+  container.innerHTML = transactions.map(t => {
+    const hasPhoto = getTransactionPhotos(t.id).length > 0;
+
+    // AGAR BILL HAI TO ALAG CARD
+    if(t.type === 'bill') {
+      return `
+        <div class="transaction-item" style="border-left: 4px solid #2196F3; cursor:pointer;" onclick="showBillDetail('${t.id}')">
+          <div class="transaction-info">
+            <div class="transaction-icon" style="background: #E3F2FD; color: #2196F3;">
+              <i class="fas fa-file-invoice"></i>
+            </div>
+            <div class="transaction-details">
+              <h4>🧾 Bill No: ${t.invoiceNo || t.id.slice(-6)}</h4>
+              <p>${t.items ? t.items.length : 0} Items • ${t.vehicleNo || '-'} • ${formatDate(t.date)}</p>
+            </div>
+          </div>
+          <div class="transaction-amount balance-negative">
+            ₹${t.amount.toFixed(2)}
+          </div>
+        </div>
+      `;
+    }
+
+    // VARNA UDHAR/JAMA WALA CARD - ONCLICK HATA DIYA
+    return `
+      <div class="transaction-item payment-open-btn" data-id="${t.id}" style="cursor:pointer;">
+        <div class="transaction-info">
+          <div class="transaction-icon ${t.type === 'udhar'? 'icon-udhar' : 'icon-jama'}">
+            <i class="fas ${t.type === 'udhar'? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
+          </div>
+          <div class="transaction-details">
+            <h4>${t.type === 'udhar'
+             ? (currentLanguage === 'hi'? 'उधार दिया' : 'Gave')
+              : (currentLanguage === 'hi'? 'जमा लिया' : 'Received')}
+              ${hasPhoto? ' 📸' : ''}</h4>
+            <p>${t.note || ''} • ${formatDate(t.date)}</p>
+          </div>
+        </div>
+        <div class="transaction-amount ${t.type === 'udhar'? 'balance-negative' : 'balance-positive'}">
+          ${t.type === 'udhar'? '-' : '+'} ₹${t.amount.toFixed(2)}
+        </div>
+      </div>
+    `;
+  }).join(''); // 🔥 YE JOIN ZAROORI HAI
+
+  // CLICK LISTENER LAGAO - JOIN KE BAAD
+  document.querySelectorAll('.payment-open-btn').forEach(btn => {
+    btn.onclick = function() {
+      const id = this.getAttribute('data-id');
+      showToast('Khul rahi...', 'success'); // Test toast
+      openPaymentViewModal(id);
+    };
+  });
+  
+} // FUNCTION BAND
+
+function viewPayment(transactionId) {
+  try {
+    // 1. DATA NIKALO
+    const t = appState.transactions.find(x => x.id === transactionId);
+    const customer = appState.customers.find(c => c.id === t?.customerId);
+    if(!t ||!customer) throw new Error('Data nahi mila');
+
+    let isUdhar = t.type === 'udhar';
+
+    // COMPANY SETTINGS SE
+    let companyName = document.getElementById('companyName')?.value || 'Khata Mitra';
+    let companyAddress = document.getElementById('companyAddress')?.value || '';
+    let companyMobile = document.getElementById('companyMobile')?.value || '';
+    let companyUPI = document.getElementById('companyUPI')?.value || '';
+
+    // 2. RECEIPT KA HTML - TERA WALA DESIGN
+    let receiptContent = `
+      <div style="padding:20px; font-family: 'Poppins', Arial, sans-serif; color:#333; max-width:400px; margin:auto; background:#fff; border:1px dashed #ccc;">
+
+        <div style="text-align:center; border-bottom:2px solid #000; padding-bottom:10px; margin-bottom:15px;">
+          <h2 style="margin:5px 0; font-size:22px; color:#667eea;">${companyName}</h2>
+          <p style="margin:0; font-size:12px;">${companyAddress}</p>
+          ${companyMobile? `<p style="margin:0; font-size:12px;">Mob: ${companyMobile}</p>` : ''}
+          <h3 style="margin:10px 0 0 0; font-size:16px;">${isUdhar? 'UDHAAR RECEIPT' : 'PAYMENT RECEIPT'}</h3>
+        </div>
+
+        <div style="background:${isUdhar? '#ffeaea' : '#eaffea'}; padding:15px; border-radius:10px; text-align:center; margin-bottom:15px; border:1px solid ${isUdhar? '#f44336' : '#4CAF50'};">
+          <div style="font-size:12px;">${isUdhar? 'UDHAAR DIYA' : 'PAYMENT MILA'}</div>
+          <div style="font-size:32px; font-weight:700; color:${isUdhar? '#f44336' : '#4CAF50'};">
+            ${isUdhar? '-' : '+'} ₹${Number(t.amount).toFixed(2)}
+          </div>
+        </div>
+
+        <table style="width:100%; font-size:14px; margin-bottom:15px; border-collapse:collapse;">
+          <tr><td style="padding:4px 0; width:120px;"><b>Customer:</b></td><td>${customer.name}</td></tr>
+          <tr><td><b>Mobile:</b></td><td>${customer.phone || '-'}</td></tr>
+          <tr><td><b>Address:</b></td><td>${customer.address || '-'}</td></tr>
+          <tr><td><b>Email:</b></td><td>${customer.email || '-'}</td></tr>
+          <tr><td><b>GST:</b></td><td>${customer.gst || '-'}</td></tr>
+          <tr><td><b>PAN:</b></td><td>${customer.pan || '-'}</td></tr>
+          <tr><td><b>Vehicle:</b></td><td>${customer.vehicle || '-'}</td></tr>
+          <tr><td><b>Bank:</b></td><td>${customer.bank || '-'}</td></tr>
+          <tr><td><b>Pay Mode:</b></td><td>${customer.paymentMode === 'upi'? 'UPI' : customer.paymentMode === 'bank'? 'Bank' : 'Cash'}</td></tr>
+          <tr><td><b>Date:</b></td><td>${formatDate(t.date)}</td></tr>
+          <tr><td><b>Receipt No:</b></td><td>#${t.id.slice(-8).toUpperCase()}</td></tr>
+          ${t.note? `<tr><td><b>Note:</b></td><td>${t.note}</td></tr>` : ''}
+        </table>
+
+        ${companyUPI? `<div style="border:1px dashed #999; padding:10px; border-radius:8px; text-align:center; margin:15px 0;"><b>Pay via UPI:</b> ${companyUPI}</div>` : ''}
+
+        <div style="border-top:1px dashed #999; padding-top:10px; margin-top:10px; font-size:14px;">
+          <div style="display:flex; justify-content:space-between;">
+            <span><b>Previous Balance:</b></span>
+            <span>₹${Number(t.previousBalance || 0).toFixed(2)}</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:16px;">
+            <span><b>Current Balance:</b></span>
+            <span style="color:${customer.balance < 0? '#f44336' : '#4CAF50'}; font-weight:700;">₹${Number(customer.balance || 0).toFixed(2)}</span>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:20px; padding-top:10px; border-top:1px dashed #999; font-size:11px;">
+          <p>Thank you! Visit Again</p>
+          <p>Powered by Khata Mitra Pro</p>
+        </div>
+      </div>
+    `;
+
+    // 3. FULL HTML BANAO PRINT BUTTON KE SAATH
+    let fullHTML = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${companyName} Receipt</title>
+        <style>
+            body{background:#f5f5f5; margin:0; padding:10px;}
+           .print-btn{text-align:center; margin:20px 0;}
+           .print-btn button{padding:14px 30px; font-size:16px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;}
+            @media print {.print-btn{display:none;} body{background:#fff; padding:0;}}
+        </style>
+    </head>
+    <body>
+        ${receiptContent}
+        <div class="print-btn">
+            <button onclick="window.print()">🖨️ Print / Save PDF</button>
+        </div>
+        <script>window.onload = function(){ setTimeout(function(){window.print()}, 600); }<\/script>
+    </body>
+    </html>`;
+
+    // 4. BLOB BANAKAR BAHAR KHOLO
+    let blob = new Blob([fullHTML], {type: 'text/html;charset=utf-8'});
+    let url = URL.createObjectURL(blob);
+    window.open(url, '_system'); // AppCrater me yehi chalta hai
+
+    showToast('Receipt khul rahi hai...', 'success');
+
+  } catch(err) {
+    console.error(err);
+    showErrorPopup('Receipt Error', err.message);
+  }
+}
+    
+
+// 2. KHOLNE WALA
+function openPaymentViewModal(transactionId) {
+  try {
+    viewPayment(transactionId);
+    document.getElementById('paymentViewModal').style.display = 'flex'; // flex zaroori
+    document.body.style.overflow = 'hidden';
+  } catch(err) {
+    showErrorPopup('Open Error', err.message);
+  }
+}
+
+// 3. BAND KARNE WALA  
+function closePaymentViewModal() {
+  document.getElementById('paymentViewModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+  showToast('Band kar diya', 'success');
+}
+
+// 4. BAHAR CLICK
+window.addEventListener('click', function(e){
+  if(e.target.id === 'paymentViewModal'){
+    closePaymentViewModal();
+  }
+});
+
+  // MOBILE TOAST - 3 sec ke liye neeche dikhega
+function showToast(msg, type = 'success') {
+  let toast = document.createElement('div');
+  toast.style.cssText = `
+    position:fixed; bottom:80px; left:50%; transform:translateX(-50%);
+    background:${type==='error'?'#f44336':'#4CAF50'}; color:#fff;
+    padding:12px 20px; border-radius:25px; z-index:99999; font-size:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.3); animation:slideUp 0.3s;
+  `;
+  toast.innerText = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// MOBILE ERROR POPUP - Bada error dikhane ke liye
+function showErrorPopup(title, msg) {
+  alert(`❌ ${title}\n\n${msg}\n\nAgar baar baar aa raha hai to refresh maar do`);
+}
+
+  
+    
+      // ==================== PDF EXPORT ====================
+function exportCustomerPDF() {
+  try {
+    const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
+    const customer = appState.customers.find(c => c.id === customerId);
+
+    if (!customer) throw new Error('Customer nahi mila');
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Colors
+    const primaryColor = [106, 27, 154]; // #6a1b9a
+    const successColor = [46, 196, 182]; // #2ec4b6
+    const dangerColor = [229, 57, 53]; // #e53935
+
+    const companyName = document.getElementById('companyName')?.value || 'Khata Mitra';
+
+    // Header
+    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+    doc.rect(0, 0, 210, 35, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text(companyName, 105, 15, { align: 'center' });
+    doc.setFontSize(14);
+    doc.text('KHATA STATEMENT', 105, 25, { align: 'center' });
+
+    // Customer Info - FULL DETAILS
+    let y = 50;
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Customer Details', 20, y);
+    y += 10;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Name: ${customer.name}`, 20, y);
+    doc.text(`Mobile: ${customer.phone || '-'}`, 110, y); y += 7;
+    doc.text(`Address: ${customer.address || '-'}`, 20, y);
+    doc.text(`Email: ${customer.email || '-'}`, 110, y); y += 7;
+    doc.text(`GST No: ${customer.gst || '-'}`, 20, y);
+    doc.text(`PAN No: ${customer.pan || '-'}`, 110, y); y += 7;
+    doc.text(`Vehicle: ${customer.vehicle || '-'}`, 20, y);
+    doc.text(`Bank: ${customer.bank || '-'}`, 110, y); y += 12;
+
+    // Transactions
+    const transactions = appState.transactions
+     .filter(t => t.customerId === customerId)
+     .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    let totalGiven = 0, totalReceived = 0;
+    transactions.forEach(t => {
+      if (t.type === 'udhar') totalGiven += Number(t.amount);
+      else totalReceived += Number(t.amount);
+    });
+
+    // Balance Box
+    const balanceY = y;
+    const balanceColor = customer.balance >= 0? dangerColor : successColor;
+    doc.setFillColor(balanceColor[0], balanceColor[1], balanceColor[2]);
+    doc.roundedRect(20, balanceY - 5, 170, 20, 3, 3, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`Current Balance: ₹${Math.abs(Number(customer.balance || 0)).toFixed(2)} ${customer.balance >= 0? '(To Receive)' : '(To Pay)'}`, 105, balanceY + 8, { align: 'center' });
+    y += 35;
+
+    // Summary
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Summary', 20, y); y += 8;
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Total Udhar Diya:`, 20, y);
+    doc.setTextColor(dangerColor[0], dangerColor[1], dangerColor[2]);
+    doc.text(`₹${totalGiven.toFixed(2)}`, 70, y);
+
+    doc.setTextColor(0, 0, 0);
+    doc.text(`Total Jama Mila:`, 110, y);
+    doc.setTextColor(successColor[0], successColor[1], successColor[2]);
+    doc.text(`₹${totalReceived.toFixed(2)}`, 150, y);
+    y += 12;
+
+    // Transactions Table Header
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Transaction History', 20, y);
+    y += 10;
+
+    // Table Header
+    doc.setFillColor(240, 240, 240);
+    doc.rect(20, y - 5, 170, 10, 'F');
+
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Date', 22, y);
+    doc.text('Type', 45, y);
+    doc.text('Description', 75, y);
+    doc.text('Amount', 165, y, { align: 'right' });
+
+    y += 10;
+
+    // Table Rows
+    doc.setFont('helvetica', 'normal');
+
+    transactions.forEach((t) => {
+      if (y > 270) {
+        doc.addPage();
+        y = 30;
+        doc.setFillColor(240, 240, 240);
+        doc.rect(20, y - 5, 170, 10, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.text('Date', 22, y); doc.text('Type', 45, y);
+        doc.text('Description', 75, y); doc.text('Amount', 165, y, { align: 'right' });
+        y += 10; doc.setFont('helvetica', 'normal');
+      }
+
+      const amount = Number(t.amount);
+      if (t.type === 'udhar') {
+        doc.setTextColor(dangerColor[0], dangerColor[1], dangerColor[2]);
+      } else {
+        doc.setTextColor(successColor[0], successColor[1], successColor[2]);
+      }
+
+      doc.text(formatDate(t.date), 22, y);
+      doc.text(t.type === 'udhar'? 'Udhar' : 'Jama', 45, y);
+
+      // Truncate long description
+      let desc = t.note || '-';
+      if (desc.length > 18) desc = desc.substring(0, 16) + '...';
+      doc.text(desc, 75, y);
+
+      doc.text(`₹${amount.toFixed(2)}`, 165, y, { align: 'right' });
+      doc.setTextColor(0, 0, 0);
+      y += 8;
+    });
+
+    if(transactions.length === 0){
+      doc.text('Koi transaction nahi hai', 105, y, { align: 'center' });
+    }
+
+    // Footer
+    const totalPages = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+      doc.setPage(i);
+      doc.setFontSize(8);
+      doc.setTextColor(150, 150, 150);
+      doc.text(`${companyName} - Generated on ${new Date().toLocaleDateString('en-IN')} - Page ${i} of ${totalPages}`, 105, 290, { align: 'center' });
+    }
+
+    doc.save(`${customer.name.replace(/\s+/g, '_')}_Khata.pdf`);
+    showToast('PDF Download ho gaya', 'success');
+
+  } catch(err) {
+    console.error(err);
+    showErrorPopup('PDF Error', err.message);
+  }
+}
+  
+    function printCustomerDetail() {
+  try {
+    const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
+    const customer = appState.customers.find(c => c.id === customerId);
+
+    if (!customer) throw new Error('Customer nahi mila');
+
+    const companyName = document.getElementById('companyName')?.value || 'Khata Mitra';
+    const companyAddress = document.getElementById('companyAddress')?.value || '';
+    const companyMobile = document.getElementById('companyMobile')?.value || '';
+
+    // CUSTOMER KE SAARE TRANSACTIONS
+    const customerTransactions = appState.transactions
+     .filter(t => t.customerId === customerId)
+     .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // TOTAL HISAB
+    let totalUdhar = customerTransactions.filter(t => t.type === 'udhar').reduce((sum, t) => sum + Number(t.amount), 0);
+    let totalJama = customerTransactions.filter(t => t.type === 'jama').reduce((sum, t) => sum + Number(t.amount), 0);
+    let balanceText = customer.balance >= 0? 'Lene Hai' : 'Dene Hai';
+    let balanceColor = customer.balance >= 0? '#d32f2f' : '#2e7d32';
+
+    // 1. FULL HTML + DESIGN
+    let fullHTML = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${customer.name} - Khata Statement</title>
+        <style>
+            *{margin:0; padding:0; box-sizing:border-box;}
+            body { font-family: Arial, sans-serif; background:#f5f5f5; padding:10px; color:#333; }
+          .statement {max-width:800px; margin:10px auto; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+          .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; text-align: center; }
+          .header h1{margin:0; font-size:22px;}
+          .header p{margin:4px 0 0 0; font-size:12px; opacity:0.9;}
+          .customer-info { padding: 15px; border-bottom:1px solid #eee; }
+          .info-grid { display:grid; grid-template-columns: 1fr 1fr; gap:8px; font-size:14px; }
+          .balance-box { padding: 20px; text-align:center; color: white; background: ${balanceColor}; }
+          .balance-box h3{margin:0; font-size:14px; font-weight:400;}
+          .balance-box h2{margin:5px 0; font-size:28px;}
+          .summary { display:flex; justify-content:space-around; padding:15px; background:#fafafa; border-bottom:1px solid #eee; }
+          .summary-item{text-align:center;}
+          .summary-item.label{font-size:12px; color:#666;}
+          .summary-item.value{font-size:18px; font-weight:bold;}
+          .udhar{color:#d32f2f;}.jama{color:#2e7d32;}
+           table { width: 100%; border-collapse: collapse; font-size:13px; }
+           th { background: #f0f0f0; padding: 10px; text-align: left; border-bottom:2px solid #ddd; }
+           td { padding: 10px; border-bottom: 1px solid #eee; }
+          .given { color: #d32f2f; font-weight:600; }
+          .received { color: #2e7d32; font-weight:600; }
+          .footer { text-align: center; color: #666; font-size: 11px; padding:20px; border-top:1px solid #eee; }
+          .print-btn{text-align:center; margin:20px 0;}
+          .print-btn button{padding:14px 30px; font-size:16px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;}
+            @media print {body{background:#fff;}.statement{box-shadow:none;}.print-btn{display:none;}}
+        </style>
+    </head>
+    <body>
+        <div class="statement">
+            <div class="header">
+                <h1>${companyName}</h1>
+                <p>${companyAddress} ${companyMobile? '| Mob: '+companyMobile : ''}</p>
+                <h2 style="margin:10px 0 0 0; font-size:16px;">KHATA STATEMENT</h2>
+            </div>
+
+            <div class="customer-info">
+                <div class="info-grid">
+                    <div><b>Customer:</b> ${customer.name}</div>
+                    <div><b>Mobile:</b> ${customer.phone || '-'}</div>
+                    <div><b>Address:</b> ${customer.address || '-'}</div>
+                    <div><b>Email:</b> ${customer.email || '-'}</div>
+                    <div><b>GST No:</b> ${customer.gst || '-'}</div>
+                    <div><b>PAN No:</b> ${customer.pan || '-'}</div>
+                    <div><b>Vehicle:</b> ${customer.vehicle || '-'}</div>
+                    <div><b>Bank:</b> ${customer.bank || '-'}</div>
+                </div>
+            </div>
+
+            <div class="balance-box">
+                <h3>Current Balance ${balanceText}</h3>
+                <h2>₹${Math.abs(Number(customer.balance || 0)).toFixed(2)}</h2>
+            </div>
+
+            <div class="summary">
+                <div class="summary-item">
+                    <div class="label">Total Udhar</div>
+                    <div class="value udhar">₹${totalUdhar.toFixed(2)}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">Total Jama</div>
+                    <div class="value jama">₹${totalJama.toFixed(2)}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="label">Total Entries</div>
+                    <div class="value">${customerTransactions.length}</div>
+                </div>
+            </div>
+
+            <h3 style="padding:15px 15px 0 15px;">Transaction History</h3>
+            <div style="padding:0 15px 15px 15px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Note</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${customerTransactions.length > 0? customerTransactions.map(t => `
+                        <tr>
+                            <td>${formatDate(t.date)}</td>
+                            <td class="${t.type === 'udhar'? 'given' : 'received'}">${t.type === 'udhar'? 'Udhar Diya' : 'Jama Mila'}</td>
+                            <td>${t.note || '-'}</td>
+                            <td class="${t.type === 'udhar'? 'given' : 'received'}">₹${Number(t.amount).toFixed(2)}</td>
+                        </tr>
+                    `).join('') : `<tr><td colspan="4" style="text-align:center;">Koi transaction nahi hai</td></tr>`}
+                </tbody>
+            </table>
+            </div>
+
+            <div class="footer">
+                Statement Generated on ${new Date().toLocaleString('en-IN')}<br>
+                Powered by Khata Mitra Pro
+            </div>
+        </div>
+
+        <div class="print-btn">
+            <button onclick="window.print()">🖨️ Print / Save PDF</button>
+        </div>
+        <script>window.onload = function(){ setTimeout(function(){window.print()}, 700); }<\/script>
+    </body>
+    </html>`;
+
+    // 2. BLOB BANAKAR BAHAR KHOLO
+    let blob = new Blob([fullHTML], {type: 'text/html;charset=utf-8'});
+    let url = URL.createObjectURL(blob);
+    window.open(url, '_system'); // AppCrater me yehi chalega
+
+    showToast('Statement khul rahi hai...', 'success');
+
+  } catch(err) {
+    console.error(err);
+    showErrorPopup('Error', err.message);
+  }
+}
+  
+    // ==================== UTILITY FUNCTIONS ====================
+    function formatDate(dateString) {
+      if (!dateString) return '';
+      const [year, month, day] = dateString.split('-');
+      return `${day}/${month}/${year}`;
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.background = type === 'success' ? '#2ec4b6' : '#e53935';
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    function switchTab(tabName) {
+      // Update tab buttons
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+      
+      // Show selected tab
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+      document.getElementById(tabName).classList.add('active');
+      
+      if (tabName === 'reports') {
+        updateReports();
+      }
+      
+      if(tabName === 'settings'){
+        loadCompanySettings();
+    }
+      
+    }
+      
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const icon = document.getElementById('darkModeToggle');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+      
+      appState.settings.darkMode = document.body.classList.contains('dark-mode');
+      saveData();
+    }
+
+    function searchCustomers() {
+      updateCustomerList();
+    }
+
+    function searchHistory() {
+      updateAllTransactions();
+    }
+
+    function shareOnWhatsApp() {
+  try {
+    const customerId = document.getElementById('customerDetailModal').getAttribute('data-customer-id');
+    const customer = appState.customers.find(c => c.id === customerId);
+    
+    if (!customer) throw new Error('Customer nahi mila');
+
+    const companyName = document.getElementById('companyName')?.value || 'Khata Mitra';
+    
+    const transactions = appState.transactions
+      .filter(t => t.customerId === customerId)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    let totalGiven = 0, totalReceived = 0;
+    transactions.forEach(t => {
+      if (t.type === 'udhar') totalGiven += Number(t.amount);
+      else totalReceived += Number(t.amount);
+    });
+
+    // 1. HEADER
+    let message = `*${companyName}*\n`;
+    message += `*${customer.name}* का खाता विवरण\n`;
+    message += `━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    // 2. CUSTOMER FULL DETAILS
+    message += `👤 *नाम:* ${customer.name}\n`;
+    if(customer.phone) message += `📞 *मोबाइल:* ${customer.phone}\n`;
+    if(customer.address) message += `🏠 *पता:* ${customer.address}\n`;
+    if(customer.email) message += `📧 *Email:* ${customer.email}\n`;
+    if(customer.gst) message += `📄 *GST:* ${customer.gst}\n`;
+    if(customer.pan) message += `🪪 *PAN:* ${customer.pan}\n`;
+    if(customer.vehicle) message += `🚗 *Vehicle:* ${customer.vehicle}\n`;
+    message += `\n`;
+
+    // 3. BALANCE BOX
+    let balanceText = customer.balance >= 0? 'लेना है' : 'देना है';
+    let balanceEmoji = customer.balance >= 0? '🔴' : '🟢';
+    message += `${balanceEmoji} *वर्तमान बैलेंस:* ₹${Math.abs(Number(customer.balance || 0)).toFixed(2)} (${balanceText})\n`;
+    message += `💸 *कुल उधार दिया:* ₹${totalGiven.toFixed(2)}\n`;
+    message += `💰 *कुल जमा मिला:* ₹${totalReceived.toFixed(2)}\n\n`;
+    message += `━━━━━━━━━━━━━━━━━━\n\n`;
+
+    // 4. TRANSACTION HISTORY
+    message += `📝 *लेन-देन का विवरण:*\n\n`;
+    
+    if(transactions.length === 0){
+      message += `कोई लेन-देन नहीं है\n`;
+    } else {
+      // Last 15 transactions only, warna WhatsApp me bahut lamba ho jayega
+      transactions.slice(0, 15).forEach(t => {
+        let typeText = t.type === 'udhar'? '🔴 उधार दिया' : '🟢 जमा लिया';
+        message += `${formatDate(t.date)} | ${typeText}\n`;
+        message += `राशि: ₹${Number(t.amount).toFixed(2)}`;
+        if (t.note) message += ` | नोट: ${t.note}`;
+        message += '\n\n';
+      });
+      
+      if(transactions.length > 15){
+        message += `...और ${transactions.length - 15} लेन-देन\n`;
+      }
+    }
+    
+    // 5. FOOTER
+    message += `━━━━━━━━━━━━━━━━━━\n`;
+    message += `रिपोर्ट दिनांक: ${new Date().toLocaleDateString('en-IN')}\n`;
+    message += `Powered by ${companyName}`;
+    
+    // APP CRATER KE LIYE _system USE KARO
+    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(url, '_system'); // _blank ki jagah _system
+    
+    showToast('WhatsApp khul raha hai...', 'success');
+
+  } catch(err) {
+    console.error(err);
+    showErrorPopup('Error', err.message);
+  }
+}
+
+    function showNotifications() {
+      showToast(currentLanguage === 'hi' ? 'कोई नई सूचना नहीं' : 'No new notifications', 'info');
+    }
+
+    function showAnalytics() {
+      switchTab('reports');
+      document.querySelectorAll('.nav-tab')[3].click();
+    }
+
+// ==================== BACKUP FUNCTIONS - APP CREATOR FIX ====================
+function exportBackup() {
+  try {
+    const backupData = JSON.stringify({
+      app: "Khata Mitra Pro",
+      backupDate: new Date().toISOString(),
+      version: 1,
+      data: appState
+    }, null, 2);
+
+    // Clipboard API try karo
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(backupData)
+        .then(() => {
+          showToast("Backup copy ho gaya! Ab Notes mein paste karke save karo.");
+        })
+        .catch(() => backupCopyFallback(backupData));
+    } else {
+      backupCopyFallback(backupData);
+    }
+
+  } catch (error) {
+    console.error("BACKUP ERROR:", error);
+    showToast("Backup banane mein problem hui.", "error");
+  }
+}
+
+function backupCopyFallback(backupData) {
+  const textarea = document.createElement("textarea");
+  textarea.value = backupData;
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    const copied = document.execCommand("copy");
+    showToast(copied
+      ? "Backup copy ho gaya! Notes mein paste karke save karo."
+      : "Copy nahi hua. Share Backup try karo.",
+      copied ? "success" : "error");
+  } catch (error) {
+    showToast("Copy nahi hua. Share Backup try karo.", "error");
+  }
+
+  document.body.removeChild(textarea);
+}
+
+async function shareBackup() {
+  try {
+    const backupData = JSON.stringify({
+      app: "Khata Mitra Pro",
+      backupDate: new Date().toISOString(),
+      version: 1,
+      data: appState
+    }, null, 2);
+
+    if (navigator.share) {
+      await navigator.share({
+        title: "Khata Mitra Pro Backup",
+        text: backupData
+      });
+    } else {
+      exportBackup();
+    }
+
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      console.error("SHARE BACKUP ERROR:", error);
+      showToast("Share nahi ho paya. Copy Backup try karo.", "error");
+    }
+  }
+}
+
+
+  
+function recoverBeforeRestore() {
+  try {
+    const saved = localStorage.getItem('khataMitraPro_beforeRestore');
+
+    if (!saved) {
+      showToast("Purana data safety copy nahi mili.", "error");
+      return;
+    }
+
+    const oldData = JSON.parse(saved);
+
+    if (!Array.isArray(oldData.customers) ||
+        !Array.isArray(oldData.transactions)) {
+      showToast("Safety copy ka data valid nahi hai.", "error");
+      return;
+    }
+
+    const count = oldData.customers.length;
+
+    if (!confirm(
+      count + " purane customers recover honge. Kya aap recover karna chahte hain?"
+    )) return;
+
+    // Abhi ke restored data ko bhi alag safe rakho
+    localStorage.setItem(
+      'khataMitraPro_afterRestore',
+      localStorage.getItem('khataMitraPro')
+    );
+
+    // Purana data wapas lao
+    appState = normalizeAppData(oldData);
+    saveData();
+    updateUI();
+
+    showToast("Purana data recover ho gaya!", "success");
+
+  } catch (error) {
+    console.error("RECOVERY ERROR:", error);
+    showToast("Recovery nahi ho payi.", "error");
+  }
+}
+
+
+
+async function restoreBackupData(text) {
+  try {
+    const parsed = JSON.parse(text);
+    const backup = parsed.data || parsed;
+    const current = appState;
+
+    // Backup validation
+    if (!backup ||
+        !Array.isArray(backup.customers) ||
+        !Array.isArray(backup.transactions) ||
+        !backup.company ||
+        !backup.settings) {
+      throw new Error("Invalid backup structure");
+    }
+
+    if (!confirm(
+      "MERGE BACKUP?\n\nCurrent aur backup dono ka data rahega. Duplicate IDs dobara add nahi honge. Aage badhein?"
+    )) return;
+
+    // Current data ki safety copy
+    const currentJSON = JSON.stringify(current);
+
+    localStorage.setItem(
+      'khataMitraPro_beforeMerge',
+      currentJSON
+    );
+
+    // ID ke basis par records merge
+    function mergeRecords(oldList, newList) {
+      const result = [...(oldList || [])];
+      const ids = new Set(
+        result.filter(x => x.id != null).map(x => String(x.id))
+      );
+
+      (newList || []).forEach(item => {
+        if (item.id != null) {
+          if (!ids.has(String(item.id))) {
+            result.push(item);
+            ids.add(String(item.id));
+          }
+        } else {
+          result.push(item);
+        }
+      });
+
+      return result;
+    }
+
+    // Current data ko priority, backup ka naya data add
+    const merged = {
+      ...backup,
+      ...current,
+
+      company: {
+        ...(backup.company || {}),
+        ...(current.company || {})
+      },
+
+      settings: {
+        ...(backup.settings || {}),
+        ...(current.settings || {})
+      },
+
+      customers: mergeRecords(
+        current.customers,
+        backup.customers
+      ),
+
+      transactions: mergeRecords(
+        current.transactions,
+        backup.transactions
+      ),
+
+      photos: mergeRecords(
+        current.photos,
+        backup.photos
+      ),
+
+      billsGenerated: Math.max(
+        Number(current.billsGenerated || 0),
+        Number(backup.billsGenerated || 0)
+      )
+    };
+
+    appState = merged;
+    await saveData();
+    updateUI();
+
+    showToast(
+      "Merge successful! Customers: " +
+      merged.customers.length,
+      "success"
+    );
+
+  } catch (error) {
+    console.error("MERGE ERROR:", error);
+    showToast(
+      "Merge nahi hua. Current data safe rakha gaya.",
+      "error"
+    );
+  }
+}
+
+function importBackup(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    restoreBackupData(e.target.result);
+    input.value = "";
+  };
+
+  reader.onerror = function() {
+    showToast("File read nahi ho payi.", "error");
+  };
+
+  reader.readAsText(file);
+}
+
+function restoreBackupText() {
+  const text = document.getElementById('restoreBackupText').value.trim();
+
+  if (!text) {
+    showToast("Pehle backup text paste karo.", "error");
+    return;
+  }
+
+  restoreBackupData(text);
+}
+
+
+// Har 7 din me auto backup download
+function autoBackupToFile() {
+  if(localStorage.getItem('lastAutoBackup')) {
+    const last = new Date(localStorage.getItem('lastAutoBackup'));
+    const days = (new Date() - last) / (1000*60*60*24);
+    if(days < 7) {
+      showToast(currentLanguage === 'hi'? '7 din baad fir backup hoga' : 'Next backup in 7 days');
+      return;
+    }
+  }
+  exportBackup();
+  localStorage.setItem('lastAutoBackup', new Date().toISOString());
+  showToast(currentLanguage === 'hi'? 'Auto backup ho gaya' : 'Auto backup done');
+}
+
+
+function downloadBillAsImage() {
+    if(currentBillItems.length === 0) {
+        alert('Pehle item add karo');
+        return;
+    }
+    
+    alert('Bill ban raha hai... 2 second ruko');
+
+    const billElement = document.getElementById('billContent');
+
+    html2canvas(billElement, {
+        scale: 2, // Quality achi
+        backgroundColor: '#ffffff'
+    }).then(canvas => {
+        // Image download link banaya
+        let link = document.createElement('a');
+        link.download = 'Bill_' + Date.now() + '.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+        alert('Bill Gallery me Save ho gaya!');
+    });
+}
+
+    // 1. BROWSER ME KHOL KE PRINT/PDF
+function openBillInBrowser() {
+    if(currentBillItems.length === 0) {
+        alert('Pehle item add karo');
+        return;
+    }
+    
+    let billHTML = document.getElementById('billContent').innerHTML;
+    let companyName = appState.company.name || 'KhataMitra';
+    
+    let fullHTML = `
+    <html>
+    <head>
+        <title>${companyName} Bill</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{font-family:Arial; margin:10px; background:white;}
+            table{width:100%; border-collapse:collapse;}
+            th,td{border:1px solid #000; padding:6px; font-size:13px;}
+        </style>
+    </head>
+    <body>
+        ${billHTML}
+        <div style="text-align:center; margin:20px;">
+            <button onclick="window.print()" style="padding:12px 24px; font-size:16px; background:green; color:white; border:none; border-radius:8px;">Print / Save PDF</button>
+        </div>
+        <script>window.onload = function(){ setTimeout(function(){window.print()}, 500); }<\/script>
+    </body>
+    </html>`;
+    
+    // BLOB BANAYA - ye sabse safe tarika hai
+    let blob = new Blob([fullHTML], {type: 'text/html'});
+    let url = URL.createObjectURL(blob);
+    
+    // Bahar Chrome me kholega
+    window.open(url, '_system');
+}
+    
+// 2. DIRECT WHATSAPP PE BILL TEXT BHEJNA
+function shareBillOnWhatsApp() {
+    if(currentBillItems.length === 0) {
+        alert('Pehle item add karo');
+        return;
+    }
+    
+    let customer = appState.customers.find(c => c.id === document.getElementById('billCustomerSelect').value) || {name: 'Cash Customer'};
+    let total = currentBillItems.reduce((sum, item) => sum + (item.qty * item.rate), 0);
+    
+    let message = `*${appState.company.name}*\n`;
+    message += `Bill: KM${Date.now().toString().slice(-6)}\n`;
+    message += `Customer: ${customer.name}\n\n`;
+    message += `*Items:*\n`;
+    currentBillItems.forEach((item, i) => {
+        message += `${i+1}. ${item.name} - ${item.qty}Kg x ₹${item.rate} = ₹${(item.qty * item.rate).toFixed(2)}\n`;
+    });
+    message += `\n*Total: ₹${total.toFixed(2)}*`;
+    
+    let whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank'); // AppCreator me ye bahar khol dega
+}
+
+      
+const ADMIN_PASSWORD = 'khata123';
+
+function openSubscriptionModal() {
+  let modalHTML = `
+  <div id="subscriptionModal" class="modal active" style="display:flex; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:9999;">
+    <div class="modal-content" style="background:white; padding:20px; border-radius:15px; max-width:400px; width:90%; text-align:center;">
+      <span class="close" onclick="closeSubscriptionModal()" style="float:right; font-size:28px; cursor:pointer; line-height:1;">&times;</span>
+      <h2>🚀 KhataMitra Pro</h2>
+      <ul style="text-align:left; line-height:2; padding-left:20px; margin:15px 0;">
+        <li>✅ Unlimited Customers & Bills</li>
+        <li>✅ GST Bill + PDF Export</li>
+        <li>✅ Cloud Backup</li>
+        <li>✅ No Ads</li>
+      </ul>
+      <h3 style="color:#4CAF50;">₹99 / Month</h3>
+      <button onclick="buyPro()" class="btn-primary" style="width:100%; padding:15px; font-size:16px; background:#4CAF50; color:white; border:none; border-radius:8px; font-weight:bold;">Buy Now with UPI</button>
+      <p style="font-size:11px; color:#666; margin-top:10px;">Payment ke baad screenshot WhatsApp karo</p>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function buyPro() {
+  // Tera PhonePe UPI
+  let upi = '8708986767@ybl';  
+  let amount = 99;
+  let note = 'KhataMitra Pro';
+  
+  // Payment request time save
+  appState.settings.paymentRequestedAt = new Date().toISOString();
+  appState.settings.isPro = false; // Pehle band rahega
+  saveData();
+  
+  // UPI Link - AppCrater me _system se kholo
+  let upiLink = `upi://pay?pa=${encodeURIComponent(upi)}&pn=${encodeURIComponent('KhataMitra')}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+  
+  window.open(upiLink, '_system'); // _system IMPORTANT HAI
+  
+  showToast('PhonePe khul gaya. Payment karke screenshot bhejo. 48 ghante me Pro ON hoga', 'info');
+    
+  closeSubscriptionModal();
+  updateProUI();
+}
+   
+function closeSubscriptionModal() {
+  let modal = document.getElementById('subscriptionModal');
+  if(modal) modal.remove(); 
+}
+
+function closeBillModal() {
+  let modal = document.getElementById('billModal');
+  if(modal) modal.style.display = 'none';
+}
+
+// Bahar click pe band
+document.addEventListener('click', function(e) {
+  if(e.target.id === 'subscriptionModal') closeSubscriptionModal();
+  if(e.target.id === 'billModal') closeBillModal();
+});
+    
+function adminActivatePro() {
+  let pass = document.getElementById('adminPass').value;
+  if(pass === ADMIN_PASSWORD) {
+    appState.settings.isPro = true;
+    let expiryDate = new Date(); expiryDate.setDate(expiryDate.getDate() + 30); 
+    appState.settings.proExpiry = expiryDate.toISOString();
+    appState.settings.paymentRequestedAt = null;
+    appState.billsGenerated = 0; // Reset kar do
+    saveData(); updateProUI();
+    showToast('Pro 30 Din ke liye Activated ✅', 'success');
+    document.getElementById('adminPass').value = '';
+  } else { showToast('Galat Password', 'error'); }
+}
+
+function adminDeactivatePro() {
+  let pass = document.getElementById('adminPass').value;
+  if(pass === ADMIN_PASSWORD) {
+    appState.settings.isPro = false; 
+    appState.settings.proExpiry = null;
+    appState.settings.paymentRequestedAt = null;
+    appState.billsGenerated = 0; 
+    saveData(); updateProUI();
+    showToast('Pro Band ho gaya', 'warning'); 
+    document.getElementById('adminPass').value = '';
+  } else { showToast('Galat Password', 'error'); }
+}
+
+// function updateProUI() {
+//  let isPro = appState.settings.isPro || false;
+//  let expiry = appState.settings.proExpiry ? new Date(appState.settings.proExpiry) : null;
+//  let paymentTime = appState.settings.paymentRequestedAt ? new Date(appState.settings.paymentRequestedAt) : null;
+//  let today = new Date();
+  
+  // EXPIRY CHECK
+//  if(isPro && expiry && today > expiry) {
+   // appState.settings.isPro = false; 
+ //   appState.settings.proExpiry = null; 
+ //   saveData(); 
+ //   isPro = false;
+ //   showToast('Pro Expire ho gaya', 'error');
+//  }
+  
+  // 48 GHANTE KA WAIT CHECK
+//  let waitHTML = '';
+//  let canActivate = true;
+//  if(paymentTime && !isPro) {
+ //   let hoursPassed = (today - paymentTime) / (1000*60*60);
+ //   let hoursLeft = 48 - hoursPassed;
+ //   if(hoursLeft > 0) {
+  //    canActivate = false;
+  //    waitHTML = `⏳ ${Math.ceil(hoursLeft)} ghante baad Pro active kar sakte ho`;
+   //   document.getElementById('adminActivateBtn').disabled = true; // button band
+    //  document.getElementById('adminActivateBtn').style.opacity = '0.5';
+  //  } else {
+  //    document.getElementById('adminActivateBtn').disabled = false;
+ //     document.getElementById('adminActivateBtn').style.opacity = '1';
+//    }
+ //   }
+//  if(document.getElementById('proWaitStatus')) {
+//    document.getElementById('proWaitStatus').innerHTML = waitHTML;
+//  }
+    
+  // UI UPDATE
+//  if(isPro) {
+  //  let daysLeft = Math.ceil((expiry - today) / (1000*60*60*24));
+ //   document.getElementById('proStatus').innerText = `Pro Active - ${daysLeft} din baki`;
+  //  if(document.getElementById('upgradeBtn')) document.getElementById('upgradeBtn').style.display = 'none';
+ // } else {
+  //  let bills = appState.billsGenerated || 0;
+  //  document.getElementById('proStatus').innerText = `Free Plan - ${bills}/10 Bills`;
+  //  if(document.getElementById('upgradeBtn')) document.getElementById('upgradeBtn').style.display = 'block';
+//  }
+// }
+
+    function updateProUI() {
+  let isPro = appState.settings.isPro || false;
+  let expiry = appState.settings.proExpiry ? new Date(appState.settings.proExpiry) : null;
+  let paymentTime = appState.settings.paymentRequestedAt ? new Date(appState.settings.paymentRequestedAt) : null;
+  let today = new Date();
+  
+  // EXPIRY CHECK
+  if(isPro && expiry && today > expiry) {
+    appState.settings.isPro = false; 
+    appState.settings.proExpiry = null; 
+    saveData(); 
+    isPro = false;
+    showToast('Pro Expire ho gaya', 'error');
+  }
+  
+  // 48 GHANTE WALI SIRF LINE - KOI LOCK NAHI
+  let waitHTML = '';
+  if(paymentTime && !isPro) {
+    let hoursLeft = 48 - ((today - paymentTime) / (1000*60*60));
+    if(hoursLeft > 0) waitHTML = `⏳ ${Math.ceil(hoursLeft)} ghante baad Pro active kar sakte ho`;
+  }
+  document.getElementById('proWaitStatus').innerHTML = waitHTML;
+  
+  // UI UPDATE
+  if(isPro) {
+    let daysLeft = Math.ceil((expiry - today) / (1000*60*60*24));
+    document.getElementById('proStatus').innerText = `Pro Active - ${daysLeft} din baki`;
+    document.getElementById('upgradeBtn').style.display = 'none';
+  } else {
+    let bills = appState.billsGenerated || 0;
+    document.getElementById('proStatus').innerText = `Free Plan - ${bills}/10 Bills`; // YAHI BADALNA HAI
+    document.getElementById('upgradeBtn').style.display = 'block';
+  }
+}
+
+setTimeout(updateProUI, 500);
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBbSdkHFFpuWxl0DaXGLmTcAdD3tJv4cjc",
+  authDomain: "khata-mitra-pro.firebaseapp.com",
+  databaseURL: "https://khata-mitra-pro-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "khata-mitra-pro"
+};
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+  
+const provider = new firebase.auth.GoogleAuthProvider();
+let currentUser = null;
+
+
+firebase.auth().onAuthStateChanged(async user => {
+  currentUser = user;
+  window.currentUser = user;
+  updateLoginButton();
+  const gate = document.getElementById('authGate');
+  const status = document.getElementById('authGateStatus');
+  if (!user) {
+    cloudReady = false;
+    document.body.classList.remove('authenticated');
+    if (gate) gate.style.display = 'flex';
+    if (status) status.textContent = 'अपना खाता खोलने के लिए Google से Login करें।';
+    return;
+  }
+  if (status) status.textContent = 'नमस्ते ' + (user.displayName || user.email || '') + ' — आपका डेटा लोड हो रहा है…';
+  try {
+    await cloudRestore();
+  } catch (e) {
+    console.error('AUTH DATA LOAD FAILED:', e);
+  }
+});
+
+  async function testFirebaseWrite() {
+  const user = firebase.auth().currentUser;
+
+  if (!user) {
+    alert("Firebase login active nahi hai");
+    return;
+  }
+
+  try {
+    await firebase.database()
+      .ref("users/" + user.uid + "/debug")
+      .set({
+        test: "success",
+        time: Date.now()
+      });
+
+    alert("Firebase write SUCCESS");
+  } catch (e) {
+    alert("Firebase ERROR: " + e.code);
+    console.error(e);
+  }
+}
+
+function updateLoginButton(){
+  const btn = document.getElementById('loginBtn');
+  const gateBtn = document.getElementById('gateLoginBtn');
+  if (btn) {
+    if(currentUser){ btn.innerHTML = `✅ ${currentUser.displayName || currentUser.email} - Logout`; btn.onclick = googleLogout; }
+    else { btn.innerHTML = `G Google se Login`; btn.onclick = googleLogin; }
+  }
+  if (gateBtn) {
+    gateBtn.disabled = !!currentUser || googleLoginInProgress;
+    gateBtn.innerHTML = currentUser ? '⏳ आपका डेटा लोड हो रहा है…' : 'G Google se Login';
+  }
+}
+
+
+let googleLoginInProgress = false;
+
+async function googleLogin() {
+  if (googleLoginInProgress) {
+    console.log("Google login already running");
+    return;
+  }
+
+  googleLoginInProgress = true;
+
+  const btn = document.getElementById('loginBtn');
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = "⏳ Connecting...";
+  }
+
+  try {
+    const result = await firebase.auth()
+      .signInWithPopup(provider);
+
+    currentUser = result.user;
+    window.currentUser = result.user;
+
+    updateLoginButton();
+
+    showToast("Login successful: " + result.user.email);
+    console.log("FIREBASE LOGIN SUCCESS", result.user.uid);
+
+  } catch (error) {
+    console.error(
+      "GOOGLE LOGIN ERROR:",
+      error.code,
+      error.message
+    );
+
+    showToast("Login failed: " + error.code, "error");
+    const status = document.getElementById("authGateStatus");
+    if (status) status.textContent = "Login नहीं हुआ: " + error.code + "। फिर से कोशिश करें।";
+
+  } finally {
+    googleLoginInProgress = false;
+
+    if (!currentUser) {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = "G Google se Login";
+      }
+    } else {
+      updateLoginButton();
+    }
+  }
+}
+
+
+function googleLogout() {
+  cloudReady = false;
+  firebase.auth().signOut().then(() => {
+    document.body.classList.remove('authenticated');
+    const gate = document.getElementById('authGate');
+    if (gate) gate.style.display = 'flex';
+    showToast('Logout ho gaya');
+  }).catch(error => showToast('Logout nahi hua: ' + error.message, 'error'));
+}
+</script>
+
+
+</body>
+</html>
