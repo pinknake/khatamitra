@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>Big Note – Large Text Saver</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#111c2e;--line:#26364d;--muted:#9aabc2;--text:#e8eef7;--accent:#60a5fa;--good:#34d399;--danger:#fb7185}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:18px 16px 12px;max-width:1100px;margin:auto}h1{font-size:23px;margin:0 0 5px}header p{margin:0;color:var(--muted);font-size:13px}
+main{max-width:1100px;margin:auto;padding:0 16px 24px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button,.filelabel{border:1px solid var(--line);background:#1a2940;color:var(--text);padding:10px 13px;border-radius:9px;font-weight:600;font-size:13px;cursor:pointer}
+button.primary{background:#1d4ed8;border-color:#2563eb}button.warn{color:#fecdd3;border-color:#7f1d1d;background:#351722}
+button:active,.filelabel:active{transform:translateY(1px)}
+.editor-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.note-title{width:100%;background:#0f1929;color:var(--text);border:0;border-bottom:1px solid var(--line);padding:14px 15px;font:600 16px system-ui;outline:none}
+textarea{display:block;width:100%;min-height:58vh;resize:vertical;background:var(--panel);color:var(--text);border:0;outline:none;padding:16px;font:14px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}
+.status{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;color:var(--muted);font-size:12px;padding:10px 14px;border-top:1px solid var(--line)}
+#saveState{color:var(--good)}.hint{color:var(--muted);font-size:12px;line-height:1.5;margin:12px 2px}
+input[type=file]{display:none}.bottom{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+@media(min-width:700px){textarea{min-height:65vh}}
+</style>
+</head>
+<body>
+<header><h1>Big Note</h1><p>Large text paste karo, automatically save karo, aur zarurat par file download karo.</p></header>
+<main>
+  <div class="toolbar">
+    <button class="primary" id="downloadTxt">Download .TXT</button>
+    <button id="downloadJson">Download .JSON</button>
+    <button id="copyAll">Copy text</button>
+    <label class="filelabel" for="openFile">Open file</label><input id="openFile" type="file" accept=".txt,.json,.md,.csv,.log,text/plain,application/json">
+    <button id="newNote">New note</button>
+  </div>
+  <section class="editor-wrap">
+    <input id="noteTitle" class="note-title" maxlength="180" placeholder="Note title (optional)">
+    <textarea id="noteText" spellcheck="false" placeholder="Yahan kitna bhi bada text / JSON paste karein..."></textarea>
+    <div class="status"><span id="saveState">Ready</span><span id="counts">0 characters · 0 words</span></div>
+  </section>
+  <div class="bottom">
+    <button id="selectAll">Select all text</button>
+    <button class="warn" id="clearText">Clear editor</button>
+  </div>
+  <p class="hint">Auto-save isi browser/app ke local storage mein hota hai. Bahut bada ya important data safe rakhne ke liye <b>Download .TXT</b> ya <b>Download .JSON</b> karke file alag se save karein. Browser data clear karne ya app uninstall karne se local copy mit sakti hai.</p>
+</main>
+<script>
+(() => {
+ const titleEl=document.getElementById('noteTitle'), textEl=document.getElementById('noteText');
+ const stateEl=document.getElementById('saveState'), countsEl=document.getElementById('counts');
+ const KEY='bigNote.saved.v1';
+ let saveTimer=null;
+ function stats(){
+   const t=textEl.value;
+   const words=t.trim()?t.trim().split(/\s+/u).length:0;
+   countsEl.textContent=t.length.toLocaleString()+' characters · '+words.toLocaleString()+' words';
+ }
+ function save(){
+   try{
+     localStorage.setItem(KEY,JSON.stringify({title:titleEl.value,text:textEl.value,updatedAt:new Date().toISOString()}));
+     stateEl.textContent='Saved on this device';
+   }catch(e){
+     stateEl.textContent='Auto-save unavailable / storage full — please download a file';
+   }
+ }
+ function changed(){
+   stateEl.textContent='Saving…'; stats();
+   clearTimeout(saveTimer); saveTimer=setTimeout(save,350);
+ }
+ function safeName(s){return (s||'BigNote').replace(/[\\/:*?"<>|]+/g,'_').trim().slice(0,70)||'BigNote'}
+ function download(name, content, type){
+   const blob=new Blob([content],{type});
+   const url=URL.createObjectURL(blob);
+   const a=document.createElement('a'); a.href=url; a.download=name;
+   document.body.appendChild(a); a.click(); a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),60000);
+ }
+ function envelope(){return {app:'Big Note',version:1,title:titleEl.value,updatedAt:new Date().toISOString(),text:textEl.value}}
+ titleEl.addEventListener('input',changed); textEl.addEventListener('input',changed);
+ document.getElementById('downloadTxt').onclick=()=>{
+   download(safeName(titleEl.value)+'.txt',textEl.value,'text/plain;charset=utf-8');
+   stateEl.textContent='TXT download requested';
+ };
+ document.getElementById('downloadJson').onclick=()=>{
+   download(safeName(titleEl.value)+'.json',JSON.stringify(envelope(),null,2),'application/json;charset=utf-8');
+   stateEl.textContent='JSON download requested';
+ };
+ document.getElementById('copyAll').onclick=async()=>{
+   try{await navigator.clipboard.writeText(textEl.value);stateEl.textContent='Copied';}
+   catch(e){textEl.focus();textEl.select();stateEl.textContent='Text selected — use Copy';}
+ };
+ document.getElementById('selectAll').onclick=()=>{textEl.focus();textEl.select();};
+ document.getElementById('clearText').onclick=()=>{
+   if(confirm('Editor ka poora text clear kar dein? Downloaded files delete nahi hongi.')){
+     textEl.value='';changed();
+   }
+ };
+ document.getElementById('newNote').onclick=()=>{
+   if((titleEl.value||textEl.value)&&!confirm('Current note ko replace karke naya note banayein? Pehle download kar lein agar zaroori hai.'))return;
+   titleEl.value='';textEl.value='';changed();textEl.focus();
+ };
+ document.getElementById('openFile').onchange=async(e)=>{
+   const f=e.target.files&&e.target.files[0];if(!f)return;
+   try{
+     const content=await f.text();
+     if(f.name.toLowerCase().endsWith('.json')){
+       try{
+         const obj=JSON.parse(content);
+         if(obj&&typeof obj.text==='string'){titleEl.value=obj.title||f.name;textEl.value=obj.text;}
+         else {titleEl.value=f.name;textEl.value=content;}
+       }catch(_){titleEl.value=f.name;textEl.value=content;}
+     }else{titleEl.value=f.name.replace(/\.[^.]+$/,'');textEl.value=content;}
+     changed();stateEl.textContent='File opened';
+   }catch(err){alert('File open nahi hui: '+err.message);}
+   e.target.value='';
+ };
+ try{
+   const saved=localStorage.getItem(KEY);
+   if(saved){const obj=JSON.parse(saved);titleEl.value=obj.title||'';textEl.value=obj.text||'';stateEl.textContent='Previous note restored';}
+ }catch(e){stateEl.textContent='Saved note read nahi ho payi';}
+ stats();
+})();
+</script>
+</body>
+</html>
