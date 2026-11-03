@@ -3790,6 +3790,7 @@ function adminDeactivatePro() {
 setTimeout(updateProUI, 500);
 
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBbSdkHFFpuWxl0DaXGLmTcAdD3tJv4cjc",
   authDomain: "khata-mitra-pro.firebaseapp.com",
@@ -3801,8 +3802,20 @@ if (!firebase.apps.length) {
 }
   
 const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
 let currentUser = null;
+let googleLoginInProgress = false;
 
+// 1. Page khulte hi Redirect ka result check karo - YE SABSE ZARURI HAI
+firebase.auth().getRedirectResult().then(async (result) => {
+  if (result.user) {
+    console.log("Redirect login success", result.user);
+    currentUser = result.user;
+    window.currentUser = result.user;
+  }
+}).catch((e) => {
+  console.error("getRedirectResult error:", e);
+});
 
 firebase.auth().onAuthStateChanged(async user => {
   currentUser = user;
@@ -3820,33 +3833,12 @@ firebase.auth().onAuthStateChanged(async user => {
   if (status) status.textContent = 'नमस्ते ' + (user.displayName || user.email || '') + ' — आपका डेटा लोड हो रहा है…';
   try {
     await cloudRestore();
+    if (gate) gate.style.display = 'none';
+    document.body.classList.add('authenticated');
   } catch (e) {
     console.error('AUTH DATA LOAD FAILED:', e);
   }
 });
-
-  async function testFirebaseWrite() {
-  const user = firebase.auth().currentUser;
-
-  if (!user) {
-    alert("Firebase login active nahi hai");
-    return;
-  }
-
-  try {
-    await firebase.database()
-      .ref("users/" + user.uid + "/debug")
-      .set({
-        test: "success",
-        time: Date.now()
-      });
-
-    alert("Firebase write SUCCESS");
-  } catch (e) {
-    alert("Firebase ERROR: " + e.code);
-    console.error(e);
-  }
-}
 
 function updateLoginButton(){
   const btn = document.getElementById('loginBtn');
@@ -3857,26 +3849,19 @@ function updateLoginButton(){
   }
   if (gateBtn) {
     gateBtn.disabled = !!currentUser || googleLoginInProgress;
-    gateBtn.innerHTML = currentUser ? '⏳ आपका डेटा लोड हो रहा है…' : 'G Google se Login (पहली बार लिंक करने के लिए)';
+    gateBtn.innerHTML = currentUser ? '⏳ आपका डेटा लोड हो रहा है…' : 'G Google se Login';
   }
   const linkPanel = document.getElementById('phoneLinkPanel');
   if (linkPanel) linkPanel.style.display = currentUser ? 'block' : 'none';
 }
 
-
-let googleLoginInProgress = false;
-
+// 2. YE NAYA LOGIN FUNCTION - Isi me fix hai
 async function googleLogin() {
-  if (googleLoginInProgress) {
-    console.log("Google login already running");
-    return;
-  }
-
+  if (googleLoginInProgress) return;
   googleLoginInProgress = true;
 
   const btn = document.getElementById('loginBtn');
   const gateBtn = document.getElementById('gateLoginBtn');
-
   [btn, gateBtn].forEach(button => {
     if (button) {
       button.disabled = true;
@@ -3885,46 +3870,20 @@ async function googleLogin() {
   });
 
   try {
-    // Keep Firebase's signed-in session persistent across app restarts.
-    // This does not by itself guarantee popup-state support in every WebView.
-    await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-
-    // Retain popup flow: redirect can hit the same storage-partition issue in embedded WebViews.
-    const result = await firebase.auth()
-      .signInWithPopup(provider);
-
-    currentUser = result.user;
-    window.currentUser = result.user;
-
-    updateLoginButton();
-
-    showToast("Login successful: " + result.user.email);
-    console.log("FIREBASE LOGIN SUCCESS", result.user.uid);
+    // WebView ke liye LOCAL ki jagah NONE ya SESSION use karna padta hai
+    // Isse hi "missing initial state" error khatam hota hai
+    await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+    
+    // AppCreator me Popup kaam nahi karta, isiliye Redirect use karenge
+    await firebase.auth().signInWithRedirect(provider);
 
   } catch (error) {
-    console.error(
-      "GOOGLE LOGIN ERROR:",
-      error.code,
-      error.message
-    );
-
+    console.error("GOOGLE LOGIN ERROR:", error.code, error.message);
     showToast("Login failed: " + error.code, "error");
     const status = document.getElementById("authGateStatus");
-    if (status) status.textContent = "Login नहीं हुआ: " + error.code + "। फिर से कोशिश करें।";
-
-  } finally {
+    if (status) status.textContent = "Login नहीं हुआ: " + error.message;
     googleLoginInProgress = false;
-
-    if (!currentUser) {
-      [btn, gateBtn].forEach(button => {
-        if (button) {
-          button.disabled = false;
-          button.innerHTML = "G Google se Login";
-        }
-      });
-    } else {
-      updateLoginButton();
-    }
+    updateLoginButton();
   }
 }
 
